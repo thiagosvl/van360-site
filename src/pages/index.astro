@@ -1,17 +1,1314 @@
 ---
+import Layout from "../layouts/Layout.astro";
+import { LINKS } from "../constants/links";
+import HeaderLP from "../components/HeaderLP.astro";
+import Footer from "../components/Footer.astro";
+import { blogApi } from "../utils/api";
+import {
+  Users,
+  Clock,
+  Smartphone,
+  Star,
+  ChevronDown,
+  Check,
+  CheckCircle2,
+} from "@lucide/astro";
 
+// Fetch dynamic plans for pre-rendering
+const plansData = await blogApi.getPublicPlans();
+
+// Formatter helper
+const formatCurrency = (val: number) => {
+  return new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  }).format(val);
+};
+
+const isPromoActive = plansData.isPromotionActive;
+const monthlyPlan = plansData.plans.find((p) => p.periodo === "monthly");
+const yearlyPlan = plansData.plans.find((p) => p.periodo === "yearly");
+
+// Final Pricing logic matching React SPA
+const monthlyNormalVal = monthlyPlan?.valor || 39.9;
+const originalVal = isPromoActive
+  ? (monthlyPlan?.valor || 25.0) * 0.626 // Simulated promo discount equivalent if active
+  : monthlyPlan?.valor || 25.0;
+
+const originalFormatted = formatCurrency(originalVal).replace("R$", "").trim();
+const monthlyNormalFormatted = formatCurrency(monthlyNormalVal)
+  .replace("R$", "")
+  .trim();
+const yearlyTotalFormatted = formatCurrency(yearlyPlan?.valor || 239.0)
+  .replace("R$", "")
+  .trim();
+
+
+
+const planFeatures = [
+  "Lembretes de cobrança aos pais via WhatsApp",
+  "Recibos gerados automaticamente",
+  "Contratos digitais ilimitados",
+  "Link de cadastro fácil para os pais",
+  "Passageiros e vans sem limite",
+  "Controle de gastos e finanças",
+  "Alerta de aniversariantes",
+  "Acesso no celular e computador",
+  "Suporte direto no WhatsApp",
+];
+
+const features = [
+  {
+    headline: "Pare de cobrar os pais e de passar constrangimento",
+    text: "Chega de ser 'o chato da cobrança'. O Van360 envia lembretes amigáveis pelo WhatsApp automaticamente. Saiba na hora quais parcelas foram pagas e quais ainda estão pendentes. O dinheiro entra e você só foca na direção.",
+    mockup: "/assets/lp/mockup-mensalidades.webp",
+    alt: "Painel de controle de parcelas pendentes e pagas da van escolar",
+    balloonText: "A parcela de julho da Júlia vence amanhã.",
+  },
+  {
+    headline: "Receba a ficha dos passageiros pronta",
+    text: "Perder horas anotando nome, escola e endereço à mão? Nunca mais. Mande seu link exclusivo pelo WhatsApp e deixe os pais preencherem. Sua lista se organiza sozinha em segundos.",
+    mockup: "/assets/lp/mockup-passageiros.webp",
+    alt: "Lista de passageiros organizados no aplicativo Van360",
+    balloonText: "Pai, segue o link para matricular o aluno na van.",
+  },
+  {
+    headline: "Diga adeus à velha carteirinha de papel",
+    text: "Tenha a ficha completa dos alunos na palma da mão, direto na van. Chega de depender de carnês e fichas de papel. Segurança para você, profissionalismo para os pais.",
+    mockup: "/assets/lp/mockup-carteirinha.webp",
+    alt: "Carteirinha digital do estudante na van",
+  },
+  {
+    headline: "Envie recibos profissionais com poucos toques",
+    text: "Confirmou o pagamento? O Van360 gera um recibo em PDF impecável e você envia direto no WhatsApp do responsável. Mostre que o seu serviço de transporte é de alto nível.",
+    mockup: "/assets/lp/mockup-recibo.webp",
+    alt: "Recibo de pagamento gerado automaticamente pelo Van360",
+    balloonText: "Seu recibo de pagamento já está disponível.",
+  },
+  {
+    headline: "Acabou a papelada: Contratos digitais em 1 minuto",
+    text: "Evite dor de cabeça com 'combinados de boca'. Gere contratos com validade jurídica e envie para o responsável assinar na tela do próprio celular dele. 100% seguro e digital.",
+    mockup: "/assets/lp/mockup-contrato.webp",
+    alt: "Assinatura de contrato digital no celular",
+    balloonText: "O contrato de transporte foi assinado com sucesso.",
+  },
+  {
+    headline: "Saiba exatamente para onde vai o seu dinheiro",
+    text: "Combustível, troca de óleo, mecânico... Registre cada centavo gasto com a van. Pare de misturar o dinheiro da sua vida pessoal com o do seu negócio.",
+    mockup: "/assets/lp/mockup-gastos.webp",
+    alt: "Tela de controle de gastos e despesas da van escolar",
+  },
+  {
+    headline: "Descubra se a sua van realmente está dando lucro",
+    text: "Chega de fechar o mês no escuro. Tenha um painel que calcula automaticamente seu faturamento, suas despesas e o lucro líquido real. Comece a pensar como um dono de negócio.",
+    mockup: "/assets/lp/mockup-relatorios.webp",
+    alt: "Relatórios financeiros detalhados para motoristas de van",
+  },
+];
+
+const painPoints = [
+  {
+    icon: "📒",
+    title: "Descontrole Financeiro",
+    text: "Anota tudo no caderninho e no fim do mês não sabe o que entrou e o que não entrou.",
+  },
+  {
+    icon: "⏰",
+    title: "Trabalho Manual",
+    text: "Perde horas conferindo pagamentos um a um na mão.",
+  },
+  {
+    icon: "😤",
+    title: "Combinados de Boca",
+    text: "Gera estresse com os responsáveis porque os acordos não ficam registrados.",
+  },
+  {
+    icon: "📱",
+    title: "Sufoco no WhatsApp",
+    text: "Gasta o seu tempo de descanso cobrando os pais e tirando dúvidas.",
+  },
+  {
+    icon: "🧾",
+    title: "Falta de Documentos",
+    text: "Responsável pede recibo ou contrato e você não tem nada pronto para enviar.",
+  },
+  {
+    icon: "💼",
+    title: "Imagem Amadora",
+    text: "Você trabalha duro, mas a falta de organização não passa profissionalismo.",
+  },
+];
+
+const howItWorks = [
+  {
+    n: "1",
+    title: "Crie sua conta grátis",
+    desc: "Sem cartão, sem compromisso. Em segundos você faz seu cadastro.",
+  },
+  {
+    n: "2",
+    title: "Cadastre seus passageiros sem esforço",
+    desc: "Mande um link pro pai pelo WhatsApp. Ele preenche os dados do filho e pronto — aparece na sua lista.",
+  },
+  {
+    n: "3",
+    title: "Pronto. Tudo organizado.",
+    desc: "Parcelas, contratos e recibos — no seu celular.",
+  },
+];
+
+const faqItems = [
+  {
+    q: "O que o Van360 faz?",
+    a: "O Van360 organiza a gestão da sua van escolar: cadastro de passageiros, controle de parcelas, contratos digitais e emissão de recibos, geração de contratos digitais e emissão de recibos. Tudo pelo celular, em um lugar só.",
+  },
+  {
+    q: "Preciso pagar para começar a utilizar?",
+    a: "Não. Os 15 dias de teste são 100% grátis, sem cadastrar cartão, sem compromisso. Você usa tudo, com seus dados reais, e só decide depois.",
+  },
+  {
+    q: "Onde posso usar o Van360?",
+    a: "Em qualquer lugar. Funciona no navegador do celular, tablet ou computador — sem baixar nada. Se preferir, tem o app Android, que é leve e rápido. O Van360 funciona perfeitamente no iPhone através do navegador, e o app nativo já está em desenvolvimento.",
+  },
+  {
+    q: "O que é a oferta/preço fundador?",
+    a: `É o nosso preço de lançamento para os primeiros transportadores escolares que começarem a usar o Van360. Você paga R$ ${originalFormatted}/mês e mantém esse valor para sempre — mesmo quando o preço subir para quem entrar depois.`,
+  },
+  {
+    q: "O contrato gerado tem validade jurídica?",
+    a: "Sim. Os contratos são digitais e assinados eletronicamente, com validade legal conforme a legislação brasileira. Servem como documento formal entre você e o responsável do passageiro.",
+  },
+  {
+    q: "O app é pesado? Preciso baixar?",
+    a: "Não. O Van360 funciona na nuvem e pode ser usado pelo navegador sem ocupar espaço no seu celular. Se preferir o aplicativo Android, ele pesa menos de 5MB e não consome quase nada de memória.",
+  },
+  {
+    q: "Tem aplicativo para iPhone (iOS)?",
+    a: "Sim, funciona perfeitamente no iPhone! Motoristas com iOS acessam o Van360 com total performance pelo navegador, enquanto o app nativo está sendo desenvolvido para a App Store.",
+  },
+  {
+    q: "Quanto vou pagar depois dos 15 dias?",
+    a: `Se você entrar agora como fundador, paga R$ ${originalFormatted}/mês — para sempre, sem reajuste. Se preferir não continuar, é só não assinar. Sem multa, sem burocracia.`,
+  },
+  {
+    q: "Como funciona o programa de indicações?",
+    a: "É muito simples! Dentro do aplicativo você terá acesso ao seu link exclusivo de convite. Compartilhe esse link com seus colegas. Quando eles se cadastrarem e efetuarem a primeira assinatura, você ganha meses gratuitos (sem limites de indicações) e o seu amigo indicado ainda recebe um desconto especial na assinatura. Ambos ganham!",
+  },
+];
+
+const soonItems = [
+  {
+    emoji: "🗺️",
+    title: "Rotas e itinerários",
+    desc: "Monte suas rotas, organize os pontos de embarque e otimize seu trajeto diário.",
+  },
+  {
+    emoji: "🚍",
+    title: "Fretamentos e Viagens",
+    desc: "Organize passeios e excursões. Registre suas viagens extras, controle quem já pagou e acompanhe quanto você faturou no mês.",
+  },
+  {
+    emoji: "👨‍👩‍👦",
+    title: "App para os pais",
+    desc: "O responsável acompanha tudo pelo celular — parcelas, contrato, dados do filho. Menos WhatsApp pra você.",
+  },
+  {
+    emoji: "💸",
+    title: "Pagamento via Pix com baixa automática",
+    desc: "O pai paga direto pelo app e o sistema dá baixa sozinho — sem você precisar marcar nada manualmente.",
+  },
+];
+
+const schemaJson = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Van360",
+    "description": "Organize passageiros, parcelas, contratos e recibos. Automatize a cobrança de parcelas pelo WhatsApp.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Android, Web",
+    "url": "https://van360.com.br",
+    "offers": {
+      "@type": "Offer",
+      "price": originalVal.toFixed(2),
+      "priceCurrency": "BRL",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqItems.map((item) => ({
+      "@type": "Question",
+      "name": item.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.a,
+      },
+    })),
+  },
+]);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout
+  title="Van360 — App para Van Escolar e Gestão de Passageiros"
+  description="Gerencie passageiros, parcelas, contratos e recibos. Automatize a cobrança de parcelas pelo WhatsApp e organize sua van escolar. Teste grátis por 15 dias."
+>
+  <script type="application/ld+json" slot="head" set:html={schemaJson} />
+  <div
+    class="min-h-screen bg-white text-[#1a1a1a] font-['Inter',sans-serif] overflow-x-hidden scroll-smooth selection:bg-amber-200"
+  >
+    <HeaderLP />
+
+    <style is:global>
+      .lp-reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .lp-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      @keyframes lp-countUp {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes lp-cta-glow {
+        0%,
+        100% {
+          box-shadow: 0 2px 8px rgba(245, 158, 11, 0.35);
+        }
+        50% {
+          box-shadow: 0 4px 20px rgba(245, 158, 11, 0.5);
+        }
+      }
+      .lp-cta-glow {
+        animation: lp-cta-glow 2.5s ease-in-out infinite;
+      }
+      .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      @media (min-width: 768px) {
+        .hero-phone {
+          transform: perspective(800px) rotateY(-8deg);
+          transition: transform 0.4s ease;
+        }
+        .hero-phone:hover {
+          transform: perspective(800px) rotateY(-2deg);
+        }
+        .feature-phone {
+          transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .feature-phone:hover {
+          transform: translateY(-12px) scale(1.03);
+        }
+      }
+    </style>
+
+    {/* Spacer navbar fixed */}
+    <div class="h-14 md:h-16"></div>
+
+    {/* ══════════ HERO SECTION ══════════ */}
+    <section
+      class="pt-12 md:pt-16 pb-14 md:pb-20 bg-gradient-to-b from-[#f0f4f8] to-white"
+    >
+      <div class="max-w-[1120px] mx-auto px-5">
+        <div
+          class="flex flex-col md:grid md:grid-cols-[60%_40%] items-center gap-10 md:gap-8"
+        >
+          {/* Texto */}
+          <div class="text-center md:text-left order-1 flex flex-col">
+            <div
+              class="inline-flex items-center justify-center md:justify-start gap-1.5 bg-[#1a3a5c]/10 px-3.5 py-1 sm:py-1.5 rounded-full text-[#1a3a5c] font-bold text-[11px] sm:text-[11.5px] uppercase tracking-wider mb-5 mx-auto md:mx-0 w-fit"
+            >
+              App para motorista escolar
+            </div>
+            <h1
+              class="text-[clamp(1.8rem,5vw,3rem)] sm:text-[clamp(1.9rem,5vw,3rem)] font-black leading-[1.12] tracking-tight mb-4 text-[#1a1a1a]"
+            >
+              <span class="text-[#f59e0b]">Chega de planilha e caderno.</span>
+              <br />
+              <span class="text-[#1a3a5c]">Chega de cobrar pai por pai.</span>
+            </h1>
+            <p
+              class="text-[clamp(1.05rem,2.5vw,1.2rem)] text-slate-500 max-w-[520px] md:mx-0 mx-auto mb-8 leading-relaxed font-medium"
+            >
+              O Van360 organiza seus passageiros, cobra automático pelo
+              WhatsApp e emite recibo — tudo num só lugar.
+            </p>
+
+            {/* CTA */}
+            <div class="flex flex-col items-center md:items-start gap-3">
+              <a
+                href={LINKS.APP_REGISTER_URL}
+                class="lp-cta-glow inline-flex items-center justify-center bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-bold text-base px-8 py-4 rounded-lg hover:scale-[1.02] hover:-translate-y-0.5 transition-all min-h-[44px] w-full sm:w-auto shadow-lg text-center"
+              >
+                Testar grátis por 15 dias
+              </a>
+
+              {/* Badges / Plataformas - DESKTOP APENAS */}
+              <div class="hidden md:flex flex-row items-center gap-4 mt-3">
+                <a
+                  href={LINKS.PLAY_STORE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex hover:-translate-y-0.5 transition-transform shrink-0"
+                  aria-label="Baixar Van360 na Play Store"
+                >
+                  <img
+                    src={LINKS.PLAY_STORE_BADGE_URL}
+                    alt="Disponível no Google Play"
+                    class="h-14 object-contain"
+                  />
+                </a>
+                <div
+                  class="flex items-center gap-1.5 text-slate-400 border-l border-slate-200 pl-4 h-10"
+                >
+                  <Smartphone class="w-4 h-4" />
+                  <span
+                    class="text-[12px] font-medium leading-tight text-slate-400"
+                    >Funciona também no iPhone<br />(pelo navegador)</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            {/* Mockup — SÓ MOBILE */}
+            <div class="flex justify-center md:hidden relative mt-10 mb-8">
+              <div class="max-w-[320px] sm:max-w-[360px] w-full relative">
+                {/* WhatsApp Balloon */}
+                <div
+                  class="absolute bg-white/95 backdrop-blur-md rounded-xl md:rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] p-2 md:p-3 border border-slate-100 max-w-[150px] md:max-w-[220px] z-20 pointer-events-none -top-4 left-0 sm:-left-4"
+                  style="animation: lp-countUp .6s cubic-bezier(0.34, 1.56, 0.64, 1) 1s both;"
+                >
+                  <div
+                    class="flex items-center gap-1.5 md:gap-2 mb-1 md:mb-1.5"
+                  >
+                    <div
+                      class="w-3.5 h-3.5 md:w-5 md:h-5 rounded-full bg-[#25D366]/15 flex items-center justify-center flex-shrink-0"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        class="w-2 h-2 md:w-3 md:h-3 text-[#25D366]"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div
+                      class="text-[0.55rem] md:text-[0.65rem] font-bold text-slate-400 uppercase tracking-wider"
+                    >
+                      WhatsApp enviado
+                    </div>
+                  </div>
+                  <div
+                    class="text-[0.65rem] md:text-[0.75rem] text-[#1a3a5c] font-medium leading-snug"
+                  >
+                    A parcela de julho do Enzo vence hoje.
+                  </div>
+                </div>
+                <img
+                  src="/assets/lp/mockup-3d-home.webp"
+                  alt="App para controle de parcelas da van escolar rodando no celular"
+                  loading="eager"
+                  class="w-full h-auto drop-shadow-xl"
+                />
+              </div>
+            </div>
+
+            {/* Benefícios (Desktop: Horizontal com bolinhas) */}
+            <div
+              class="hidden md:flex items-center flex-wrap gap-3 mt-6 text-[#1a3a5c]/80 font-medium text-[13.5px]"
+            >
+              <div class="flex items-center gap-1.5">
+                <Check class="w-4 h-4 text-[#f59e0b]" />
+                <span>Passageiros ilimitados</span>
+              </div>
+              <div class="w-1 h-1 rounded-full bg-slate-300"></div>
+              <div class="flex items-center gap-1.5">
+                <Check class="w-4 h-4 text-[#f59e0b]" />
+                <span>Configure em 5 minutos</span>
+              </div>
+              <div class="w-1 h-1 rounded-full bg-slate-300"></div>
+              <div class="flex items-center gap-1.5">
+                <Check class="w-4 h-4 text-[#f59e0b]" />
+                <span>Celular ou computador</span>
+              </div>
+            </div>
+
+            {/* Benefícios (Mobile: Grid de Features) */}
+            <div
+              class="grid grid-cols-3 gap-2 md:hidden mt-2 mb-8 px-5 w-full max-w-[360px] mx-auto"
+            >
+              <div class="flex flex-col items-center text-center gap-1.5">
+                <div
+                  class="w-8 h-8 rounded-full bg-[#f59e0b]/10 flex items-center justify-center"
+                >
+                  <Users class="w-4 h-4 text-[#d97706]" />
+                </div>
+                <span
+                  class="text-[10.5px] font-semibold text-[#1a3a5c] leading-[1.15]"
+                  >Passageiros<br />ilimitados</span
+                >
+              </div>
+              <div
+                class="flex flex-col items-center text-center gap-1.5 border-x border-slate-100 px-1"
+              >
+                <div
+                  class="w-8 h-8 rounded-full bg-[#f59e0b]/10 flex items-center justify-center"
+                >
+                  <Clock class="w-4 h-4 text-[#d97706]" />
+                </div>
+                <span
+                  class="text-[10.5px] font-bold text-[#1a3a5c] leading-[1.15]"
+                  >Configure<br />em 5 min</span
+                >
+              </div>
+              <div class="flex flex-col items-center text-center gap-1.5">
+                <div
+                  class="w-8 h-8 rounded-full bg-[#f59e0b]/10 flex items-center justify-center"
+                >
+                  <Smartphone class="w-4 h-4 text-[#d97706]" />
+                </div>
+                <span
+                  class="text-[10.5px] font-bold text-[#1a3a5c] leading-[1.15]"
+                  >Celular ou<br />computador</span
+                >
+              </div>
+            </div>
+
+            {
+              /* Badges Plataforma - MOBILE APENAS (Carregados via JS cliente para fidelidade) */
+            }
+            <div
+              id="badge-ios-mobile"
+              class="hidden md:hidden mt-6 mb-2 bg-blue-50/60 border border-blue-100 px-5 py-4 rounded-2xl text-center flex flex-col items-center gap-2 max-w-[320px] mx-auto"
+            >
+              <div class="p-2 bg-blue-100/80 text-blue-600 rounded-full mb-1">
+                <Smartphone class="w-6 h-6" />
+              </div>
+              <div>
+                <p
+                  class="text-[14px] font-bold text-[#1a3a5c] leading-tight mb-1.5"
+                >
+                  Funciona no seu iPhone
+                </p>
+                <p class="text-[12px] text-slate-500 leading-snug">
+                  Use o Van360 <b>perfeitamente</b> pelo navegador enquanto o app
+                  nativo está sendo preparado. <br class="hidden sm:block" /> É
+                  só clicar em testar grátis.
+                </p>
+              </div>
+            </div>
+
+            <div
+              id="badge-android-mobile"
+              class="hidden md:hidden flex flex-col items-center justify-center w-full mt-8 mb-2"
+            >
+              <p
+                class="text-[14px] font-bold text-[#1a3a5c] leading-tight mb-2"
+              >
+                Baixe nosso aplicativo
+              </p>
+              <a
+                href={LINKS.PLAY_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center hover:scale-105 transition-transform"
+                aria-label="Baixar Van360 na Play Store"
+              >
+                <img
+                  src={LINKS.PLAY_STORE_BADGE_URL}
+                  alt="Disponível no Google Play"
+                  class="h-14 object-contain"
+                />
+              </a>
+            </div>
+          </div>
+
+          {/* Mockup — SÓ DESKTOP */}
+          <div class="order-2 hidden md:flex justify-end">
+            <div class="max-w-[480px] w-full hero-phone relative">
+              {/* WhatsApp Balloon */}
+              <div
+                class="absolute bg-white/95 backdrop-blur-md rounded-xl md:rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] p-2 md:p-3 border border-slate-100 max-w-[150px] md:max-w-[220px] z-20 pointer-events-none -top-4 -left-6"
+                style="animation: lp-countUp .6s cubic-bezier(0.34, 1.56, 0.64, 1) 1.2s both;"
+              >
+                <div class="flex items-center gap-1.5 md:gap-2 mb-1 md:mb-1.5">
+                  <div
+                    class="w-3.5 h-3.5 md:w-5 md:h-5 rounded-full bg-[#25D366]/15 flex items-center justify-center flex-shrink-0"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      class="w-2 h-2 md:w-3 md:h-3 text-[#25D366]"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div
+                    class="text-[0.55rem] md:text-[0.65rem] font-bold text-slate-400 uppercase tracking-wider"
+                  >
+                    WhatsApp enviado
+                  </div>
+                </div>
+                <div
+                  class="text-[0.65rem] md:text-[0.75rem] text-[#1a3a5c] font-medium leading-snug"
+                >
+                  A parcela de julho do Enzo vence hoje.
+                </div>
+              </div>
+              <img
+                src="/assets/lp/mockup-3d-mensalidades.webp"
+                alt="Sistema de gestão de transporte escolar rodando no navegador"
+                loading="eager"
+                class="w-full h-auto"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ══════════ PROVA DE DOR ══════════ */}
+    <section id="recursos" class="py-14 md:py-20 bg-[#f9f9f7] scroll-mt-20">
+      <div class="max-w-[1120px] mx-auto px-5 text-center">
+        <div class="lp-reveal">
+          <h2
+            class="text-[clamp(1.8rem,4.5vw,2.5rem)] font-extrabold text-[#1a3a5c] tracking-tight mb-2"
+          >
+            Dificuldades comuns no Transporte Escolar
+          </h2>
+          <p
+            class="text-[1.05rem] text-slate-500 max-w-[560px] mx-auto mb-10 font-medium"
+          >
+            <span class="md:hidden">Deslize para o lado e veja</span>
+            <span class="hidden md:inline">Veja</span> se alguma dessas dores bate
+            com o seu dia a dia. Se sim, o Van360 resolve.
+          </p>
+        </div>
+
+        <div
+          class="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mt-8 pt-2 overflow-x-auto md:overflow-visible snap-x snap-mandatory hide-scrollbar pb-6 md:pb-0 -mx-5 px-5 md:mx-0 md:px-0"
+        >
+          {
+            painPoints.map((item) => (
+              <div class="flex-none w-[85%] sm:w-[50%] md:w-auto snap-center flex flex-col">
+                <div class="lp-reveal flex-1 flex flex-col">
+                  <div class="group bg-white p-5 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:border-[#f59e0b]/40 transition-all hover:-translate-y-1 h-full text-left flex flex-row items-start gap-4">
+                    <div class="w-12 h-12 shrink-0 bg-[#f59e0b]/10 text-[#d97706] rounded-xl flex items-center justify-center text-xl group-hover:scale-110 group-hover:bg-[#f59e0b]/20 transition-all">
+                      {item.icon}
+                    </div>
+                    <div class="flex flex-col flex-1">
+                      <h3 class="text-[#1a3a5c] font-bold text-[1.05rem] mb-1">
+                        {item.title}
+                      </h3>
+                      <p class="text-slate-500 text-[0.9rem] leading-snug">
+                        {item.text}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    {/* ══════════ FUNCIONALIDADES ══════════ */}
+    <section class="py-14 md:py-20 bg-white">
+      <div class="max-w-[1120px] mx-auto px-5">
+        <div class="lp-reveal">
+          <div class="text-center mb-12">
+            <h2
+              class="text-[clamp(1.8rem,4.5vw,2.5rem)] font-extrabold text-[#1a3a5c] tracking-tight mb-2"
+            >
+              O melhor aplicativo de gestão de van escolar
+            </h2>
+            <p class="text-[1.05rem] text-slate-500 max-w-[560px] mx-auto">
+              Funcionalidades que resolvem o dia a dia da sua van.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-16">
+          {
+            features.map((feat, i) => (
+              <div class="lp-reveal">
+                <div
+                  class={`flex flex-col ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} items-center gap-6 md:gap-12`}
+                >
+                  <div class="order-2 md:order-none flex-shrink-0 w-full md:w-auto flex justify-center">
+                    <div class="max-w-[240px] md:max-w-[300px] w-full feature-phone relative">
+                      {feat.balloonText && (
+                        /* WhatsApp Balloon component representation */
+                        <div
+                          class={`absolute bg-white/95 backdrop-blur-md rounded-xl md:rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] p-2 md:p-3 border border-slate-100 max-w-[150px] md:max-w-[220px] z-20 pointer-events-none ${
+                            i % 2 === 0
+                              ? "-top-2 md:-top-4 -left-8 sm:-left-12 md:left-auto md:-right-28 lg:-right-32"
+                              : "-top-2 md:-top-4 -left-8 sm:-left-12 md:-left-28 lg:-left-32 md:right-auto"
+                          }`}
+                          style={`animation: lp-countUp .6s cubic-bezier(0.34, 1.56, 0.64, 1) ${0.5 + i * 0.2}s both;`}
+                        >
+                          <div class="flex items-center gap-1.5 md:gap-2 mb-1 md:mb-1.5">
+                            <div class="w-3.5 h-3.5 md:w-5 md:h-5 rounded-full bg-[#25D366]/15 flex items-center justify-center flex-shrink-0">
+                              <svg
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                class="w-2 h-2 md:w-3 md:h-3 text-[#25D366]"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                              </svg>
+                            </div>
+                            <div class="text-[0.55rem] md:text-[0.65rem] font-bold text-slate-400 uppercase tracking-wider">
+                              WhatsApp enviado
+                            </div>
+                          </div>
+                          <div class="text-[0.65rem] md:text-[0.75rem] text-[#1a3a5c] font-medium leading-snug">
+                            {feat.balloonText}
+                          </div>
+                        </div>
+                      )}
+                      <img
+                        src={feat.mockup}
+                        alt={feat.alt}
+                        loading="lazy"
+                        width={1080}
+                        height={1920}
+                        class="w-full h-auto drop-shadow-xl"
+                      />
+                    </div>
+                  </div>
+                  <div class="order-1 md:order-none text-center md:text-left max-w-[460px] md:max-w-none px-4 md:px-0">
+                    <h3 class="text-[1.4rem] md:text-[1.8rem] font-extrabold text-[#1a3a5c] mb-3 leading-tight">
+                      {feat.headline}
+                    </h3>
+                    <p class="text-[1rem] md:text-[1.1rem] text-slate-500 leading-relaxed">
+                      {feat.text}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+        {/* Inline CTA */}
+        <div class="lp-reveal">
+          <div class="text-center mt-10">
+            <a
+              href={LINKS.APP_REGISTER_URL}
+              class="inline-flex items-center justify-center bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-bold text-base px-7 py-3.5 rounded-lg shadow-[0_2px_8px_rgba(245,158,11,.35)] hover:shadow-[0_4px_16px_rgba(245,158,11,.4)] hover:-translate-y-0.5 transition-all"
+            >
+              Testar grátis por 15 dias
+            </a>
+            <p class="text-[0.8rem] text-slate-400 mt-2">
+              Sem cartão · Sem compromisso
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ══════════ PRIMEIROS USUÁRIOS ══════════ */}
+    <section
+      class="py-12 md:py-16 bg-gradient-to-b from-white to-[#fff8ed] border-t border-slate-100"
+    >
+      <div class="max-w-[800px] mx-auto px-5 text-center">
+        <div class="lp-reveal">
+          <div
+            class="inline-flex items-center gap-1.5 bg-[#f59e0b]/20 px-3 py-1.5 rounded-full text-[#d97706] font-black text-xs uppercase tracking-wider mb-5 border border-[#f59e0b]/30"
+          >
+            <Star class="w-3.5 h-3.5 fill-[#d97706]" />
+            Condição de Lançamento
+          </div>
+          <h2
+            class="text-[clamp(1.8rem,4.5vw,2.5rem)] font-extrabold text-[#1a3a5c] tracking-tight mb-5 leading-tight"
+          >
+            Entre agora e garanta o menor<br class="hidden md:block" /> preço da
+            plataforma para sempre.
+          </h2>
+          <p
+            class="text-[1.1rem] text-slate-600 leading-relaxed max-w-[550px] mx-auto font-medium"
+          >
+            O Van360 acabou de chegar. Você testa grátis por 15 dias e <strong
+              class="text-[#f59e0b]"
+              >garante para sempre o valor de R$ {
+                originalFormatted
+              }/mês</strong
+            >. Sem fidelidade e sem reajustes, para a vida toda.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {/* ══════════ PREÇOS ══════════ */}
+    <section
+      id="pricing"
+      class="py-14 md:py-20 bg-[#f9f9f7] border-y border-slate-100 scroll-mt-20"
+    >
+      <div class="max-w-[480px] mx-auto px-5 text-center">
+        <div class="lp-reveal">
+          <h2
+            class="text-[clamp(1.4rem,3.5vw,2rem)] font-extrabold text-[#1a3a5c] tracking-tight mb-2"
+          >
+            Comece grátis. Pague só se gostar.
+          </h2>
+          <p class="text-[1.05rem] text-slate-500 max-w-[560px] mx-auto mb-10">
+            15 dias pra testar com seus dados reais. Sem cartão.
+          </p>
+        </div>
+
+        <div
+          class="lp-reveal relative bg-white rounded-2xl p-8 border-2 border-[#f59e0b] shadow-[0_8px_40px_rgba(245,158,11,.15)] text-center"
+        >
+          <span
+            class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#f59e0b] text-[#1a1a1a] text-xs font-extrabold px-4 py-1 rounded-full uppercase tracking-wider whitespace-nowrap inline-flex items-center gap-1"
+          >
+            <Star class="w-3 h-3 fill-[#1a1a1a]" />
+            Oferta Fundador
+          </span>
+
+          <div class="mb-6">
+            <div
+              class="text-[2.6rem] font-black text-[#1a3a5c] leading-none mb-6"
+            >
+              15 dias grátis
+            </div>
+
+            <div
+              class="bg-[#f9f9f7] rounded-xl p-5 border border-slate-100 shadow-sm relative overflow-hidden"
+            >
+              <div class="absolute top-0 left-0 w-1 h-full bg-[#f59e0b]"></div>
+              <p class="text-[0.95rem] text-slate-500 font-bold mb-1">
+                Depois, por apenas
+              </p>
+              <div class="mb-4 flex flex-col items-center">
+                {
+                  isPromoActive && originalVal < monthlyNormalVal && (
+                    <span class="text-[1rem] text-slate-400 line-through font-semibold mb-[-4px]">
+                      R$ {monthlyNormalFormatted}
+                    </span>
+                  )
+                }
+                <div>
+                  <span class="text-[2.2rem] font-black text-[#f59e0b]">
+                    R$ {originalFormatted}
+                  </span>
+                  <span class="text-[1.1rem] font-bold text-[#f59e0b]/80">
+                    /mês
+                  </span>
+                </div>
+              </div>
+
+              <div
+                class="text-left space-y-3 mt-4 pt-4 border-t border-slate-200"
+              >
+                <div class="flex justify-between items-center text-[0.9rem]">
+                  <span class="text-slate-500 font-medium">Plano Mensal:</span>
+                  <span class="text-[#1a3a5c] font-bold"
+                    >R$ {originalFormatted}/mês</span
+                  >
+                </div>
+                <div
+                  class="flex justify-between items-start text-[0.9rem] flex-wrap gap-1 mt-2"
+                >
+                  <span class="text-slate-500 font-medium pt-1"
+                    >Plano Anual:</span
+                  >
+                  <div class="flex flex-col items-end">
+                    <span class="text-[#1a3a5c] font-bold"
+                      >R$ {yearlyTotalFormatted}/ano</span
+                    >
+                    <span
+                      class="text-emerald-700 font-bold text-[0.6rem] uppercase tracking-wide bg-emerald-100 px-2 py-0.5 rounded mt-1"
+                    >
+                      🎁 2 meses grátis
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <ul class="text-left space-y-3 mb-8">
+            {
+              planFeatures.map((f) => (
+                <li class="flex items-start gap-2.5 text-[0.92rem] text-slate-600">
+                  <CheckCircle2 class="w-[18px] h-[18px] text-green-600 flex-shrink-0 mt-0.5" />
+                  <span>{f}</span>
+                </li>
+              ))
+            }
+          </ul>
+
+          <div
+            class="bg-amber-50 rounded-xl p-4 mb-8 border border-amber-200 text-left"
+          >
+            <p class="text-[0.85rem] text-amber-900 font-medium flex gap-2.5">
+              <span class="shrink-0 text-amber-600 text-base">🚀</span>
+              <span class="leading-relaxed"
+                ><strong>Garanta o menor preço para sempre.</strong> Entre agora
+                e mantenha este valor vitalício, protegido contra futuros reajustes.</span
+              >
+            </p>
+          </div>
+
+          <a
+            href={LINKS.APP_REGISTER_URL}
+            class="block w-full bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-bold py-3.5 rounded-lg shadow-[0_2px_8px_rgba(245,158,11,.35)] hover:shadow-[0_4px_16px_rgba(245,158,11,.4)] hover:-translate-y-0.5 transition-all text-[1.05rem] min-h-[48px] flex items-center justify-center"
+          >
+            Testar grátis por 15 dias
+          </a>
+
+          <p class="text-[0.8rem] text-slate-400 mt-3 font-medium">
+            Sem cartão · Cancele quando quiser
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {/* ══════════ COMO FUNCIONA ══════════ */}
+    <section id="como-funciona" class="py-14 md:py-20 bg-white scroll-mt-20">
+      <div class="max-w-[1120px] mx-auto px-5 text-center">
+        <div class="lp-reveal">
+          <h2
+            class="text-[clamp(1.8rem,4.5vw,2.5rem)] font-extrabold text-[#1a3a5c] tracking-tight mb-2"
+          >
+            Comece em 5 minutos
+          </h2>
+          <p class="text-[1.05rem] text-slate-500 max-w-[560px] mx-auto mb-10">
+            Três passos. Sem burocracia.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 max-w-[800px] mx-auto">
+          {
+            howItWorks.map((step) => (
+              <div class="text-center">
+                <div class="lp-reveal">
+                  <div class="w-[52px] h-[52px] rounded-full bg-[#1a3a5c] text-white text-xl font-extrabold inline-flex items-center justify-center mb-4">
+                    {step.n}
+                  </div>
+                  <h3 class="text-[1.05rem] font-bold text-[#1a3a5c] mb-2">
+                    {step.title}
+                  </h3>
+                  <p class="text-[0.9rem] text-slate-500">{step.desc}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="lp-reveal mt-8 flex justify-center">
+          <div class="max-w-[360px] md:max-w-[480px] w-full hero-phone">
+            <img
+              src="/assets/lp/mockup-3d-home.webp"
+              alt="Dashboard do Van360 com primeiros passos"
+              loading="lazy"
+              class="w-full h-auto"
+            />
+          </div>
+        </div>
+
+        {/* Inline Cta */}
+        <div class="lp-reveal">
+          <div class="text-center mt-10">
+            <a
+              href={LINKS.APP_REGISTER_URL}
+              class="inline-flex items-center justify-center bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-bold text-base px-7 py-3.5 rounded-lg shadow-[0_2px_8px_rgba(245,158,11,.35)] hover:shadow-[0_4px_16px_rgba(245,158,11,.4)] hover:-translate-y-0.5 transition-all"
+            >
+              Testar grátis por 15 dias
+            </a>
+            <p class="text-[0.8rem] text-slate-400 mt-2">
+              Sem cartão · Sem compromisso
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ══════════ FAIXA MULTI-DISPOSITIVO ══════════ */}
+    <div class="bg-[#1a3a5c] text-white py-4 text-center">
+      <p class="text-sm md:text-base font-medium opacity-90 px-4">
+        📱 Celular · 💻 Computador · 📟 Tablet — também funciona no
+        navegador, sem baixar nada.
+      </p>
+    </div>
+
+    {/* ══════════ FAQ ══════════ */}
+    <section id="faq" class="py-14 md:py-20 bg-[#f9f9f7] scroll-mt-20">
+      <div class="max-w-[1120px] mx-auto px-5 text-center">
+        <div class="lp-reveal">
+          <h2
+            class="text-[clamp(1.8rem,4.5vw,2.5rem)] font-extrabold text-[#1a3a5c] tracking-tight mb-2"
+          >
+            Perguntas frequentes
+          </h2>
+          <p class="text-[1.05rem] text-slate-500 max-w-[560px] mx-auto mb-10">
+            Se a sua dúvida não estiver aqui, manda no WhatsApp que a gente
+            responde.
+          </p>
+        </div>
+
+        <div class="max-w-[680px] mx-auto">
+          {
+            faqItems.map((item) => (
+              <div class="lp-reveal">
+                <div class="border-b border-slate-200">
+                  <button
+                    class="faq-button w-full flex items-center justify-between py-5 text-left text-[#1a3a5c] font-semibold text-base hover:text-[#f59e0b] transition-colors gap-3"
+                    aria-expanded="false"
+                  >
+                    <span>{item.q}</span>
+                    <ChevronDown class="faq-icon w-5 h-5 flex-shrink-0 transition-transform duration-200" />
+                  </button>
+                  <div class="overflow-hidden transition-all duration-300 max-h-0">
+                    <p class="pb-5 text-[0.92rem] text-slate-500 leading-relaxed text-left">
+                      {item.a}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="mt-12">
+          <div class="lp-reveal">
+            <div class="text-center mt-10">
+              <a
+                href={LINKS.APP_REGISTER_URL}
+                class="inline-flex items-center justify-center bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-bold text-base px-7 py-3.5 rounded-lg shadow-[0_2px_8px_rgba(245,158,11,.35)] hover:shadow-[0_4px_16px_rgba(245,158,11,.4)] hover:-translate-y-0.5 transition-all"
+              >
+                Testar grátis por 15 dias
+              </a>
+              <p class="text-[0.8rem] text-slate-400 mt-2">
+                Sem cartão · Sem compromisso
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ══════════ INDIQUE E GANHE ══════════ */}
+    <section class="py-10 md:py-12 bg-white">
+      <div class="max-w-[800px] mx-auto px-5">
+        <div class="lp-reveal">
+          <div
+            class="relative rounded-2xl bg-gradient-to-br from-[#1a3a5c] to-[#244c75] p-6 md:p-8 text-white shadow-md flex flex-col md:flex-row items-center gap-6 md:gap-10 border border-white/5"
+          >
+            <div
+              class="relative z-10 flex-1 space-y-3 text-center md:text-left"
+            >
+              <div
+                class="inline-flex items-center gap-1.5 bg-amber-500/25 px-2.5 py-1 rounded-full border border-amber-500/30 text-amber-300 font-bold text-[10px] uppercase tracking-wider"
+              >
+                🎁 Indique e Ganhe
+              </div>
+              <h2
+                class="text-[1.2rem] sm:text-[1.4rem] font-bold leading-tight tracking-tight text-white font-headline"
+              >
+                Use o Van360 de graça
+              </h2>
+              <p
+                class="text-[0.85rem] text-slate-200 leading-relaxed max-w-[440px] md:mx-0 mx-auto selection:bg-white/20 font-medium"
+              >
+                Indique outros motoristas escolares com o seu link. A cada
+                indicado que ativar a assinatura, você ganha 1 mês grátis —
+                sem limite de indicações.
+              </p>
+            </div>
+
+            <div
+              class="relative z-10 shrink-0 w-full md:w-auto flex flex-col items-center gap-2"
+            >
+              <a
+                href={LINKS.APP_REGISTER_URL}
+                class="w-full md:w-auto inline-flex items-center justify-center bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-bold text-sm px-7 py-3 rounded-lg active:scale-95 transition-all text-center whitespace-nowrap shadow-md select-none"
+              >
+                Criar conta e indicar
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ══════════ EM BREVE ══════════ */}
+    <section
+      class="py-12 md:py-16 bg-gradient-to-b from-[#f9f9f7] to-white border-t border-slate-100"
+    >
+      <div class="max-w-[700px] mx-auto px-5 text-center">
+        <div class="lp-reveal">
+          <p
+            class="text-xs font-bold text-[#f59e0b] uppercase tracking-widest mb-3 select-none"
+          >
+            Em breve
+          </p>
+          <h2
+            class="text-[clamp(1.3rem,3vw,1.75rem)] font-extrabold text-[#1a3a5c] tracking-tight mb-8"
+          >
+            E tem mais vindo por aí
+          </h2>
+        </div>
+
+        <div class="grid gap-6 text-left max-w-[540px] mx-auto">
+          {
+            soonItems.map((item) => (
+              <div class="lp-reveal">
+                <div class="flex items-start gap-4 bg-[#f9f9f7] p-5 rounded-xl border border-slate-100/50">
+                  <span class="text-2xl flex-shrink-0 select-none">
+                    {item.emoji}
+                  </span>
+                  <div>
+                    <h3 class="font-bold text-[#1a3a5c] text-[0.95rem] mb-1">
+                      {item.title}
+                    </h3>
+                    <p class="text-[0.88rem] text-slate-500 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    {/* ══════════ CTA FINAL ══════════ */}
+    <section
+      class="bg-gradient-to-br from-[#1a3a5c] to-[#234b73] text-white py-16 md:py-20 text-center"
+    >
+      <div class="max-w-[1120px] mx-auto px-5">
+        <div class="lp-reveal space-y-4">
+          <h2
+            class="text-[clamp(1.5rem,4vw,2.25rem)] font-black leading-tight mb-3"
+          >
+            Pare de perder tempo com planilhas, cobranças e controles manuais.
+          </h2>
+          <p
+            class="text-[1.05rem] opacity-85 max-w-[520px] mx-auto mb-8 font-medium"
+          >
+            Teste grátis por 15 dias. Sem cartão. Sem compromisso.
+          </p>
+          <div>
+            <a
+              href={LINKS.APP_REGISTER_URL}
+              class="inline-flex items-center justify-center bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-bold text-base px-7 py-3.5 rounded-lg shadow-[0_2px_8px_rgba(245,158,11,.35)] hover:shadow-[0_4px_16px_rgba(245,158,11,.4)] hover:-translate-y-0.5 transition-all min-h-[44px] hover:scale-[1.02]"
+            >
+              Testar grátis por 15 dias
+            </a>
+          </div>
+
+          <div class="flex flex-col items-center mt-5">
+            {/* Android badge for final CTA */}
+            <div id="badge-android-cta" class="hidden">
+              <a
+                href={LINKS.PLAY_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center hover:-translate-y-0.5 transition-transform"
+                aria-label="Baixar Van360 na Play Store"
+              >
+                <img
+                  src={LINKS.PLAY_STORE_BADGE_URL}
+                  alt="Disponível no Google Play"
+                  class="h-12 object-contain filter drop-shadow-md"
+                />
+              </a>
+            </div>
+            {/* iOS badge / banner for final CTA */}
+            <div
+              id="badge-ios-cta"
+              class="hidden bg-white/10 border border-white/20 px-4 py-3 rounded-xl text-center max-w-[280px]"
+            >
+              <p
+                class="text-[13px] font-bold text-white mb-0.5 flex items-center justify-center gap-1.5"
+              >
+                <Smartphone class="w-4 h-4" /> Funciona no iPhone
+              </p>
+              <p class="text-[11px] text-white/70 leading-snug mt-1">
+                Acesse pelo navegador enquanto o app é preparado.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+
+    {/* ══════════ WHATSAPP FLUTUANTE ══════════ */}
+    <a
+      href={LINKS.WHATSAPP_SUPPORT_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Fale conosco pelo WhatsApp"
+      id="floating-whatsapp"
+      class="fixed right-5 bottom-5 z-40 h-14 w-14 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-[0_4px_16px_rgba(37,211,102,.4)] hover:shadow-[0_6px_24px_rgba(37,211,102,.5)] hover:scale-110 transition-all duration-500"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        class="w-7 h-7"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+        ></path>
+      </svg>
+    </a>
+  </div>
+</Layout>
+
+<script is:inline>
+  // ── Scroll Reveal Vanilla implementation ──
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("lp-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.05, rootMargin: "0px 0px -40px 0px" },
+  );
+
+  document.querySelectorAll(".lp-reveal").forEach((el) => {
+    observer.observe(el);
+  });
+
+  // ── FAQ Accordion Vanilla implementation ──
+  document.querySelectorAll(".faq-button").forEach((button) => {
+    button.addEventListener("click", () => {
+      const content = button.nextElementSibling;
+      const icon = button.querySelector(".faq-icon");
+      const isOpen = button.getAttribute("aria-expanded") === "true";
+
+      // Close all other FAQs first to be clean
+      document.querySelectorAll(".faq-button").forEach((otherBtn) => {
+        if (
+          otherBtn !== button &&
+          otherBtn.getAttribute("aria-expanded") === "true"
+        ) {
+          otherBtn.setAttribute("aria-expanded", "false");
+          otherBtn.nextElementSibling.style.maxHeight = "0px";
+          otherBtn.querySelector(".faq-icon").classList.remove("rotate-180");
+        }
+      });
+
+      button.setAttribute("aria-expanded", !isOpen ? "true" : "false");
+      if (!isOpen) {
+        content.style.maxHeight = content.scrollHeight + "px";
+        icon.classList.add("rotate-180");
+      } else {
+        content.style.maxHeight = "0px";
+        icon.classList.remove("rotate-180");
+      }
+    });
+  });
+
+  // ── Platform tailored UI implementation ──
+  const isIOS = /iPhone|iPad/i.test(navigator.userAgent);
+  const isMobile = window.matchMedia("(max-width: 768px)").matches || isIOS;
+
+  if (isMobile) {
+    if (isIOS) {
+      document.getElementById("badge-ios-mobile")?.classList.remove("hidden");
+      document.getElementById("badge-ios-cta")?.classList.remove("hidden");
+    } else {
+      document
+        .getElementById("badge-android-mobile")
+        ?.classList.remove("hidden");
+      document.getElementById("badge-android-cta")?.classList.remove("hidden");
+    }
+  } else {
+    // Desktop: show Android badge on final CTA as fallback
+    document.getElementById("badge-android-cta")?.classList.remove("hidden");
+  }
+
+  // ── Cookie Consent Banner Vanilla implementation ──
+  const COOKIE_NAME = "van360_cookie_consent";
+  const banner = document.getElementById("cookie-banner");
+  const waBtn = document.getElementById("floating-whatsapp");
+
+  const updateBodyPadding = () => {
+    if (!banner || banner.classList.contains("hidden")) return;
+    const padding = window.innerWidth < 640 ? "68px" : "56px";
+    document.body.style.paddingBottom = padding;
+    if (waBtn) {
+      waBtn.style.bottom = window.innerWidth < 640 ? "84px" : "72px";
+    }
+  };
+
+  const hideBanner = () => {
+    if (banner) banner.classList.add("hidden");
+    document.body.style.paddingBottom = "";
+    if (waBtn) waBtn.style.bottom = "20px";
+  };
+
+  const getCookie = (name) => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(";").shift();
+    return null;
+  };
+
+  const setCookie = (name, value, days) => {
+    const d = new Date();
+    d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
+    document.cookie = `${name}=${value};expires=${d.toUTCString()};path=/`;
+  };
+
+  // Check consent
+  if (!getCookie(COOKIE_NAME)) {
+    if (banner) banner.classList.remove("hidden");
+    updateBodyPadding();
+    window.addEventListener("resize", updateBodyPadding);
+  }
+
+  document
+    .getElementById("cookie-btn-accept")
+    ?.addEventListener("click", () => {
+      setCookie(COOKIE_NAME, "accepted", 365);
+      hideBanner();
+    });
+
+  document
+    .getElementById("cookie-btn-reject")
+    ?.addEventListener("click", () => {
+      setCookie(COOKIE_NAME, "rejected", 365);
+      hideBanner();
+    });
+
+  document
+    .getElementById("cookie-btn-customize")
+    ?.addEventListener("click", () => {
+      setCookie(COOKIE_NAME, "accepted", 365);
+      hideBanner();
+    });
+</script>

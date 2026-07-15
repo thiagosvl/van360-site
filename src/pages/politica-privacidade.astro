@@ -1,0 +1,116 @@
+---
+import Layout from "../layouts/Layout.astro";
+import HeaderLP from "../components/HeaderLP.astro";
+import Footer from "../components/Footer.astro";
+import { FileText, Lock, BarChart2, ShieldCheck, Trash2 } from "@lucide/astro";
+---
+
+<Layout title="Política de Privacidade">
+  <HeaderLP />
+
+  <main class="flex-1 py-12 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto w-full text-left mt-14 md:mt-16">
+    <div class="space-y-8 bg-white border border-slate-100 rounded-3xl p-8 sm:p-10 shadow-diff-shadow">
+      <div class="space-y-3">
+        <h1 class="text-3xl font-headline font-black text-brand-blue tracking-tight">
+          Política de Privacidade
+        </h1>
+        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">
+          Última atualização: 19/06/2026 · Em conformidade com a LGPD
+        </p>
+      </div>
+
+      <p class="text-slate-600 leading-relaxed text-sm">
+        No Van360, levamos a privacidade a sério. Lidamos com dados sensíveis e garantimos total conformidade com a Lei Geral de Proteção de Dados (LGPD).
+      </p>
+
+      {/* Seção 1 */}
+      <section class="space-y-4">
+        <div class="flex items-center gap-2.5 text-brand-blue border-b border-slate-100 pb-2">
+          <FileText class="h-5 w-5 shrink-0" />
+          <h2 class="text-lg font-headline font-black uppercase tracking-wide">1. Dados Coletados</h2>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+            <h4 class="font-bold text-brand-blue text-sm mb-1">Motorista</h4>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Dados cadastrais para gestão de cobranças, emissão de faturas e identificação do perfil profissional.
+            </p>
+          </div>
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+            <h4 class="font-bold text-brand-blue text-sm mb-1">Passageiros/Responsáveis</h4>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Nome, endereço e telefone estritamente para gestão de passageiros, planejamento de rotas e avisos de embarque.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Seção 2 */}
+      <section class="space-y-3">
+        <div class="flex items-center gap-2.5 text-brand-blue border-b border-slate-100 pb-2">
+          <Lock class="h-5 w-5 shrink-0" />
+          <h2 class="text-lg font-headline font-black uppercase tracking-wide">2. Proteção de Dados</h2>
+        </div>
+        <p class="text-slate-600 leading-relaxed text-sm">
+          O tratamento de dados de menores é realizado estritamente para garantir a <strong class="font-bold">segurança física</strong> e a execução do contrato de transporte escolar.
+        </p>
+        <ul class="space-y-2 text-sm text-slate-500 list-disc list-inside">
+          <li>Hospedagem em servidores seguros (Supabase).</li>
+          <li>Acesso restrito apenas ao titular da conta.</li>
+          <li>Não comercializamos dados com terceiros.</li>
+        </ul>
+      </section>
+
+      {/* Seção 3 */}
+      <section class="space-y-3">
+        <div class="flex items-center gap-2.5 text-brand-blue border-b border-slate-100 pb-2">
+          <BarChart2 class="h-5 w-5 shrink-0" />
+          <h2 class="text-lg font-headline font-black uppercase tracking-wide">3. Cookies e Ferramentas de Análise</h2>
+        </div>
+        <p class="text-slate-600 leading-relaxed text-sm">
+          Utilizamos cookies de análise para entender como a plataforma é usada e melhorar continuamente a experiência dos usuários. Essas ferramentas coletam dados de navegação de forma agregada e anônima (páginas visitadas, cliques, tempo de sessão).
+        </p>
+        <ul class="space-y-2 text-sm text-slate-500 list-disc list-inside">
+          <li>Os cookies de análise só são ativados após seu consentimento expresso.</li>
+          <li>Você pode recusar ou revogar o consentimento a qualquer momento limpando os dados do navegador.</li>
+          <li>Não utilizamos cookies para fins publicitários ou de remarketing.</li>
+        </ul>
+      </section>
+
+      {/* Seção 4 */}
+      <section class="space-y-3">
+        <div class="flex items-center gap-2.5 text-brand-blue border-b border-slate-100 pb-2">
+          <ShieldCheck class="h-5 w-5 shrink-0" />
+          <h2 class="text-lg font-headline font-black uppercase tracking-wide">4. Seus Direitos</h2>
+        </div>
+        <p class="text-slate-600 leading-relaxed text-sm">
+          Você tem total controle sobre seus dados conforme a LGPD. Pode solicitar a exportação ou correção de sua conta a qualquer momento através do suporte oficial.
+        </p>
+      </section>
+
+      {/* Seção 5 */}
+      <section class="space-y-3">
+        <div class="flex items-center gap-2.5 text-brand-blue border-b border-slate-100 pb-2">
+          <Trash2 class="h-5 w-5 shrink-0" />
+          <h2 class="text-lg font-headline font-black uppercase tracking-wide">5. Exclusão de Dados</h2>
+        </div>
+        <p class="text-slate-600 leading-relaxed text-sm">
+          O usuário pode solicitar a exclusão de sua conta e de todos os dados associados a qualquer momento:
+        </p>
+        <ul class="space-y-2 text-sm text-slate-500 list-disc list-inside">
+          <li>
+            <strong>Pelo Aplicativo:</strong> Em breve disponível diretamente nas configurações de perfil.
+          </li>
+          <li>
+            <strong>Por E-mail:</strong> Envie uma solicitação para <strong class="font-bold">contato@van360.com.br</strong> com o assunto "Exclusão de Conta".
+          </li>
+        </ul>
+        <p class="text-slate-600 leading-relaxed text-sm mt-3">
+          Após a solicitação, todos os seus dados pessoais, registros de passageiro e histórico financeiro serão removidos permanentemente de nossos servidores em até 7 dias úteis.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

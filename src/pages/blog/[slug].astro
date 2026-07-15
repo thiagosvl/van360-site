@@ -1,0 +1,120 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import HeaderBlog from "../../components/HeaderBlog.astro";
+import Footer from "../../components/Footer.astro";
+import CtaBanner from "../../components/CtaBanner.astro";
+import { blogApi } from "../../utils/api";
+import { Calendar, Eye, Clock, ArrowLeft } from "@lucide/astro";
+
+export async function getStaticPaths() {
+  const { posts } = await blogApi.getBlogPosts(1, 100);
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const post = await blogApi.getBlogPostDetails(slug);
+
+const formattedDate = post.published_at
+  ? new Date(post.published_at).toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    })
+  : new Date(post.created_at).toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    });
+
+// Process content to insert CTAs dynamically on server-side
+const ctaPlaceholder = '<div data-cta="signup-driver-banner"></div>';
+const contentParts = post.content.split(ctaPlaceholder);
+---
+
+<BlogLayout title={post.title} description={post.excerpt || undefined}>
+  <HeaderBlog />
+
+  <main class="flex-1 py-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full space-y-8 mt-14 md:mt-16">
+    {/* Breadcrumbs / Back button */}
+    <div class="flex items-center justify-between">
+      <a href="/blog" class="text-xs font-bold text-slate-500 hover:text-brand-blue flex items-center gap-2 transition-colors uppercase tracking-wider">
+        <ArrowLeft class="h-4 w-4" />
+        Voltar para os Artigos
+      </a>
+    </div>
+
+    {/* Post Header */}
+    <header class="space-y-6 text-left">
+      <div class="flex flex-wrap gap-2">
+        {post.tags.map((tag) => (
+          <a
+            href={`/tags/${tag}`}
+            class="text-[10px] font-bold uppercase tracking-wider text-brand-blue bg-brand-blue/5 hover:bg-brand-blue/10 px-3 py-1 rounded-lg transition-colors"
+          >
+            {tag}
+          </a>
+        ))}
+      </div>
+
+      <h1 class="text-2xl sm:text-4xl font-headline font-black text-brand-blue tracking-tight leading-tight">
+        {post.title}
+      </h1>
+
+      {/* Meta */}
+      <div class="flex flex-wrap items-center gap-6 text-xs text-slate-400 font-semibold uppercase tracking-wider pt-2 border-y border-slate-100 py-3">
+        <div class="flex items-center gap-1.5">
+          <Calendar class="h-4 w-4" />
+          <span>Publicado em {formattedDate}</span>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <Eye class="h-4 w-4" />
+          <span>{post.views} visualizações</span>
+        </div>
+      </div>
+    </header>
+
+    {/* Article Content */}
+    <article class="bg-white rounded-3xl border border-slate-100 p-6 sm:p-10 shadow-diff-shadow">
+      {contentParts.map((part, idx) => (
+        <Fragment>
+          <div 
+            class="prose prose-slate max-w-none text-left prose-headings:font-headline prose-headings:font-black prose-headings:text-brand-blue prose-h2:text-xl prose-h3:text-lg prose-p:text-sm prose-p:leading-relaxed prose-blockquote:border-l-4 prose-blockquote:border-brand-blue prose-blockquote:bg-slate-50 prose-blockquote:py-2 prose-blockquote:px-4 prose-blockquote:rounded-r-xl prose-blockquote:not-italic prose-blockquote:font-medium prose-img:rounded-2xl prose-img:shadow-md"
+            set:html={part} 
+          />
+          {idx < contentParts.length - 1 && (
+            <div class="my-8">
+              <CtaBanner />
+            </div>
+          )}
+        </Fragment>
+      ))}
+    </article>
+  </main>
+
+  <Footer />
+</BlogLayout>
+
+<style is:global>
+  /* Global styles for TipTap rendered tables on mobile screens */
+  .prose table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+  }
+  .prose th, .prose td {
+    border: 1px border-slate-200;
+    padding: 0.75rem;
+    text-align: left;
+    font-size: 0.875rem;
+  }
+  .prose th {
+    background-color: #f8fafc;
+    font-weight: 700;
+    color: #1a3a5c;
+  }
+</style>

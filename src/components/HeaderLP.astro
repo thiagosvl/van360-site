@@ -1,0 +1,153 @@
+---
+import { LINKS } from "../constants/links";
+---
+
+<header
+  class="w-full bg-white/97 backdrop-blur-md border-b border-slate-100 fixed top-0 left-0 z-50 transition-all duration-300 shadow-sm select-none"
+>
+  <div
+    class="max-w-[1120px] mx-auto px-4 sm:px-6 h-14 md:h-16 flex items-center justify-between"
+  >
+    <a href="/" class="flex items-center group shrink-0">
+      <img
+        src="/assets/logo-van360.webp"
+        alt="Van360"
+        class="h-8 sm:h-9 w-auto select-none transition-transform group-hover:scale-[1.01]"
+      />
+    </a>
+
+    <div class="flex items-center gap-4 sm:gap-6 md:gap-8">
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-6">
+        <a
+          href="/#recursos"
+          class="text-sm font-bold text-slate-500 hover:text-brand-blue transition-colors"
+          >Recursos</a
+        >
+        <a
+          href="/#como-funciona"
+          class="text-sm font-bold text-slate-500 hover:text-brand-blue transition-colors"
+          >Como funciona</a
+        >
+        <a
+          href="/#pricing"
+          class="text-sm font-bold text-slate-500 hover:text-brand-blue transition-colors"
+          >Preços</a
+        >
+        <a
+          href="/#faq"
+          class="text-sm font-bold text-slate-500 hover:text-brand-blue transition-colors"
+          >Dúvidas</a
+        >
+        <a
+          href="/blog"
+          class="text-sm font-bold text-slate-500 hover:text-brand-blue transition-colors"
+          >Blog</a
+        >
+      </nav>
+
+      <div class="flex items-center gap-2 sm:gap-4">
+        <a
+          href={LINKS.APP_LOGIN_URL}
+          class="hidden md:block text-xs sm:text-sm font-bold text-[#1a3a5c] hover:text-[#f59e0b] px-2 py-1 transition-colors"
+        >
+          Login
+        </a>
+        <a
+          href={LINKS.APP_REGISTER_URL + "?utm_source=lp&utm_medium=nav_header"}
+          class="inline-flex items-center justify-center bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-bold text-[12px] sm:text-[14px] px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-lg shadow-[0_2px_8px_rgba(245,158,11,.35)] hover:shadow-[0_4px_16px_rgba(245,158,11,.4)] hover:-translate-y-0.5 transition-all"
+        >
+          Cadastrar grátis
+        </a>
+
+        <!-- Hamburger Icon for Mobile -->
+        <button
+          id="mobile-menu-toggle"
+          class="md:hidden flex items-center justify-center text-slate-600 hover:text-brand-blue transition-colors p-1"
+          aria-label="Abrir menu"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="26"
+            height="26"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><line x1="4" x2="20" y1="12" y2="12"></line><line
+              x1="4"
+              x2="20"
+              y1="6"
+              y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg
+          >
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden bg-white border-t border-slate-100 absolute top-full left-0 w-full shadow-lg flex-col py-4 px-5 gap-3"
+  >
+    <a
+      href="/#recursos"
+      class="mobile-link text-[15px] font-bold text-slate-600 hover:text-brand-blue border-b border-slate-50 pb-3 block"
+      >Recursos</a
+    >
+    <a
+      href="/#como-funciona"
+      class="mobile-link text-[15px] font-bold text-slate-600 hover:text-brand-blue border-b border-slate-50 pb-3 block"
+      >Como funciona</a
+    >
+    <a
+      href="/#pricing"
+      class="mobile-link text-[15px] font-bold text-slate-600 hover:text-brand-blue border-b border-slate-50 pb-3 block"
+      >Preços</a
+    >
+    <a
+      href="/#faq"
+      class="mobile-link text-[15px] font-bold text-slate-600 hover:text-brand-blue border-b border-slate-50 pb-3 block"
+      >Dúvidas</a
+    >
+    <a
+      href="/blog"
+      class="mobile-link text-[15px] font-bold text-slate-600 hover:text-brand-blue border-b border-slate-50 pb-3 block"
+      >Blog</a
+    >
+    <a
+      href={LINKS.APP_LOGIN_URL}
+      class="mobile-link text-[15px] font-black text-brand-blue block mt-2 mb-1"
+      >Fazer Login no App</a
+    >
+  </div>
+</header>
+
+<script is:inline>
+  const toggleBtn = document.getElementById("mobile-menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const mobileLinks = document.querySelectorAll(".mobile-link");
+
+  if (toggleBtn && mobileMenu) {
+    toggleBtn.addEventListener("click", () => {
+      // Alterna entre flex e hidden
+      const isHidden = mobileMenu.classList.contains("hidden");
+      if (isHidden) {
+        mobileMenu.classList.remove("hidden");
+        mobileMenu.classList.add("flex");
+      } else {
+        mobileMenu.classList.add("hidden");
+        mobileMenu.classList.remove("flex");
+      }
+    });
+
+    mobileLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+        mobileMenu.classList.remove("flex");
+      });
+    });
+  }
+</script>

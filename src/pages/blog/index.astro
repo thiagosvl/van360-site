@@ -1,0 +1,67 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import HeaderBlog from "../../components/HeaderBlog.astro";
+import Footer from "../../components/Footer.astro";
+import PostCard from "../../components/PostCard.astro";
+import CtaBanner from "../../components/CtaBanner.astro";
+import { blogApi } from "../../utils/api";
+
+const { posts, total } = await blogApi.getBlogPosts(1, 20);
+
+// Get unique tags from all fetched posts
+const allTags = Array.from(new Set(posts.flatMap((p) => p.tags)));
+---
+
+<BlogLayout title="Início">
+  <HeaderBlog />
+
+  <main class="flex-1 py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full space-y-12 mt-14 md:mt-16">
+    {/* Hero Section */}
+    <section class="text-center max-w-2xl mx-auto space-y-4">
+      <span class="text-[9px] font-black text-brand-blue uppercase tracking-widest bg-brand-blue/5 border border-brand-blue/10 px-3.5 py-1.5 rounded-full inline-block">
+        Conteúdo e Dicas
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-headline font-black text-brand-blue tracking-tight uppercase">
+        Blog do Van360
+      </h2>
+      <p class="text-sm sm:text-base text-slate-500 leading-relaxed font-medium">
+        Dicas práticas sobre roteirização de vans, redução de inadimplência, legislação de trânsito, gestão financeira e modelos de contratos de transporte escolar.
+      </p>
+    </section>
+
+    {/* Tags Selector / Filter pills */}
+    {allTags.length > 0 && (
+      <section class="flex flex-wrap items-center justify-center gap-2 max-w-3xl mx-auto">
+        <span class="text-[9px] font-black text-slate-400 uppercase tracking-wider mr-2">Filtrar por:</span>
+        <a
+          href="/blog"
+          class="text-xs font-bold px-3 py-1.5 rounded-full bg-brand-blue text-white shadow-md shadow-brand-blue/10 transition-all"
+        >
+          Todos
+        </a>
+        {allTags.map((tag) => (
+          <a
+            href={`/tags/${tag}`}
+            class="text-xs font-bold px-3 py-1.5 rounded-full bg-white border border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50 transition-all"
+          >
+            {tag}
+          </a>
+        ))}
+      </section>
+    )}
+
+    {/* Posts Grid */}
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {posts.map((post) => (
+        <PostCard post={post} />
+      ))}
+    </section>
+
+    {/* CTA middle block */}
+    <section class="max-w-4xl mx-auto">
+      <CtaBanner />
+    </section>
+  </main>
+
+  <Footer />
+</BlogLayout>

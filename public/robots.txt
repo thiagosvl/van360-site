@@ -1,0 +1,5 @@
+# Permitir indexação de todo o portal institucional e blog
+User-agent: *
+Allow: /
+
+Sitemap: https://van360.com.br/sitemap.xml

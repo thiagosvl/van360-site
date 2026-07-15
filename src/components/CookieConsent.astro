@@ -1,0 +1,233 @@
+---
+import { Settings2 } from "@lucide/astro";
+
+const PUBLIC_GTM_ID = import.meta.env.PUBLIC_GTM_ID || "GTM-5VLZKJ66";
+const PUBLIC_CLARITY_ID = import.meta.env.PUBLIC_CLARITY_ID || "w4mjidk4lw";
+const IS_PROD = import.meta.env.PROD;
+---
+
+<div id="cookie-banner" class="hidden fixed bottom-0 left-0 right-0 z-30 animate-in slide-in-from-bottom duration-500">
+  <div class="bg-[#1a3a5c] border-t border-white/10 shadow-[0_-4px_24px_rgba(0,0,0,.3)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 sm:py-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-8">
+      <p class="text-[12px] sm:text-[14px] text-white/80 leading-snug sm:flex-1 text-left">
+        Este site usa cookies para melhorar sua experiência.
+      </p>
+      <div class="flex items-center justify-end gap-4">
+        <button
+          id="cookie-btn-reject"
+          class="text-[11px] sm:text-[13px] text-white/35 hover:text-white/60 transition-colors"
+        >
+          Recusar
+        </button>
+        <button
+          id="cookie-btn-customize"
+          class="text-[11px] sm:text-[13px] text-white/35 hover:text-white/60 transition-colors"
+        >
+          Personalizar
+        </button>
+        <button
+          id="cookie-btn-accept" 
+          class="text-[14px] sm:text-[14px] font-bold px-5 sm:px-6 py-2 sm:py-2 rounded-lg bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] transition-all shadow-[0_2px_8px_rgba(245,158,11,.3)]"
+        >
+          Aceitar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<dialog id="cookie-prefs-dialog" class="rounded-2xl p-0 bg-white border border-slate-100 shadow-2xl max-w-md w-[calc(100%-2rem)] backdrop:bg-slate-900/60 backdrop:backdrop-blur-sm focus:outline-none overflow-hidden select-none">
+  <div class="p-6 space-y-6">
+    <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+      <div class="flex items-center gap-3">
+        <div class="p-2 bg-[#1a3a5c]/5 text-[#1a3a5c] rounded-lg">
+          <Settings2 class="w-5 h-5" />
+        </div>
+        <div class="text-left">
+          <h3 class="text-base font-bold text-[#1a3a5c]">Preferências de Cookies</h3>
+          <p class="text-xs text-slate-400">Escolha o que deseja permitir</p>
+        </div>
+      </div>
+      <button id="close-prefs-dialog" class="text-slate-400 hover:text-slate-600 transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+    </div>
+
+    <div class="space-y-4">
+      <div class="flex items-start justify-between gap-4 py-3 border-b border-slate-100 text-left">
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-bold text-[#1a3a5c]">Necessários</p>
+          <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+            Essenciais para o funcionamento do site. Não podem ser desativados.
+          </p>
+        </div>
+        <div class="relative inline-flex items-center cursor-not-allowed">
+          <input type="checkbox" checked disabled class="sr-only peer" />
+          <div class="w-9 h-5 bg-[#1a3a5c]/30 rounded-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all after:translate-x-full"></div>
+        </div>
+      </div>
+
+      <div class="flex items-start justify-between gap-4 py-3 border-b border-slate-100 text-left">
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-bold text-[#1a3a5c]">Análise de Uso</p>
+          <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+            Coleta dados de navegação de forma agregada para entendermos como a plataforma é usada e melhorá-la continuamente.
+          </p>
+        </div>
+        <label class="relative inline-flex items-center cursor-pointer">
+          <input type="checkbox" id="prefs-gtm-checkbox" class="sr-only peer" />
+          <div class="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#1a3a5c]"></div>
+        </label>
+      </div>
+
+      <div class="flex items-start justify-between gap-4 py-3 text-left">
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-bold text-[#1a3a5c]">Gravação de Sessão</p>
+          <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+            Registra sessões de navegação (heatmaps e cliques) para identificar pontos de melhoria na experiência do usuário.
+          </p>
+        </div>
+        <label class="relative inline-flex items-center cursor-pointer">
+          <input type="checkbox" id="prefs-clarity-checkbox" class="sr-only peer" />
+          <div class="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#1a3a5c]"></div>
+        </label>
+      </div>
+    </div>
+
+    <div class="pt-4 border-t border-slate-100 flex justify-end">
+      <button 
+        id="save-cookie-prefs"
+        class="text-sm font-bold px-6 py-2.5 rounded-lg bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] transition-all shadow-[0_2px_8px_rgba(245,158,11,.3)]"
+      >
+        Salvar
+      </button>
+    </div>
+  </div>
+</dialog>
+
+<script is:inline define:vars={{ PUBLIC_GTM_ID, PUBLIC_CLARITY_ID, IS_PROD }}>
+  const COOKIE_NAME = "van360_cookie_consent";
+  const banner = document.getElementById('cookie-banner');
+  const waBtn = document.getElementById('floating-whatsapp');
+  const prefsDialog = document.getElementById('cookie-prefs-dialog');
+
+  const gtmCheckbox = document.getElementById('prefs-gtm-checkbox');
+  const clarityCheckbox = document.getElementById('prefs-clarity-checkbox');
+
+  const GTM_ID = PUBLIC_GTM_ID;
+  const CLARITY_ID = PUBLIC_CLARITY_ID;
+
+  const loadSavedPreferences = () => {
+    try {
+      const raw = localStorage.getItem(COOKIE_NAME);
+      if (!raw) return null;
+      return JSON.parse(raw);
+    } catch {
+      return null;
+    }
+  };
+
+  const persistPreferences = (prefs) => {
+    try {
+      localStorage.setItem(COOKIE_NAME, JSON.stringify(prefs));
+    } catch {
+      // ignore
+    }
+  };
+
+  const setCookieConsentMarker = (status) => {
+    const d = new Date();
+    d.setTime(d.getTime() + (365 * 24 * 60 * 60 * 1000));
+    document.cookie = `${COOKIE_NAME}=${status};expires=${d.toUTCString()};path=/`;
+  };
+
+  const injectGTM = () => {
+    if (window.__van360GTMLoaded) return;
+    window.__van360GTMLoaded = true;
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer',GTM_ID);
+  };
+
+  const injectClarity = () => {
+    if (window.__van360ClarityLoaded) return;
+    window.__van360ClarityLoaded = true;
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script",CLARITY_ID);
+  };
+
+  const initAnalytics = () => {
+    if (!IS_PROD) {
+      console.log("Analytics script blocked in development mode.");
+      return;
+    }
+    const prefs = loadSavedPreferences();
+    if (!prefs) return;
+
+    if (prefs.gtm) {
+      injectGTM();
+    }
+    if (prefs.clarity) {
+      injectClarity();
+    }
+  };
+
+  const updateBodyPadding = () => {
+    if (!banner || banner.classList.contains('hidden')) return;
+    const padding = window.innerWidth < 640 ? "68px" : "56px";
+    document.body.style.paddingBottom = padding;
+    if (waBtn) {
+      waBtn.style.bottom = window.innerWidth < 640 ? "84px" : "72px";
+    }
+  };
+
+  const hideBanner = () => {
+    if (banner) banner.classList.add('hidden');
+    document.body.style.paddingBottom = "";
+    if (waBtn) waBtn.style.bottom = "20px";
+  };
+
+  const currentPrefs = loadSavedPreferences();
+  if (!currentPrefs) {
+    if (banner) banner.classList.remove('hidden');
+    updateBodyPadding();
+    window.addEventListener('resize', updateBodyPadding);
+  }
+
+  initAnalytics();
+
+  document.getElementById('cookie-btn-accept')?.addEventListener('click', () => {
+    const prefs = { gtm: true, clarity: true };
+    persistPreferences(prefs);
+    setCookieConsentMarker("accepted");
+    hideBanner();
+    initAnalytics();
+  });
+
+  document.getElementById('cookie-btn-reject')?.addEventListener('click', () => {
+    const prefs = { gtm: false, clarity: false };
+    persistPreferences(prefs);
+    setCookieConsentMarker("rejected");
+    hideBanner();
+    window.location.reload();
+  });
+
+  document.getElementById('cookie-btn-customize')?.addEventListener('click', () => {
+    const prefs = loadSavedPreferences() || { gtm: true, clarity: true };
+    if (gtmCheckbox) gtmCheckbox.checked = prefs.gtm;
+    if (clarityCheckbox) clarityCheckbox.checked = prefs.clarity;
+    prefsDialog?.showModal();
+  });
+
+  document.getElementById('close-prefs-dialog')?.addEventListener('click', () => {
+    prefsDialog?.close();
+  });
+
+  document.getElementById('save-cookie-prefs')?.addEventListener('click', () => {
+    const gtmVal = gtmCheckbox ? gtmCheckbox.checked : true;
+    const clarityVal = clarityCheckbox ? clarityCheckbox.checked : true;
+    const newPrefs = { gtm: gtmVal, clarity: clarityVal };
+    persistPreferences(newPrefs);
+    setCookieConsentMarker(!gtmVal || !clarityVal ? "rejected" : "accepted");
+    prefsDialog?.close();
+    hideBanner();
+    window.location.reload();
+  });
+</script>

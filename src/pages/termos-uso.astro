@@ -1,0 +1,142 @@
+---
+import Layout from "../layouts/Layout.astro";
+import HeaderLP from "../components/HeaderLP.astro";
+import Footer from "../components/Footer.astro";
+import { AlertCircle, MessageSquare, Truck, Wallet } from "@lucide/astro";
+---
+
+<Layout title="Termos de Uso">
+  <HeaderLP />
+
+  <main
+    class="flex-1 py-12 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto w-full text-left mt-14 md:mt-16"
+  >
+    <div
+      class="space-y-8 bg-white border border-slate-100 rounded-3xl p-8 sm:p-10 shadow-diff-shadow"
+    >
+      <div class="space-y-3">
+        <h1
+          class="text-3xl font-headline font-black text-brand-blue tracking-tight"
+        >
+          Termos de Uso
+        </h1>
+        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">
+          Última atualização: 19/06/2026
+        </p>
+      </div>
+
+      <p class="text-slate-600 leading-relaxed text-sm">
+        Bem-vindo ao <strong class="text-brand-blue font-bold">Van360</strong>.
+        Ao utilizar nossa plataforma, você concorda com os termos descritos
+        abaixo, estabelecidos para garantir a melhor experiência e segurança
+        para todos.
+      </p>
+
+      {/* Seção 1 */}
+      <section class="space-y-3">
+        <div
+          class="flex items-center gap-2.5 text-brand-blue border-b border-slate-100 pb-2"
+        >
+          <Truck class="h-5 w-5 shrink-0" />
+          <h2 class="text-lg font-headline font-black uppercase tracking-wide">
+            1. O Serviço
+          </h2>
+        </div>
+        <p class="text-slate-600 leading-relaxed text-sm">
+          O Van360 é uma plataforma destinada à gestão de transporte escolar.
+          Nossas ferramentas incluem:
+        </p>
+        <ul class="space-y-2 text-sm text-slate-500 list-disc list-inside">
+          <li>Organização inteligente de passageiros e rotas.</li>
+          <li>Gestão financeira com automação de cobranças.</li>
+          <li>Comunicação automatizada via WhatsApp.</li>
+        </ul>
+      </section>
+
+      {/* Seção 2 */}
+      <section class="space-y-3">
+        <div
+          class="flex items-center gap-2.5 text-brand-blue border-b border-slate-100 pb-2"
+        >
+          <AlertCircle class="h-5 w-5 shrink-0" />
+          <h2 class="text-lg font-headline font-black uppercase tracking-wide">
+            2. Responsabilidades
+          </h2>
+        </div>
+        <div
+          class="bg-amber-50 border border-amber-100 rounded-xl p-5 space-y-2"
+        >
+          <p class="text-amber-900 text-xs font-black uppercase tracking-wider">
+            Importante ressaltar:
+          </p>
+          <ul
+            class="space-y-1.5 text-xs text-amber-800 list-disc list-inside leading-relaxed"
+          >
+            <li>
+              O Van360 fornece apenas a <strong class="font-bold"
+                >tecnologia</strong
+              >.
+            </li>
+            <li>
+              Não somos responsáveis pela execução do transporte, segurança
+              física ou manutenção dos veículos.
+            </li>
+            <li>É dever do motorista manter CNH e documentação em dia.</li>
+          </ul>
+        </div>
+      </section>
+
+      {/* Seção 3 */}
+      <section class="space-y-3">
+        <div
+          class="flex items-center gap-2.5 text-brand-blue border-b border-slate-100 pb-2"
+        >
+          <Wallet class="h-5 w-5 shrink-0" />
+          <h2 class="text-lg font-headline font-black uppercase tracking-wide">
+            3. Planos e Acesso
+          </h2>
+        </div>
+        <p class="text-slate-600 leading-relaxed text-sm">
+          O <strong class="text-brand-blue font-bold">Van360</strong> oferece um período
+          gratuito de 15 dias para novos cadastros. Após este período, o acesso contínuo
+          as funcionalidades de gestão e automação está condicionado à assinatura
+          de um dos planos vigentes no site. O usuário será notificado sobre o fim
+          do período de testes.
+        </p>
+        <p class="text-slate-600 leading-relaxed text-sm mt-3">
+          <strong class="font-bold text-brand-blue"
+            >E se eu atrasar a assinatura do Van360?</strong
+          > Fique tranquilo, sabemos que a rotina na rua é corrida e imprevistos acontecem.
+          Para não prejudicar seu trabalho, nós oferecemos um período de carência
+          após o vencimento, permitindo que você continue usando o app normalmente
+          por alguns dias. Caso o pagamento não seja regularizado após essa carência,
+          o acesso às funcionalidades do sistema será temporariamente suspenso. Mas
+          não se preocupe: mesmo com o acesso bloqueado, seus dados, passageiros e
+          rotas não serão apagados. Tudo ficará guardado com segurança esperando a
+          regularização do plano para você voltar a usar de onde parou!
+        </p>
+      </section>
+
+      {/* Seção 4 */}
+      <section class="space-y-3">
+        <div
+          class="flex items-center gap-2.5 text-brand-blue border-b border-slate-100 pb-2"
+        >
+          <MessageSquare class="h-5 w-5 shrink-0" />
+          <h2 class="text-lg font-headline font-black uppercase tracking-wide">
+            4. Comunicação e WhatsApp
+          </h2>
+        </div>
+        <p class="text-slate-600 leading-relaxed text-sm">
+          A plataforma disponibiliza ferramentas para facilitar a comunicação
+          entre motorista e responsáveis via WhatsApp. O usuário concorda em
+          utilizar esta funcionalidade de forma ética, sendo proibido o envio de
+          SPAM. O Van360 não se responsabiliza por eventuais instabilidades ou
+          bloqueios decorrentes do uso inadequado das ferramentas de terceiros.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

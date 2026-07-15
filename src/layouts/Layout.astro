@@ -1,0 +1,63 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const { title, description = "Gerencie passageiros, parcelas, contratos e recibos. Automatize a cobrança de parcelas pelo WhatsApp e organize sua van escolar. Teste grátis por 15 dias.", ogImage = "https://van360.com.br/assets/og-image.png" } = Astro.props;
+
+const canonUrl = new URL(Astro.url.pathname, Astro.site || "https://van360.com.br");
+import CookieConsent from "../components/CookieConsent.astro";
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title} | Van360</title>
+    <meta name="title" content={`${title} | Van360`} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonUrl} />
+    <meta property="og:title" content={`${title} | Van360`} />
+    <meta property="og:description" content={description} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonUrl} />
+    <meta property="twitter:title" content={`${title} | Van360`} />
+    <meta property="twitter:description" content={description} />
+    {ogImage && <meta property="twitter:image" content={ogImage} />}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Manrope:wght@600;700;800;900&display=swap" rel="stylesheet" />
+    <slot name="head" />
+  </head>
+  <body class="bg-white text-slate-800 font-body min-h-screen flex flex-col selection:bg-brand-blue/10 selection:text-brand-blue antialiased">
+    <slot />
+    <CookieConsent />
+  </body>
+</html>
+
+<style is:global>
+  html {
+    scroll-behavior: smooth;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Manrope', sans-serif;
+  }
+</style>

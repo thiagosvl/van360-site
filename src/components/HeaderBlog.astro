@@ -1,0 +1,68 @@
+---
+---
+<header class="w-full bg-white/97 backdrop-blur-md border-b border-slate-100 fixed top-0 left-0 z-50 transition-all duration-300 shadow-sm select-none">
+  <div class="max-w-[1120px] mx-auto px-4 sm:px-6 h-14 md:h-16 flex items-center justify-between">
+    <a href="/blog" class="flex items-center group shrink-0">
+      <img
+        src="/assets/logo-van360.webp"
+        alt="Van360 Blog"
+        class="h-8 sm:h-9 w-auto select-none transition-transform group-hover:scale-[1.01]"
+      />
+      <span class="ml-2.5 pl-2.5 border-l border-slate-200 text-xs sm:text-sm font-headline font-black text-brand-blue tracking-tight uppercase">
+        Blog
+      </span>
+    </a>
+
+    <div class="flex items-center gap-4 sm:gap-6 md:gap-8">
+      <nav class="hidden md:flex items-center gap-6">
+        <a href="/blog" class="text-sm font-bold text-slate-500 hover:text-brand-blue transition-colors">Todos os Artigos</a>
+      </nav>
+
+      <div class="flex items-center gap-2 sm:gap-4">
+        <a
+          href="/"
+          class="inline-flex items-center justify-center bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-bold text-[12px] sm:text-[14px] px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-lg shadow-[0_2px_8px_rgba(245,158,11,.35)] hover:shadow-[0_4px_16px_rgba(245,158,11,.4)] hover:-translate-y-0.5 transition-all"
+        >
+          Conhecer o Van360
+        </a>
+        
+        <!-- Hamburger Icon for Mobile -->
+        <button id="blog-mobile-menu-toggle" class="md:hidden flex items-center justify-center text-slate-600 hover:text-brand-blue transition-colors p-1" aria-label="Abrir menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  <div id="blog-mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 absolute top-full left-0 w-full shadow-lg flex-col py-4 px-5 gap-3">
+    <a href="/blog" class="blog-mobile-link text-[15px] font-bold text-slate-600 hover:text-brand-blue border-b border-slate-50 pb-3 block">Todos os Artigos</a>
+    <!-- Futuro: Categorias do blog podem entrar aqui -->
+  </div>
+</header>
+
+<script is:inline>
+  const blogToggleBtn = document.getElementById('blog-mobile-menu-toggle');
+  const blogMobileMenu = document.getElementById('blog-mobile-menu');
+  const blogMobileLinks = document.querySelectorAll('.blog-mobile-link');
+  
+  if (blogToggleBtn && blogMobileMenu) {
+    blogToggleBtn.addEventListener('click', () => {
+      const isHidden = blogMobileMenu.classList.contains('hidden');
+      if (isHidden) {
+        blogMobileMenu.classList.remove('hidden');
+        blogMobileMenu.classList.add('flex');
+      } else {
+        blogMobileMenu.classList.add('hidden');
+        blogMobileMenu.classList.remove('flex');
+      }
+    });
+
+    blogMobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        blogMobileMenu.classList.add('hidden');
+        blogMobileMenu.classList.remove('flex');
+      });
+    });
+  }
+</script>
