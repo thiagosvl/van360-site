@@ -33,7 +33,7 @@ export interface BlogPostsListResponse {
 const API_URL = import.meta.env.PUBLIC_API_URL || "http://localhost:3000/api";
 
 // Helper para fetch com timeout curto (evita lentidão em builds estáticos offline)
-const fetchWithTimeout = async (url: string, options: RequestInit = {}, timeout = 2500) => {
+const fetchWithTimeout = async (url: string, options: RequestInit = {}, timeout = 15000) => {
   const controller = new AbortController();
   const id = setTimeout(() => controller.abort(), timeout);
   try {

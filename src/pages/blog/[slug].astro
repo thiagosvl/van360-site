@@ -8,6 +8,11 @@ import { Calendar, Eye, Clock, ArrowLeft } from "@lucide/astro";
 
 export async function getStaticPaths() {
   const { posts } = await blogApi.getBlogPosts(1, 100);
+  if (posts.length === 0) {
+    return [{
+      params: { slug: "artigo-indisponivel" }
+    }];
+  }
   return posts.map((post) => ({
     params: { slug: post.slug },
   }));
