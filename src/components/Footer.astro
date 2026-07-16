@@ -1,5 +1,7 @@
 ---
 import { LINKS } from "../constants/links";
+import { Image } from "astro:assets";
+import logoVan360 from "../assets/logo-van360.webp";
 const currentYear = new Date().getFullYear();
 ---
 
@@ -13,8 +15,8 @@ const currentYear = new Date().getFullYear();
         class="flex flex-col items-center md:items-start gap-5 col-span-1 md:col-span-1"
       >
         <a href="/" class="inline-block">
-          <img
-            src="/assets/logo-van360.webp"
+          <Image
+            src={logoVan360}
             alt="Van360"
             class="h-10 w-auto brightness-0 invert select-none"
           />
@@ -35,6 +37,8 @@ const currentYear = new Date().getFullYear();
             <img
               src={LINKS.PLAY_STORE_BADGE_URL}
               alt="Disponível no Google Play"
+              width={162}
+              height={48}
               class="h-12 object-contain"
             />
           </a>
@@ -43,9 +47,9 @@ const currentYear = new Date().getFullYear();
 
       {/* Links - Produto */}
       <div class="flex flex-col items-center md:items-start gap-4">
-        <h4 class="text-white font-bold tracking-wide uppercase text-xs mb-1">
+        <p class="text-white font-bold tracking-wide uppercase text-xs mb-1">
           Produto
-        </h4>
+        </p>
         <a href="/#como-funciona" class="hover:text-white transition-colors"
           >Como Funciona</a
         >
@@ -61,9 +65,9 @@ const currentYear = new Date().getFullYear();
 
       {/* Links - Empresa */}
       <div class="flex flex-col items-center md:items-start gap-4">
-        <h4 class="text-white font-bold tracking-wide uppercase text-xs mb-1">
+        <p class="text-white font-bold tracking-wide uppercase text-xs mb-1">
           Empresa
-        </h4>
+        </p>
         <a href="/blog" class="hover:text-white transition-colors">Blog</a>
         <a href={LINKS.APP_LOGIN_URL} class="hover:text-white transition-colors"
           >Fazer Login no App</a
@@ -82,9 +86,9 @@ const currentYear = new Date().getFullYear();
 
       {/* Links - Legal */}
       <div class="flex flex-col items-center md:items-start gap-4">
-        <h4 class="text-white font-bold tracking-wide uppercase text-xs mb-1">
+        <p class="text-white font-bold tracking-wide uppercase text-xs mb-1">
           Jurídico
-        </h4>
+        </p>
         <a
           href="/politica-privacidade"
           class="hover:text-white transition-colors">Política de Privacidade</a

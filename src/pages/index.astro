@@ -283,6 +283,7 @@ const schemaJson = JSON.stringify([
     class="min-h-screen bg-white text-[#1a1a1a] font-['Inter',sans-serif] overflow-x-hidden scroll-smooth selection:bg-amber-200"
   >
     <HeaderLP />
+    <main>
 
     <style is:global>
       .lp-reveal {
@@ -395,6 +396,8 @@ const schemaJson = JSON.stringify([
                   <img
                     src={LINKS.PLAY_STORE_BADGE_URL}
                     alt="Disponível no Google Play"
+                    width={189}
+                    height={56}
                     class="h-14 object-contain"
                   />
                 </a>
@@ -451,6 +454,7 @@ const schemaJson = JSON.stringify([
                   src={mockup3dHome}
                   alt="App para controle de parcelas da van escolar rodando no celular"
                   loading="eager"
+                  fetchpriority="high"
                   class="w-full h-auto drop-shadow-xl"
                 />
               </div>
@@ -560,6 +564,8 @@ const schemaJson = JSON.stringify([
                 <img
                   src={LINKS.PLAY_STORE_BADGE_URL}
                   alt="Disponível no Google Play"
+                  width={189}
+                  height={56}
                   class="h-14 object-contain"
                 />
               </a>
@@ -605,6 +611,7 @@ const schemaJson = JSON.stringify([
                 src={mockup3dMensalidades}
                 alt="Sistema de gestão de transporte escolar rodando no navegador"
                 loading="eager"
+                fetchpriority="high"
                 class="w-full h-auto"
               />
             </div>
@@ -1157,6 +1164,8 @@ const schemaJson = JSON.stringify([
                 <img
                   src={LINKS.PLAY_STORE_BADGE_URL}
                   alt="Disponível no Google Play"
+                  width={162}
+                  height={48}
                   class="h-12 object-contain filter drop-shadow-md"
                 />
               </a>
@@ -1179,6 +1188,8 @@ const schemaJson = JSON.stringify([
         </div>
       </div>
     </section>
+
+    </main>
 
     <Footer />
 

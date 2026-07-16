@@ -1,5 +1,6 @@
 ---
-
+import { Image } from "astro:assets";
+import logoVan360 from "../assets/logo-van360.webp";
 ---
 
 <header
@@ -9,8 +10,8 @@
     class="max-w-[1120px] mx-auto px-4 sm:px-6 h-14 md:h-16 flex items-center justify-between"
   >
     <a href="/" class="flex items-center group shrink-0">
-      <img
-        src="/assets/logo-van360.webp"
+      <Image
+        src={logoVan360}
         alt="Van360 Blog"
         class="h-8 sm:h-9 w-auto select-none transition-transform group-hover:scale-[1.01]"
       />
