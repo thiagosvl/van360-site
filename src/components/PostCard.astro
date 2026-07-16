@@ -1,6 +1,6 @@
 ---
 import type { BlogPost } from "../utils/api";
-import { Calendar, Eye, Clock } from "@lucide/astro";
+import { Calendar } from "@lucide/astro";
 
 interface Props {
   post: BlogPost;
@@ -54,12 +54,6 @@ const formattedDate = post.published_at
     <div class="flex items-center gap-1.5">
       <Calendar class="h-3.5 w-3.5" />
       <span>{formattedDate}</span>
-    </div>
-    <div class="flex items-center gap-3">
-      <div class="flex items-center gap-1">
-        <Eye class="h-3.5 w-3.5" />
-        <span>{post.views}</span>
-      </div>
     </div>
   </div>
 </article>

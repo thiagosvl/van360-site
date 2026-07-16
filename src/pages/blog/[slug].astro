@@ -4,7 +4,7 @@ import HeaderBlog from "../../components/HeaderBlog.astro";
 import Footer from "../../components/Footer.astro";
 import CtaBanner from "../../components/CtaBanner.astro";
 import { blogApi } from "../../utils/api";
-import { Calendar, Eye, Clock, ArrowLeft } from "@lucide/astro";
+import { Calendar, ArrowLeft } from "@lucide/astro";
 
 export async function getStaticPaths() {
   const { posts } = await blogApi.getBlogPosts(1, 100);
@@ -100,10 +100,6 @@ const schemaJson = JSON.stringify({
         <div class="flex items-center gap-1.5">
           <Calendar class="h-4 w-4" />
           <span>Publicado em {formattedDate}</span>
-        </div>
-        <div class="flex items-center gap-1.5">
-          <Eye class="h-4 w-4" />
-          <span>{post.views} visualizações</span>
         </div>
       </div>
     </header>
