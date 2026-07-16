@@ -27,15 +27,15 @@ const formatCurrency = (val: number) => {
 };
 
 const isPromoActive = plansData.isPromotionActive;
-const monthlyPlan = plansData.plans.find((p) => p.periodo === "monthly");
-const yearlyPlan = plansData.plans.find((p) => p.periodo === "yearly");
+const monthlyPlan = plansData.plans.find((p) => p.identificador === "MONTHLY");
+const yearlyPlan = plansData.plans.find((p) => p.identificador === "YEARLY");
 
 // Se os planos vitais não existirem no banco, dispara erro para interromper o build imediatamente
 if (!monthlyPlan) {
-  throw new Error("[Astro Build] Falha de integridade: Plano mensal ('monthly') não foi retornado pelo banco de dados.");
+  throw new Error("[Astro Build] Falha de integridade: Plano mensal ('MONTHLY') não foi retornado pelo banco de dados.");
 }
 if (!yearlyPlan) {
-  throw new Error("[Astro Build] Falha de integridade: Plano anual ('yearly') não foi retornado pelo banco de dados.");
+  throw new Error("[Astro Build] Falha de integridade: Plano anual ('YEARLY') não foi retornado pelo banco de dados.");
 }
 
 // Lógica de preços direta sem fallbacks codificados no frontend

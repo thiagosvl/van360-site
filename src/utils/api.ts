@@ -12,10 +12,11 @@ export interface BlogPost {
 
 export interface Plan {
   id: string;
-  name: string;
+  nome: string;
+  identificador: "MONTHLY" | "YEARLY";
   valor: number;
   valor_promocional?: number | null;
-  periodo: string;
+  ativo: boolean;
 }
 
 export interface PlansResponse {
