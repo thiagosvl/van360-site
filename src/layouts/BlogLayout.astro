@@ -3,12 +3,15 @@ interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  isHome?: boolean;
 }
 
-const { title, description = "Blog oficial do Van360 - Dicas de rotas escolares, gestão financeira, contratos e produtividade para motoristas.", ogImage = "https://van360.com.br/assets/og-image.png" } = Astro.props;
+const { title, description = "Blog oficial do Van360 - Dicas de rotas escolares, gestão financeira, contratos e produtividade para motoristas.", ogImage = "https://van360.com.br/assets/og-image.png", isHome = false } = Astro.props;
 
 const canonUrl = new URL(Astro.url.pathname, Astro.site || "https://van360.com.br");
 import CookieConsent from "../components/CookieConsent.astro";
+
+const pageTitle = isHome ? title : `${title} | Van360 Blog`;
 ---
 
 <!doctype html>
@@ -26,22 +29,22 @@ import CookieConsent from "../components/CookieConsent.astro";
     <meta name="generator" content={Astro.generator} />
 
     {/* Primary Meta Tags */}
-    <title>{title} | Van360 Blog</title>
-    <meta name="title" content={`${title} | Van360 Blog`} />
+    <title>{pageTitle}</title>
+    <meta name="title" content={pageTitle} />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonUrl} />
 
     {/* Open Graph / Facebook */}
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonUrl} />
-    <meta property="og:title" content={`${title} | Van360 Blog`} />
+    <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     {ogImage && <meta property="og:image" content={ogImage} />}
 
     {/* Twitter */}
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={canonUrl} />
-    <meta property="twitter:title" content={`${title} | Van360 Blog`} />
+    <meta property="twitter:title" content={pageTitle} />
     <meta property="twitter:description" content={description} />
     {ogImage && <meta property="twitter:image" content={ogImage} />}
 

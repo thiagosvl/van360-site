@@ -12,7 +12,7 @@ const { posts, total } = await blogApi.getBlogPosts(1, 20);
 const allTags = Array.from(new Set(posts.flatMap((p) => p.tags)));
 ---
 
-<BlogLayout title="Início">
+<BlogLayout title="Blog | Van360" isHome={true}>
   <HeaderBlog />
 
   <main class="flex-1 py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full space-y-12 mt-14 md:mt-16">
