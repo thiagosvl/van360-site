@@ -455,6 +455,8 @@ const schemaJson = JSON.stringify([
                   alt="App para controle de parcelas da van escolar rodando no celular"
                   loading="eager"
                   fetchpriority="high"
+                  widths={[320, 360, 480]}
+                  sizes="(max-width: 640px) 100vw, 360px"
                   class="w-full h-auto drop-shadow-xl"
                 />
               </div>
@@ -612,6 +614,8 @@ const schemaJson = JSON.stringify([
                 alt="Sistema de gestão de transporte escolar rodando no navegador"
                 loading="eager"
                 fetchpriority="high"
+                widths={[480, 720, 960]}
+                sizes="(min-width: 768px) 50vw, 100vw"
                 class="w-full h-auto"
               />
             </div>
@@ -724,6 +728,8 @@ const schemaJson = JSON.stringify([
                       <Image
                         src={feat.mockup}
                         alt={feat.alt}
+                        widths={[320, 420, 640]}
+                        sizes="(max-width: 768px) 100vw, 300px"
                         class="w-full h-auto drop-shadow-xl"
                       />
                     </div>
@@ -954,6 +960,8 @@ const schemaJson = JSON.stringify([
             <Image
               src={mockup3dHome}
               alt="Dashboard do Van360 com primeiros passos"
+              widths={[320, 480]}
+              sizes="(max-width: 768px) 100vw, 480px"
               class="w-full h-auto"
             />
           </div>
