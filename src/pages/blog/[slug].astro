@@ -6,6 +6,7 @@ import CtaBanner from "../../components/CtaBanner.astro";
 import { blogApi } from "../../utils/api";
 import { Calendar, ArrowLeft } from "@lucide/astro";
 import PostCard from "../../components/PostCard.astro";
+import { Image } from "astro:assets";
 
 export async function getStaticPaths() {
   const { posts } = await blogApi.getBlogPosts(1, 100);
@@ -114,9 +115,12 @@ const schemaJson = JSON.stringify({
     {/* Cover Image */}
     {post.cover_image_url && (
       <div class="aspect-video w-full overflow-hidden rounded-3xl border border-slate-100 shadow-md">
-        <img
+        <Image
           src={post.cover_image_url}
           alt={post.title}
+          width={800}
+          height={450}
+          format="webp"
           class="w-full h-full object-cover"
         />
       </div>

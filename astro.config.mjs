@@ -8,5 +8,8 @@ export default defineConfig({
   integrations: [tailwind(), sitemap()],
   build: {
     inlineStylesheets: 'always',
+  },
+  image: {
+    domains: ['scxjzvblqnamfvasjaug.supabase.co', 'images.unsplash.com'],
   }
 });
