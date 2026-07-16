@@ -51,11 +51,18 @@ const allTags = Array.from(new Set(posts.flatMap((p) => p.tags)));
     )}
 
     {/* Posts Grid */}
-    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {posts.map((post) => (
-        <PostCard post={post} />
-      ))}
-    </section>
+    {posts.length > 0 ? (
+      <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {posts.map((post) => (
+          <PostCard post={post} />
+        ))}
+      </section>
+    ) : (
+      <div class="text-center py-16 bg-white border border-slate-100 rounded-3xl p-8 max-w-lg mx-auto shadow-diff-shadow space-y-3">
+        <p class="text-slate-700 font-headline font-bold text-lg uppercase">Nenhum artigo encontrado</p>
+        <p class="text-slate-400 text-xs font-medium">Volte em breve! Estamos preparando conteúdos incríveis para você gerenciar sua van escolar.</p>
+      </div>
+    )}
 
     {/* CTA middle block */}
     <section class="max-w-4xl mx-auto">

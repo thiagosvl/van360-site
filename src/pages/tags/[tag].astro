@@ -11,12 +11,6 @@ import { ArrowLeft, Tag } from "@lucide/astro";
 export async function getStaticPaths() {
   const { posts } = await blogApi.getBlogPosts(1, 100);
   const tags = Array.from(new Set(posts.flatMap((p) => p.tags)));
-  if (tags.length === 0) {
-    return [{
-      params: { tag: "geral" },
-      props: { posts: [], allTags: [] }
-    }];
-  }
   return tags.map((tag) => ({
     params: { tag },
     props: { 
