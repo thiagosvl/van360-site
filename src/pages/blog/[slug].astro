@@ -5,6 +5,7 @@ import Footer from "../../components/Footer.astro";
 import CtaBanner from "../../components/CtaBanner.astro";
 import { blogApi } from "../../utils/api";
 import { Calendar, ArrowLeft } from "@lucide/astro";
+import PostCard from "../../components/PostCard.astro";
 
 export async function getStaticPaths() {
   const { posts } = await blogApi.getBlogPosts(1, 100);
@@ -20,6 +21,12 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params;
 const post = await blogApi.getBlogPostDetails(slug);
+
+// Fetch recommended posts (recent ones excluding current)
+const { posts: allPosts } = await blogApi.getBlogPosts(1, 4);
+const recommendedPosts = allPosts
+  .filter((p) => p.slug !== slug)
+  .slice(0, 3);
 
 const formattedDate = post.published_at
   ? new Date(post.published_at).toLocaleDateString("pt-BR", {
@@ -104,12 +111,23 @@ const schemaJson = JSON.stringify({
       </div>
     </header>
 
+    {/* Cover Image */}
+    {post.cover_image_url && (
+      <div class="aspect-video w-full overflow-hidden rounded-3xl border border-slate-100 shadow-md">
+        <img
+          src={post.cover_image_url}
+          alt={post.title}
+          class="w-full h-full object-cover"
+        />
+      </div>
+    )}
+
     {/* Article Content */}
     <article class="bg-white rounded-3xl border border-slate-100 p-6 sm:p-10 shadow-diff-shadow">
       {contentParts.map((part, idx) => (
         <Fragment>
           <div 
-            class="prose prose-slate max-w-none text-left prose-headings:font-headline prose-headings:font-black prose-headings:text-brand-blue prose-h2:text-xl prose-h3:text-lg prose-p:text-sm prose-p:leading-relaxed prose-blockquote:border-l-4 prose-blockquote:border-brand-blue prose-blockquote:bg-slate-50 prose-blockquote:py-2 prose-blockquote:px-4 prose-blockquote:rounded-r-xl prose-blockquote:not-italic prose-blockquote:font-medium prose-img:rounded-2xl prose-img:shadow-md"
+            class="prose prose-slate max-w-none text-left prose-headings:font-headline prose-headings:font-black prose-headings:text-brand-blue prose-h2:text-xl prose-h3:text-lg prose-p:text-sm prose-p:leading-relaxed prose-blockquote:border-l-4 prose-blockquote:border-yellow-500 prose-blockquote:bg-slate-50/50 prose-blockquote:text-slate-700 prose-blockquote:italic prose-blockquote:py-2 prose-blockquote:px-4 prose-blockquote:rounded-r-xl prose-blockquote:not-italic prose-blockquote:font-medium prose-img:rounded-2xl prose-img:shadow-md"
             set:html={part} 
           />
           {idx < contentParts.length - 1 && (
@@ -120,6 +138,20 @@ const schemaJson = JSON.stringify({
         </Fragment>
       ))}
     </article>
+
+    {/* Recommended Posts Section */}
+    {recommendedPosts.length > 0 && (
+      <section class="space-y-6 border-t border-slate-100 pt-12 text-left">
+        <h3 class="text-lg font-headline font-black text-brand-blue tracking-tight uppercase">
+          Confira também outros artigos
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {recommendedPosts.map((recommendedPost) => (
+            <PostCard post={recommendedPost} />
+          ))}
+        </div>
+      </section>
+    )}
   </main>
 
   <Footer />

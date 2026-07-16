@@ -5,6 +5,7 @@ export interface BlogPost {
   content: string;
   excerpt: string | null;
   tags: string[];
+  cover_image_url: string | null;
   published_at: string | null;
   created_at: string;
 }
