@@ -3,6 +3,12 @@ import { LINKS } from "../constants/links";
 import { Image } from "astro:assets";
 import logoVan360 from "../assets/logo-van360.webp";
 const currentYear = new Date().getFullYear();
+
+interface Props {
+  isBlog?: boolean;
+}
+
+const { isBlog = false } = Astro.props;
 ---
 
 <footer
@@ -14,7 +20,7 @@ const currentYear = new Date().getFullYear();
       <div
         class="flex flex-col items-center md:items-start gap-5 col-span-1 md:col-span-1"
       >
-        <a href="/" class="inline-block">
+        <a href={isBlog ? "/?utm_source=blog&utm_medium=footer_logo" : "/"} class="inline-block">
           <Image
             src={logoVan360}
             alt="Van360"
@@ -51,15 +57,15 @@ const currentYear = new Date().getFullYear();
         <p class="text-white font-bold tracking-wide uppercase text-xs mb-1">
           Produto
         </p>
-        <a href="/#como-funciona" class="hover:text-white transition-colors"
+        <a href={isBlog ? "/?utm_source=blog&utm_medium=footer_link#como-funciona" : "/#como-funciona"} class="hover:text-white transition-colors"
           >Como Funciona</a
         >
-        <a href="/#recursos" class="hover:text-white transition-colors"
+        <a href={isBlog ? "/?utm_source=blog&utm_medium=footer_link#recursos" : "/#recursos"} class="hover:text-white transition-colors"
           >Recursos</a
         >
-        <a href="/#pricing" class="hover:text-white transition-colors">Preços</a
+        <a href={isBlog ? "/?utm_source=blog&utm_medium=footer_link#pricing" : "/#pricing"} class="hover:text-white transition-colors">Preços</a
         >
-        <a href="/#faq" class="hover:text-white transition-colors"
+        <a href={isBlog ? "/?utm_source=blog&utm_medium=footer_link#faq" : "/#faq"} class="hover:text-white transition-colors"
           >Dúvidas Frequentes</a
         >
       </div>
@@ -70,11 +76,11 @@ const currentYear = new Date().getFullYear();
           Empresa
         </p>
         <a href="/blog" class="hover:text-white transition-colors">Blog</a>
-        <a href={LINKS.APP_LOGIN_URL} class="hover:text-white transition-colors"
+        <a href={isBlog ? `${LINKS.APP_LOGIN_URL}?utm_source=blog&utm_medium=footer_login` : LINKS.APP_LOGIN_URL} class="hover:text-white transition-colors"
           >Fazer Login no App</a
         >
         <a
-          href={LINKS.APP_REGISTER_URL}
+          href={isBlog ? `${LINKS.APP_REGISTER_URL}?utm_source=blog&utm_medium=footer_register` : LINKS.APP_REGISTER_URL}
           class="hover:text-white transition-colors">Cadastre-se Grátis</a
         >
         <a

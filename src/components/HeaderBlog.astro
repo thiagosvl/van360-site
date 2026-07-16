@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import logoVan360 from "../assets/logo-van360.webp";
+import { LINKS } from "../constants/links";
 ---
 
 <header
@@ -34,7 +35,8 @@ import logoVan360 from "../assets/logo-van360.webp";
 
       <div class="flex items-center gap-2 sm:gap-4">
         <a
-          href="/"
+          href={LINKS.APP_REGISTER_URL +
+            "?utm_source=blog&utm_medium=nav_header"}
           class="inline-flex items-center justify-center bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-bold text-[12px] sm:text-[14px] px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-lg shadow-[0_2px_8px_rgba(245,158,11,.35)] hover:shadow-[0_4px_16px_rgba(245,158,11,.4)] hover:-translate-y-0.5 transition-all"
         >
           Conhecer o Van360
