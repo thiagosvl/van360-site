@@ -5,7 +5,6 @@ export interface BlogPost {
   content: string;
   excerpt: string | null;
   tags: string[];
-  views: number;
   published_at: string | null;
   created_at: string;
 }
