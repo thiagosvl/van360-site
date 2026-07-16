@@ -5,6 +5,7 @@ import HeaderLP from "../components/HeaderLP.astro";
 import Footer from "../components/Footer.astro";
 import { blogApi } from "../utils/api";
 import VideoCommerce from "../components/VideoCommerce.astro";
+import { Image } from "astro:assets";
 import {
   Users,
   Clock,
@@ -14,6 +15,17 @@ import {
   Check,
   CheckCircle2,
 } from "@lucide/astro";
+
+// Imports de imagens para otimização pelo Astro
+import mockup3dHome from "../assets/lp/mockup-3d-home.webp";
+import mockup3dMensalidades from "../assets/lp/mockup-3d-mensalidades.webp";
+import mockupMensalidades from "../assets/lp/mockup-mensalidades.webp";
+import mockupPassageiros from "../assets/lp/mockup-passageiros.webp";
+import mockupCarteirinha from "../assets/lp/mockup-carteirinha.webp";
+import mockupRecibo from "../assets/lp/mockup-recibo.webp";
+import mockupContrato from "../assets/lp/mockup-contrato.webp";
+import mockupGastos from "../assets/lp/mockup-gastos.webp";
+import mockupRelatorios from "../assets/lp/mockup-relatorios.webp";
 
 // Fetch dynamic plans for pre-rendering
 const plansData = await blogApi.getPublicPlans();
@@ -74,47 +86,47 @@ const features = [
   {
     headline: "Pare de cobrar os pais e de passar constrangimento",
     text: "Chega de ser 'o chato da cobrança'. O Van360 envia lembretes amigáveis pelo WhatsApp automaticamente. Saiba na hora quais parcelas foram pagas e quais ainda estão pendentes. O dinheiro entra e você só foca na direção.",
-    mockup: "/assets/lp/mockup-mensalidades.webp",
+    mockup: mockupMensalidades,
     alt: "Painel de controle de parcelas pendentes e pagas da van escolar",
     balloonText: "A parcela de julho da Júlia vence amanhã.",
   },
   {
     headline: "Receba a ficha dos passageiros pronta",
     text: "Perder horas anotando nome, escola e endereço à mão? Nunca mais. Mande seu link exclusivo pelo WhatsApp e deixe os pais preencherem. Sua lista se organiza sozinha em segundos.",
-    mockup: "/assets/lp/mockup-passageiros.webp",
+    mockup: mockupPassageiros,
     alt: "Lista de passageiros organizados no aplicativo Van360",
     balloonText: "Pai, segue o link para matricular o aluno na van.",
   },
   {
     headline: "Diga adeus à velha carteirinha de papel",
     text: "Tenha a ficha completa dos alunos na palma da mão, direto na van. Chega de depender de carnês e fichas de papel. Segurança para você, profissionalismo para os pais.",
-    mockup: "/assets/lp/mockup-carteirinha.webp",
+    mockup: mockupCarteirinha,
     alt: "Carteirinha digital do estudante na van",
   },
   {
     headline: "Envie recibos profissionais com poucos toques",
     text: "Confirmou o pagamento? O Van360 gera um recibo em PDF impecável e você envia direto no WhatsApp do responsável. Mostre que o seu serviço de transporte é de alto nível.",
-    mockup: "/assets/lp/mockup-recibo.webp",
+    mockup: mockupRecibo,
     alt: "Recibo de pagamento gerado automaticamente pelo Van360",
     balloonText: "Seu recibo de pagamento já está disponível.",
   },
   {
     headline: "Acabou a papelada: Contratos digitais em 1 minuto",
     text: "Evite dor de cabeça com 'combinados de boca'. Gere contratos com validade jurídica e envie para o responsável assinar na tela do próprio celular dele. 100% seguro e digital.",
-    mockup: "/assets/lp/mockup-contrato.webp",
+    mockup: mockupContrato,
     alt: "Assinatura de contrato digital no celular",
     balloonText: "O contrato de transporte foi assinado com sucesso.",
   },
   {
     headline: "Saiba exatamente para onde vai o seu dinheiro",
     text: "Combustível, troca de óleo, mecânico... Registre cada centavo gasto com a van. Pare de misturar o dinheiro da sua vida pessoal com o do seu negócio.",
-    mockup: "/assets/lp/mockup-gastos.webp",
+    mockup: mockupGastos,
     alt: "Tela de controle de gastos e despesas da van escolar",
   },
   {
     headline: "Descubra se a sua van realmente está dando lucro",
     text: "Chega de fechar o mês no escuro. Tenha um painel que calcula automaticamente seu faturamento, suas despesas e o lucro líquido real. Comece a pensar como um dono de negócio.",
-    mockup: "/assets/lp/mockup-relatorios.webp",
+    mockup: mockupRelatorios,
     alt: "Relatórios financeiros detalhados para motoristas de van",
   },
 ];
@@ -435,8 +447,8 @@ const schemaJson = JSON.stringify([
                     A parcela de julho do Enzo vence hoje.
                   </div>
                 </div>
-                <img
-                  src="/assets/lp/mockup-3d-home.webp"
+                <Image
+                  src={mockup3dHome}
                   alt="App para controle de parcelas da van escolar rodando no celular"
                   loading="eager"
                   class="w-full h-auto drop-shadow-xl"
@@ -589,8 +601,8 @@ const schemaJson = JSON.stringify([
                   A parcela de julho do Enzo vence hoje.
                 </div>
               </div>
-              <img
-                src="/assets/lp/mockup-3d-mensalidades.webp"
+              <Image
+                src={mockup3dMensalidades}
                 alt="Sistema de gestão de transporte escolar rodando no navegador"
                 loading="eager"
                 class="w-full h-auto"
@@ -702,12 +714,9 @@ const schemaJson = JSON.stringify([
                           </div>
                         </div>
                       )}
-                      <img
+                      <Image
                         src={feat.mockup}
                         alt={feat.alt}
-                        loading="lazy"
-                        width={1080}
-                        height={1920}
                         class="w-full h-auto drop-shadow-xl"
                       />
                     </div>
@@ -935,10 +944,9 @@ const schemaJson = JSON.stringify([
 
         <div class="lp-reveal mt-8 flex justify-center">
           <div class="max-w-[360px] md:max-w-[480px] w-full hero-phone">
-            <img
-              src="/assets/lp/mockup-3d-home.webp"
+            <Image
+              src={mockup3dHome}
               alt="Dashboard do Van360 com primeiros passos"
-              loading="lazy"
               class="w-full h-auto"
             />
           </div>

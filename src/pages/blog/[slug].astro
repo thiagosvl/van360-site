@@ -36,9 +36,37 @@ const formattedDate = post.published_at
 // Process content to insert CTAs dynamically on server-side
 const ctaPlaceholder = '<div data-cta="signup-driver-banner"></div>';
 const contentParts = post.content.split(ctaPlaceholder);
+
+// Schema.org BlogPosting metadata for rich snippets
+const schemaJson = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": post.title,
+  "description": post.excerpt || post.title,
+  "datePublished": post.published_at || post.created_at,
+  "dateModified": post.published_at || post.created_at,
+  "author": {
+    "@type": "Organization",
+    "name": "Van360",
+    "url": "https://van360.com.br"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Van360",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://van360.com.br/assets/logo-van360.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `https://van360.com.br/blog/${post.slug}`
+  }
+});
 ---
 
 <BlogLayout title={post.title} description={post.excerpt || undefined}>
+  <script type="application/ld+json" slot="head" set:html={schemaJson} />
   <HeaderBlog />
 
   <main class="flex-1 py-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full space-y-8 mt-14 md:mt-16">
