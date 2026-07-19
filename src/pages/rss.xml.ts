@@ -2,7 +2,7 @@ import { blogApi } from "../utils/api";
 
 export async function GET(context: any) {
   const { posts } = await blogApi.getBlogPosts(1, 100);
-  const siteUrl = context.site || "https://van360.com.br";
+  const siteUrl = import.meta.env.PUBLIC_SITE_URL || context.site || context.url.origin;
 
   const xmlItems = posts.map((post) => `
     <item>

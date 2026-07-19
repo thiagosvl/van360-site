@@ -244,6 +244,8 @@ const soonItems = [
   },
 ];
 
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || Astro.site?.toString() || Astro.url.origin;
+
 const schemaJson = JSON.stringify([
   {
     "@context": "https://schema.org",
@@ -252,7 +254,7 @@ const schemaJson = JSON.stringify([
     "description": "Organize passageiros, parcelas, contratos e recibos. Automatize a cobrança de parcelas pelo WhatsApp.",
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Android, Web",
-    "url": "https://van360.com.br",
+    "url": siteUrl,
     "offers": {
       "@type": "Offer",
       "price": originalVal.toFixed(2),

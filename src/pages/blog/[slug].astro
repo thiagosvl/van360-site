@@ -36,6 +36,8 @@ const formattedDate = post.published_at
       year: "numeric",
     });
 
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || Astro.site?.toString() || Astro.url.origin;
+
 // Process content to insert CTAs dynamically on server-side
 const ctaPlaceholder = '<div data-cta="signup-driver-banner"></div>';
 const contentParts = post.content.split(ctaPlaceholder);
@@ -51,19 +53,19 @@ const schemaJson = JSON.stringify({
   "author": {
     "@type": "Organization",
     "name": "Van360",
-    "url": "https://van360.com.br"
+    "url": siteUrl
   },
   "publisher": {
     "@type": "Organization",
     "name": "Van360",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://van360.com.br/assets/logo-van360.png"
+      "url": `${siteUrl}/assets/logo-van360.png`
     }
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": `https://van360.com.br/blog/${post.slug}`
+    "@id": `${siteUrl}/blog/${post.slug}`
   }
 });
 ---

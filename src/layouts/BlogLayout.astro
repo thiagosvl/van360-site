@@ -1,4 +1,6 @@
 ---
+import CookieConsent from "../components/CookieConsent.astro";
+
 interface Props {
   title: string;
   description?: string;
@@ -6,10 +8,10 @@ interface Props {
   isHome?: boolean;
 }
 
-const { title, description = "Blog oficial do Van360 - Dicas de rotas escolares, gestão financeira, contratos e produtividade para motoristas.", ogImage = "https://van360.com.br/assets/og-image.png", isHome = false } = Astro.props;
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || Astro.site?.toString() || Astro.url.origin;
+const { title, description = "Blog oficial do Van360 - Dicas de rotas escolares, gestão financeira, contratos e produtividade para motoristas.", ogImage = `${siteUrl}/assets/og-image.png`, isHome = false } = Astro.props;
 
-const canonUrl = new URL(Astro.url.pathname, Astro.site || "https://van360.com.br");
-import CookieConsent from "../components/CookieConsent.astro";
+const canonUrl = new URL(Astro.url.pathname, siteUrl);
 
 const pageTitle = isHome ? title : `${title} | Van360 Blog`;
 ---

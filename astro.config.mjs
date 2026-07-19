@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://van360.com.br',
+  site: process.env.PUBLIC_SITE_URL,
   integrations: [tailwind(), sitemap()],
   build: {
     inlineStylesheets: 'always',

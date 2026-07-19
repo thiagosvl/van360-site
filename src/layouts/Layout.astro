@@ -1,14 +1,16 @@
 ---
+import CookieConsent from "../components/CookieConsent.astro";
+
 interface Props {
   title: string;
   description?: string;
   ogImage?: string;
 }
 
-const { title, description = "Gerencie passageiros, parcelas, contratos e recibos. Automatize a cobrança de parcelas pelo WhatsApp e organize sua van escolar. Teste grátis por 15 dias.", ogImage = "https://van360.com.br/assets/og-image.png" } = Astro.props;
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || Astro.site?.toString() || Astro.url.origin;
+const { title, description = "Gerencie passageiros, parcelas, contratos e recibos. Automatize a cobrança de parcelas pelo WhatsApp e organize sua van escolar. Teste grátis por 15 dias.", ogImage = `${siteUrl}/assets/og-image.png` } = Astro.props;
 
-const canonUrl = new URL(Astro.url.pathname, Astro.site || "https://van360.com.br");
-import CookieConsent from "../components/CookieConsent.astro";
+const canonUrl = new URL(Astro.url.pathname, siteUrl);
 ---
 
 <!doctype html>
