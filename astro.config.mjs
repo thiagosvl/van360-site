@@ -4,7 +4,11 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: process.env.PUBLIC_SITE_URL,
+  site: process.env.PUBLIC_SITE_URL || 'https://van360.com.br',
+  redirects: {
+    '/login': 'https://app.van360.com.br/login',
+    '/cadastro': 'https://app.van360.com.br/cadastro',
+  },
   integrations: [tailwind(), sitemap()],
   build: {
     inlineStylesheets: 'always',

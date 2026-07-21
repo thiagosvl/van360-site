@@ -29,7 +29,10 @@ const { tag } = Astro.params;
 const { posts, allTags } = Astro.props;
 ---
 
-<BlogLayout title={`Assunto: ${tag}`}>
+<BlogLayout 
+  title={`Assunto: ${tag}`}
+  description={`Confira todos os artigos e dicas sobre ${tag} no blog do Van360. Conteúdos práticos de gestão, finanças e segurança para transportadores escolares.`}
+>
   <HeaderBlog />
 
   <main class="flex-1 py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full space-y-12 mt-14 md:mt-16">
