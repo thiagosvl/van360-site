@@ -186,9 +186,11 @@ const IS_PROD = import.meta.env.PROD;
 
   const currentPrefs = loadSavedPreferences();
   if (!currentPrefs) {
-    if (banner) banner.classList.remove('hidden');
-    updateBodyPadding();
-    window.addEventListener('resize', updateBodyPadding);
+    setTimeout(() => {
+      if (banner) banner.classList.remove('hidden');
+      updateBodyPadding();
+      window.addEventListener('resize', updateBodyPadding);
+    }, 15000); // Delay de 15 segundos para melhorar a experiência visual inicial
   }
 
   initAnalytics();
