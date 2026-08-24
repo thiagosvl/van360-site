@@ -159,12 +159,10 @@ const IS_PROD = import.meta.env.PROD;
       return;
     }
     const prefs = loadSavedPreferences();
-    if (!prefs) return;
-
-    if (prefs.gtm) {
+    if (!prefs || prefs.gtm !== false) {
       injectGTM();
     }
-    if (prefs.clarity) {
+    if (!prefs || prefs.clarity !== false) {
       injectClarity();
     }
   };
