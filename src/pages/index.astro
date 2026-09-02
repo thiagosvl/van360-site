@@ -74,8 +74,8 @@ const yearlyTotalFormatted = formatCurrency(yearlyTotalVal)
 
 const planFeatures = [
   "Lembretes de cobrança aos pais via WhatsApp",
-  "Recibos gerados automaticamente",
-  "Contratos digitais ilimitados",
+  "Recibos gerados automaticamente em PDF",
+  "Contratos digitais com assinatura no celular",
   "Link de cadastro fácil para os pais",
   "Passageiros e vans sem limite",
   "Controle de gastos e finanças",
@@ -92,6 +92,22 @@ const features = [
     alt: "Painel de controle de parcelas pendentes e pagas da van escolar",
     balloonText: "A parcela de julho da Júlia vence amanhã.",
   },
+  /*
+  {
+    headline: "Portal exclusivo para os pais acompanharem tudo",
+    text: "Chega de responder dezenas de mensagens iguais no WhatsApp. Os pais acessam um portal prático pelo celular para ver a carteirinha do filho, status das mensalidades, histórico de recibos e contratos assinados.",
+    mockup: mockupCarteirinha,
+    alt: "Portal e carteirinha digital acessados pelos pais dos alunos",
+    balloonText: "Pai: 'Já acessei a carteirinha e baixei o recibo!'",
+  },
+  {
+    headline: "Organize suas rotas e faça a chamada na escola",
+    text: "Monte seus trajetos de ida e volta, ordene os pontos de embarque e faça a lista de presença dos alunos direto no celular. Saiba na hora quem embarcou, quem faltou e evite esquecimentos na porta da escola.",
+    mockup: mockupHome,
+    alt: "Organização de rotas e chamada escolar no aplicativo Van360",
+    balloonText: "Chamada do turno da tarde concluída com sucesso.",
+  },
+  */
   {
     headline: "Receba a ficha dos passageiros pronta",
     text: "Perder horas anotando nome, escola e endereço à mão? Nunca mais. Mande seu link exclusivo pelo WhatsApp e deixe os pais preencherem. Sua lista se organiza sozinha em segundos.",
@@ -180,69 +196,50 @@ const howItWorks = [
   {
     n: "3",
     title: "Pronto. Tudo organizado.",
-    desc: "Parcelas, contratos e recibos — no seu celular.",
+    desc: "Parcelas, rotas, contratos e recibos — no seu celular.",
   },
 ];
 
 const faqItems = [
   {
     q: "O que o Van360 faz?",
-    a: "O Van360 organiza a gestão da sua van escolar: cadastro de passageiros, controle de parcelas, contratos digitais e emissão de recibos, geração de contratos digitais e emissão de recibos. Tudo pelo celular, em um lugar só.",
+    a: "O Van360 é a plataforma completa para transporte escolar: organize passageiros, cobrança de parcelas pelo WhatsApp, rotas com chamada por escola, portal exclusivo para os pais, contratos digitais com assinatura no celular, controle de gastos e emissão de recibos em PDF.",
+  },
+  {
+    q: "Como os pais dos alunos acessam as informações?",
+    a: "Os responsáveis recebem um link seguro direto no WhatsApp. Pelo navegador do celular, eles podem consultar a carteirinha digital do filho, conferir contratos assinados, acompanhar o status dos pagamentos e baixar os recibos em PDF com total comodidade.",
   },
   {
     q: "Preciso pagar para começar a utilizar?",
-    a: "Não. Os 15 dias de teste são 100% grátis, sem cadastrar cartão, sem compromisso. Você usa tudo, com seus dados reais, e só decide depois.",
+    a: "Não. Os 15 dias de teste são 100% grátis, sem cadastrar cartão e sem compromisso. Você usa tudo com seus dados reais e só decide se quer continuar depois.",
   },
   {
     q: "Onde posso usar o Van360?",
-    a: "Em qualquer lugar. Funciona no navegador do celular, tablet ou computador — sem baixar nada. Se preferir, tem o app Android, que é leve e rápido. O Van360 funciona perfeitamente no iPhone através do navegador, e o app nativo já está em desenvolvimento.",
+    a: "Em qualquer lugar. Funciona no navegador do celular, tablet ou computador — sem baixar nada. Se preferir, temos também o app Android na Google Play, super leve e rápido. No iPhone, funciona com total desempenho diretamente pelo navegador.",
   },
   {
-    q: "O que é a oferta/preço fundador?",
-    a: `É o nosso preço de lançamento para os primeiros transportadores escolares que começarem a usar o Van360. Você paga R$ ${originalFormatted}/mês e mantém esse valor para sempre — mesmo quando o preço subir para quem entrar depois.`,
+    q: "Meus dados e os dos passageiros estão seguros?",
+    a: "Totalmente. O Van360 utiliza infraestrutura em nuvem de alta segurança com backups automáticos diários e criptografia. Se você trocar ou perder seu celular, basta acessar sua conta no novo aparelho e todos os seus passageiros, rotas, contratos e finanças estarão 100% preservados.",
   },
   {
     q: "O contrato gerado tem validade jurídica?",
-    a: "Sim. Os contratos são digitais e assinados eletronicamente, com validade legal conforme a legislação brasileira. Servem como documento formal entre você e o responsável do passageiro.",
+    a: "Sim. Os contratos são digitais e assinados eletronicamente na tela do celular pelo responsável, com validade legal conforme a legislação brasileira (MP 2.200-2/2001).",
   },
   {
     q: "O app é pesado? Preciso baixar?",
-    a: "Não. O Van360 funciona na nuvem e pode ser usado pelo navegador sem ocupar espaço no seu celular. Se preferir o aplicativo Android, ele pesa menos de 5MB e não consome quase nada de memória.",
+    a: "Não. O Van360 funciona na nuvem e pode ser usado pelo navegador sem ocupar espaço no seu celular. Se preferir o aplicativo Android, ele pesa menos de 5MB e roda perfeitamente em qualquer aparelho.",
   },
   {
     q: "Tem aplicativo para iPhone (iOS)?",
-    a: "Sim, funciona perfeitamente no iPhone! Motoristas com iOS acessam o Van360 com total performance pelo navegador, enquanto o app nativo está sendo desenvolvido para a App Store.",
+    a: "Sim, funciona perfeitamente no iPhone! Motoristas com iOS acessam o Van360 com total velocidade e recursos pelo navegador, enquanto o app nativo está sendo preparado para a App Store.",
   },
   {
     q: "Quanto vou pagar depois dos 15 dias?",
-    a: `Se você entrar agora como fundador, paga R$ ${originalFormatted}/mês — para sempre, sem reajuste. Se preferir não continuar, é só não assinar. Sem multa, sem burocracia.`,
+    a: `Se você decidir continuar após os 15 dias de teste grátis, poderá optar pelo plano mensal por R$ ${originalFormatted}/mês ou pelo plano anual (com 2 meses grátis). Se preferir não continuar, não há cobrança nem multa.`,
   },
   {
     q: "Como funciona o programa de indicações?",
     a: "É muito simples! Dentro do aplicativo você terá acesso ao seu link exclusivo de convite. Compartilhe esse link com seus colegas. Quando eles se cadastrarem e efetuarem a primeira assinatura, você ganha meses gratuitos (sem limites de indicações) e o seu amigo indicado ainda recebe um desconto especial na assinatura. Ambos ganham!",
-  },
-];
-
-const soonItems = [
-  {
-    emoji: "🗺️",
-    title: "Rotas e itinerários",
-    desc: "Monte suas rotas, organize os pontos de embarque e otimize seu trajeto diário.",
-  },
-  {
-    emoji: "🚍",
-    title: "Fretamentos e Viagens",
-    desc: "Organize passeios e excursões. Registre suas viagens extras, controle quem já pagou e acompanhe quanto você faturou no mês.",
-  },
-  {
-    emoji: "👨‍👩‍👦",
-    title: "App para os pais",
-    desc: "O responsável acompanha tudo pelo celular — parcelas, contrato, dados do filho. Menos WhatsApp pra você.",
-  },
-  {
-    emoji: "💸",
-    title: "Pagamento via Pix com baixa automática",
-    desc: "O pai paga direto pelo app e o sistema dá baixa sozinho — sem você precisar marcar nada manualmente.",
   },
 ];
 
@@ -772,38 +769,6 @@ const schemaJson = JSON.stringify([
         </div>
       </section>
 
-      {/* ══════════ PRIMEIROS USUÁRIOS ══════════ */}
-      <section
-        class="py-12 md:py-16 bg-gradient-to-b from-white to-[#fff8ed] border-t border-slate-100"
-      >
-        <div class="max-w-[800px] mx-auto px-5 text-center">
-          <div class="lp-reveal">
-            <div
-              class="inline-flex items-center gap-1.5 bg-[#f59e0b]/20 px-3 py-1.5 rounded-full text-[#d97706] font-black text-xs uppercase tracking-wider mb-5 border border-[#f59e0b]/30"
-            >
-              <Star class="w-3.5 h-3.5 fill-[#d97706]" />
-              Condição de Lançamento
-            </div>
-            <h2
-              class="text-[clamp(1.8rem,4.5vw,2.5rem)] font-extrabold text-[#1a3a5c] tracking-tight mb-5 leading-tight"
-            >
-              Entre agora e garanta o menor<br class="hidden md:block" /> preço da
-              plataforma para sempre.
-            </h2>
-            <p
-              class="text-[1.1rem] text-slate-600 leading-relaxed max-w-[550px] mx-auto font-medium"
-            >
-              O Van360 acabou de chegar. Você testa grátis por 15 dias e <strong
-                class="text-[#f59e0b]"
-                >garante para sempre o valor de R$ {
-                  originalFormatted
-                }/mês</strong
-              >. Sem fidelidade e sem reajustes, para a vida toda.
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* ══════════ PREÇOS ══════════ */}
       <section
         id="pricing"
@@ -830,7 +795,7 @@ const schemaJson = JSON.stringify([
               class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#f59e0b] text-[#1a1a1a] text-xs font-extrabold px-4 py-1 rounded-full uppercase tracking-wider whitespace-nowrap inline-flex items-center gap-1"
             >
               <Star class="w-3 h-3 fill-[#1a1a1a]" />
-              Oferta Fundador
+              Acesso Completo
             </span>
 
             <div class="mb-6">
@@ -909,13 +874,13 @@ const schemaJson = JSON.stringify([
             </ul>
 
             <div
-              class="bg-amber-50 rounded-xl p-4 mb-8 border border-amber-200 text-left"
+              class="bg-blue-50/70 rounded-xl p-4 mb-8 border border-blue-100 text-left"
             >
-              <p class="text-[0.85rem] text-amber-900 font-medium flex gap-2.5">
-                <span class="shrink-0 text-amber-600 text-base">🚀</span>
+              <p class="text-[0.85rem] text-[#1a3a5c] font-medium flex gap-2.5">
+                <span class="shrink-0 text-base">🛡️</span>
                 <span class="leading-relaxed"
-                  ><strong>Garanta o menor preço para sempre.</strong> Entre agora
-                  e mantenha este valor vitalício, protegido contra futuros reajustes.</span
+                  ><strong>Teste com total tranquilidade.</strong> Use todos os recursos
+                  por 15 dias. Sem fidelidade e sem pegadinhas.</span
                 >
               </p>
             </div>
@@ -928,7 +893,7 @@ const schemaJson = JSON.stringify([
             </a>
 
             <p class="text-[0.8rem] text-slate-400 mt-3 font-medium">
-              Sem cartão · Cancele quando quiser
+              Sem cartão · Sem pagamento inicial
             </p>
           </div>
         </div>
@@ -1059,92 +1024,6 @@ const schemaJson = JSON.stringify([
                 </p>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════ INDIQUE E GANHE ══════════ */}
-      <section class="py-10 md:py-12 bg-white">
-        <div class="max-w-[800px] mx-auto px-5">
-          <div class="lp-reveal">
-            <div
-              class="relative rounded-2xl bg-gradient-to-br from-[#1a3a5c] to-[#244c75] p-6 md:p-8 text-white shadow-md flex flex-col md:flex-row items-center gap-6 md:gap-10 border border-white/5"
-            >
-              <div
-                class="relative z-10 flex-1 space-y-3 text-center md:text-left"
-              >
-                <div
-                  class="inline-flex items-center gap-1.5 bg-amber-500/25 px-2.5 py-1 rounded-full border border-amber-500/30 text-amber-300 font-bold text-[10px] uppercase tracking-wider"
-                >
-                  🎁 Indique e Ganhe
-                </div>
-                <h2
-                  class="text-[1.2rem] sm:text-[1.4rem] font-bold leading-tight tracking-tight text-white font-headline"
-                >
-                  Use o Van360 de graça
-                </h2>
-                <p
-                  class="text-[0.85rem] text-slate-200 leading-relaxed max-w-[440px] md:mx-0 mx-auto selection:bg-white/20 font-medium"
-                >
-                  Indique outros motoristas escolares com o seu link. A cada
-                  indicado que ativar a assinatura, você ganha 1 mês grátis —
-                  sem limite de indicações.
-                </p>
-              </div>
-
-              <div
-                class="relative z-10 shrink-0 w-full md:w-auto flex flex-col items-center gap-2"
-              >
-                <a
-                  href={LINKS.APP_REGISTER_URL}
-                  class="w-full md:w-auto inline-flex items-center justify-center bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-bold text-sm px-7 py-3 rounded-lg active:scale-95 transition-all text-center whitespace-nowrap shadow-md select-none"
-                >
-                  Criar conta e indicar
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════ EM BREVE ══════════ */}
-      <section
-        class="py-12 md:py-16 bg-gradient-to-b from-[#f9f9f7] to-white border-t border-slate-100"
-      >
-        <div class="max-w-[700px] mx-auto px-5 text-center">
-          <div class="lp-reveal">
-            <p
-              class="text-xs font-bold text-[#f59e0b] uppercase tracking-widest mb-3 select-none"
-            >
-              Em breve
-            </p>
-            <h2
-              class="text-[clamp(1.3rem,3vw,1.75rem)] font-extrabold text-[#1a3a5c] tracking-tight mb-8"
-            >
-              E tem mais vindo por aí
-            </h2>
-          </div>
-
-          <div class="grid gap-6 text-left max-w-[540px] mx-auto">
-            {
-              soonItems.map((item) => (
-                <div class="lp-reveal">
-                  <div class="flex items-start gap-4 bg-[#f9f9f7] p-5 rounded-xl border border-slate-100/50">
-                    <span class="text-2xl flex-shrink-0 select-none">
-                      {item.emoji}
-                    </span>
-                    <div>
-                      <h3 class="font-bold text-[#1a3a5c] text-[0.95rem] mb-1">
-                        {item.title}
-                      </h3>
-                      <p class="text-[0.88rem] text-slate-500 leading-relaxed">
-                        {item.desc}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))
-            }
           </div>
         </div>
       </section>
