@@ -1,5 +1,6 @@
 ---
 import CookieConsent from "../components/CookieConsent.astro";
+import VideoStoriesModal from "../components/video/VideoStoriesModal.astro";
 
 interface Props {
   title: string;
@@ -66,11 +67,59 @@ const canonUrl = new URL(Astro.url.pathname, siteUrl);
         rel="stylesheet"
       />
     </noscript>
+
+    <script is:inline define:vars={{ metaPixelId }}>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', metaPixelId);
+      fbq('track', 'PageView');
+    </script>
+    <noscript>
+      <img height="1" width="1" style="display:none" src={`https://www.facebook.com/tr?id=${metaPixelId}&ev=PageView&noscript=1`} />
+    </noscript>
+
+    <script is:inline>
+      (function() {
+        function forwardAttributionParams() {
+          const searchParams = new URLSearchParams(window.location.search);
+          if (searchParams.toString() === '') return;
+
+          const links = document.querySelectorAll('a[href*="app.van360.com.br"], a[href*="/cadastro"], a[href*="/login"]');
+          links.forEach(function(link) {
+            try {
+              const href = link.getAttribute('href');
+              if (!href) return;
+              const targetUrl = new URL(href, window.location.origin);
+              searchParams.forEach(function(value, key) {
+                if (!targetUrl.searchParams.has(key)) {
+                  targetUrl.searchParams.set(key, value);
+                }
+              });
+              link.setAttribute('href', targetUrl.toString());
+            } catch (e) {}
+          });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', forwardAttributionParams);
+        } else {
+          forwardAttributionParams();
+        }
+      })();
+    </script>
+
     <slot name="head" />
   </head>
   <body class="bg-white text-slate-800 font-body min-h-screen flex flex-col selection:bg-brand-blue/10 selection:text-brand-blue antialiased">
     <slot />
     <CookieConsent />
+    <VideoStoriesModal />
   </body>
 </html>
 
