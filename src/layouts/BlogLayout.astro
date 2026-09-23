@@ -1,5 +1,6 @@
 ---
 import CookieConsent from "../components/CookieConsent.astro";
+import AttributionTracking from "../components/AttributionTracking.astro";
 
 interface Props {
   title: string;
@@ -65,6 +66,7 @@ const pageTitle = isHome ? title : `${title} | Van360 Blog`;
         rel="stylesheet"
       />
     </noscript>
+    <AttributionTracking />
     <slot name="head" />
   </head>
   <body class="bg-[#f8fafc] text-slate-800 font-body min-h-screen flex flex-col selection:bg-brand-blue/10 selection:text-brand-blue antialiased">

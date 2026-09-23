@@ -1,6 +1,7 @@
 ---
 import CookieConsent from "../components/CookieConsent.astro";
 import VideoStoriesModal from "../components/video/VideoStoriesModal.astro";
+import AttributionTracking from "../components/AttributionTracking.astro";
 
 interface Props {
   title: string;
@@ -86,36 +87,7 @@ const canonUrl = new URL(Astro.url.pathname, siteUrl);
     </noscript>
     <!-- End Meta Pixel Code -->
 
-    <script is:inline>
-      (function() {
-        function forwardAttributionParams() {
-          const searchParams = new URLSearchParams(window.location.search);
-          if (searchParams.toString() === '') return;
-
-          const links = document.querySelectorAll('a[href*="app.van360.com.br"], a[href*="/cadastro"], a[href*="/login"]');
-          links.forEach(function(link) {
-            try {
-              const href = link.getAttribute('href');
-              if (!href) return;
-              const targetUrl = new URL(href, window.location.origin);
-              searchParams.forEach(function(value, key) {
-                if (!targetUrl.searchParams.has(key)) {
-                  targetUrl.searchParams.set(key, value);
-                }
-              });
-              link.setAttribute('href', targetUrl.toString());
-            } catch (e) {}
-          });
-        }
-
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', forwardAttributionParams);
-        } else {
-          forwardAttributionParams();
-        }
-      })();
-    </script>
-
+    <AttributionTracking />
     <slot name="head" />
   </head>
   <body class="bg-white text-slate-800 font-body min-h-screen flex flex-col selection:bg-brand-blue/10 selection:text-brand-blue antialiased">

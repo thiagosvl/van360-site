@@ -1,0 +1,152 @@
+---
+---
+<script is:inline>
+  (function() {
+    var REFERRAL_KEY = 'van360_referral_code';
+    var UTM_STORAGE_KEY = 'van360_site_attribution_params';
+    var COOKIE_MAX_AGE = 2592000;
+    var TRACKED_KEYS = [
+      'utm_source',
+      'utm_medium',
+      'utm_campaign',
+      'utm_content',
+      'utm_term',
+      'gclid',
+      'fbclid',
+      'wbraid',
+      'gbraid',
+      'ttclid',
+    ];
+
+    function getCookie(name) {
+      var match = document.cookie.match(new RegExp('(?:^|;\\s*)' + name + '=([^;]*)'));
+      return match ? decodeURIComponent(match[1]) : null;
+    }
+
+    function setCookie(name, value) {
+      var host = window.location.hostname;
+      var domain = host.indexOf('van360.com.br') !== -1 ? '; domain=.van360.com.br' : '';
+      document.cookie = name + '=' + encodeURIComponent(value) + '; path=/; max-age=' + COOKIE_MAX_AGE + domain + '; SameSite=Lax';
+    }
+
+    function getStoredParams() {
+      var params = {};
+      try {
+        var raw = sessionStorage.getItem(UTM_STORAGE_KEY) || localStorage.getItem(UTM_STORAGE_KEY);
+        if (raw) params = JSON.parse(raw) || {};
+      } catch (e) {}
+      return params;
+    }
+
+    function saveStoredParams(params) {
+      try {
+        var json = JSON.stringify(params);
+        sessionStorage.setItem(UTM_STORAGE_KEY, json);
+        localStorage.setItem(UTM_STORAGE_KEY, json);
+      } catch (e) {}
+    }
+
+    function initTracking() {
+      var searchParams = new URLSearchParams(window.location.search);
+      var refParam = searchParams.get('ref');
+
+      if (refParam) {
+        try {
+          localStorage.setItem(REFERRAL_KEY, refParam);
+          sessionStorage.setItem(REFERRAL_KEY, refParam);
+        } catch (e) {}
+        setCookie(REFERRAL_KEY, refParam);
+      }
+
+      var activeRef = refParam;
+      if (!activeRef) {
+        try {
+          activeRef = localStorage.getItem(REFERRAL_KEY) || sessionStorage.getItem(REFERRAL_KEY);
+        } catch (e) {}
+      }
+      if (!activeRef) {
+        activeRef = getCookie(REFERRAL_KEY);
+      }
+
+      var storedParams = getStoredParams();
+      var hasNewTracked = false;
+
+      TRACKED_KEYS.forEach(function(key) {
+        var val = searchParams.get(key);
+        if (val) {
+          storedParams[key] = val;
+          hasNewTracked = true;
+        }
+      });
+
+      if (hasNewTracked) {
+        saveStoredParams(storedParams);
+      }
+
+      var links = document.querySelectorAll('a[href*="app.van360.com.br"], a[href*="/cadastro"], a[href*="/login"]');
+      links.forEach(function(link) {
+        try {
+          var href = link.getAttribute('href');
+          if (!href) return;
+          var targetUrl = new URL(href, window.location.origin);
+
+          Object.keys(storedParams).forEach(function(key) {
+            if (!targetUrl.searchParams.has(key)) {
+              targetUrl.searchParams.set(key, storedParams[key]);
+            }
+          });
+
+          searchParams.forEach(function(value, key) {
+            if (key === 'ref' && targetUrl.pathname.indexOf('/login') !== -1) return;
+            targetUrl.searchParams.set(key, value);
+          });
+
+          if (activeRef && targetUrl.pathname.indexOf('/login') === -1 && !targetUrl.searchParams.has('ref')) {
+            targetUrl.searchParams.set('ref', activeRef);
+          }
+          link.setAttribute('href', targetUrl.toString());
+        } catch (e) {}
+      });
+    }
+
+    document.addEventListener('click', function(e) {
+      var target = e.target;
+      var link = target && target.closest ? target.closest('a[href*="app.van360.com.br"], a[href*="/cadastro"]') : null;
+      if (!link) return;
+
+      try {
+        var storedParams = getStoredParams();
+        var searchParams = new URLSearchParams(window.location.search);
+        var activeRef = null;
+        try {
+          activeRef = localStorage.getItem(REFERRAL_KEY) || sessionStorage.getItem(REFERRAL_KEY);
+        } catch (err) {}
+        if (!activeRef) activeRef = getCookie(REFERRAL_KEY);
+
+        var targetUrl = new URL(link.getAttribute('href'), window.location.origin);
+
+        Object.keys(storedParams).forEach(function(key) {
+          if (!targetUrl.searchParams.has(key)) {
+            targetUrl.searchParams.set(key, storedParams[key]);
+          }
+        });
+
+        searchParams.forEach(function(value, key) {
+          if (key === 'ref' && targetUrl.pathname.indexOf('/login') !== -1) return;
+          targetUrl.searchParams.set(key, value);
+        });
+
+        if (activeRef && targetUrl.pathname.indexOf('/login') === -1 && !targetUrl.searchParams.has('ref')) {
+          targetUrl.searchParams.set('ref', activeRef);
+        }
+        link.setAttribute('href', targetUrl.toString());
+      } catch (err) {}
+    }, true);
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initTracking);
+    } else {
+      initTracking();
+    }
+  })();
+</script>

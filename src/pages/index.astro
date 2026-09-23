@@ -20,6 +20,7 @@ import {
   CheckCircle2,
   XCircle,
   ArrowRight,
+  Shield,
 } from "@lucide/astro";
 
 // Imports de imagens para otimização pelo Astro
@@ -155,17 +156,17 @@ const additionalPlanFeatures = [
 
 const features = [
   {
-    tag: "Cobrança Automática",
+    tag: "Cobrança no WhatsApp",
     tagColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
-    headline: "Pare de cobrar os pais e de passar constrangimento",
+    headline: "Receba em dia sem o constrangimento de cobrar parente ou amigo",
     bullets: [
       "Lembretes amigáveis enviados no WhatsApp antes e no dia do vencimento",
       "Chega de ser 'o chato da cobrança' e passar vergonha cobrando pai por pai",
-      "Painel visual em tempo real de quem já pagou e quem ainda está pendente",
+      "Painel visual em tempo real de quem já pagou no Pix e quem ainda está pendente",
     ],
     mockup: mockupMensalidades,
     alt: "Painel de controle de parcelas pendentes e pagas da van escolar",
-    balloonText: "A parcela de julho da Júlia vence amanhã.",
+    balloonText: "A parcela de julho do Pedro vence amanhã.",
     videoStory: {
       videos: ["https://res.cloudinary.com/demo/video/upload/dog.mp4"],
       ctaText: "Testar cobrança grátis",
@@ -173,9 +174,9 @@ const features = [
     },
   },
   {
-    tag: "Na Rota & Dia a Dia",
+    tag: "Rotas & Chamada Rápida",
     tagColor: "bg-blue-50 text-[#1a3a5c] border-blue-200",
-    headline: "Organize suas rotas e faça a chamada na escola",
+    headline: "Organize suas rotas e faça a chamada no portão da escola",
     bullets: [
       "Trajetos de ida e volta organizados por ordem de paradas no celular",
       "Lista de presença e chamada rápida no portão da escola em segundos",
@@ -186,22 +187,22 @@ const features = [
     balloonText: "Chamada do turno da tarde concluída com sucesso.",
   },
   {
-    tag: "Acesso dos Pais",
+    tag: "Carteirinha do Aluno",
     tagColor: "bg-purple-50 text-purple-700 border-purple-200",
-    headline: "Portal exclusivo para os pais acompanharem tudo",
+    headline: "Carteirinha digital do aluno: tudo no celular dos pais",
     bullets: [
       "Link seguro para os pais consultarem a carteirinha digital do filho",
       "Histórico de pagamentos, mensalidades e recibos disponíveis para a família",
       "Menos mensagens e dúvidas repetitivas no seu WhatsApp particular",
     ],
     mockup: mockupCarteirinha,
-    alt: "Portal e carteirinha digital acessados pelos pais dos alunos",
-    balloonText: "Pai: 'Já acessei a carteirinha e baixei o recibo!'",
+    alt: "Carteirinha digital e portal acessados pelos pais dos alunos",
+    balloonText: "Pai: 'Já acessei a carteirinha e baixei o comprovante!'",
   },
   {
-    tag: "Cadastro Rápido",
+    tag: "Matrícula sem Digitação",
     tagColor: "bg-amber-50 text-amber-800 border-amber-200",
-    headline: "Receba a carteirinha dos alunos pronta",
+    headline: "O pai preenche pelo WhatsApp e a carteirinha fica pronta",
     bullets: [
       "Mande seu link exclusivo pelo WhatsApp e o pai preenche os dados sozinho",
       "Endereço, escola, contatos de emergência e responsáveis salvos na hora",
@@ -212,22 +213,22 @@ const features = [
     balloonText: "Pai, segue o link para matricular o aluno na van.",
   },
   {
-    tag: "Jurídico & Segurança",
+    tag: "Contratos Digitais",
     tagColor: "bg-indigo-50 text-indigo-700 border-indigo-200",
-    headline: "Acabou a papelada: Contratos digitais em 1 minuto",
+    headline: "Acabou a papelada: Contratos assinados na tela do celular",
     bullets: [
       "Gere contratos com validade jurídica conforme a lei brasileira",
       "O responsável assina direto na tela do próprio celular dele",
-      "Chega de 'combinados de boca' e fique protegido contra calotes e disputas",
+      "Chega de 'combinados de boca' e fique protegido contra calotes e desistências",
     ],
     mockup: mockupContrato,
     alt: "Assinatura de contrato digital no celular",
     balloonText: "O contrato de transporte foi assinado com sucesso.",
   },
   {
-    tag: "Documentos em 1 Toque",
+    tag: "Recibos em PDF",
     tagColor: "bg-teal-50 text-teal-800 border-teal-200",
-    headline: "Envie recibos profissionais com poucos toques",
+    headline: "Envie recibos profissionais com 1 toque no WhatsApp",
     bullets: [
       "Confirmou o pagamento? O recibo em PDF impecável é gerado na hora",
       "Envie com 1 clique direto no WhatsApp do responsável",
@@ -238,9 +239,9 @@ const features = [
     balloonText: "Seu recibo de pagamento já está disponível.",
   },
   {
-    tag: "Finanças & Lucro Real",
+    tag: "Controle de Gastos",
     tagColor: "bg-rose-50 text-rose-700 border-rose-200",
-    headline: "Saiba para onde vai o seu dinheiro e se a van dá lucro",
+    headline: "Saiba seu lucro real descontando combustível, óleo e oficina",
     bullets: [
       "Registre combustível, troca de óleo, mecânico e manutenção em segundos",
       "Pare de misturar o dinheiro da vida pessoal com os custos da sua van",
@@ -465,80 +466,78 @@ const schemaJson = JSON.stringify([
             {/* Texto */}
             <div class="text-center md:text-left order-1 flex flex-col">
               <div
-                class="inline-flex items-center justify-center md:justify-start gap-1.5 bg-[#1a3a5c]/10 px-3.5 py-1 sm:py-1.5 rounded-full text-[#1a3a5c] font-bold text-[11px] sm:text-[11.5px] uppercase tracking-wider mb-5 mx-auto md:mx-0 w-fit"
+                class="inline-flex items-center justify-center md:justify-start gap-1.5 bg-[#f59e0b]/15 px-3.5 py-1.5 rounded-full text-[#b45309] font-bold text-[11px] sm:text-[12px] uppercase tracking-wider mb-4 mx-auto md:mx-0 w-fit"
               >
-                App para motorista escolar
+                ⭐ Feito exclusivamente para Transporte Escolar
               </div>
               <h1
-                class="text-[clamp(1.8rem,5vw,3rem)] sm:text-[clamp(1.9rem,5vw,3rem)] font-black leading-[1.12] tracking-tight mb-4 text-[#1a1a1a]"
+                class="text-[clamp(1.85rem,5.2vw,3rem)] font-black leading-[1.12] tracking-tight mb-3 text-[#1a1a1a]"
               >
-                <span class="text-[#f59e0b]">Chega de planilha e caderno.</span>
+                <span class="text-[#f59e0b]">Chega de caderninho e calote.</span>
                 <br />
-                <span class="text-[#1a3a5c]">Chega de cobrar pai por pai.</span>
+                <span class="text-[#1a3a5c]">O app que organiza sua van e cobra os pais no WhatsApp.</span>
               </h1>
               <p
-                class="text-[clamp(1.05rem,2.5vw,1.2rem)] text-slate-500 max-w-[520px] md:mx-0 mx-auto mb-8 leading-relaxed"
+                class="text-[clamp(1rem,2.4vw,1.15rem)] text-slate-600 max-w-[520px] md:mx-0 mx-auto mb-6 leading-relaxed"
               >
-                O Van360 organiza seus alunos, cobra automático pelo WhatsApp e
-                emite recibo — tudo num só lugar.
+                Controle mensalidades, faça a chamada na escola e envie a carteirinha digital dos alunos para os pais. Teste grátis por 15 dias, sem pedir cartão.
               </p>
 
-              {/* CTA */}
-              <div class="flex flex-col items-center md:items-start gap-3">
+              {/* CTA e Garantias */}
+              <div class="flex flex-col items-center md:items-start gap-2.5 w-full">
                 <a
                   href={LINKS.APP_REGISTER_URL}
-                  class="lp-cta-glow inline-flex items-center justify-center bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-bold text-base px-8 py-4 rounded-lg hover:scale-[1.02] hover:-translate-y-0.5 transition-all min-h-[44px] w-full sm:w-auto shadow-lg text-center"
+                  class="lp-cta-glow inline-flex items-center justify-center bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-black text-base sm:text-lg px-8 py-4 rounded-xl hover:scale-[1.02] hover:-translate-y-0.5 transition-all min-h-[48px] w-full sm:w-auto shadow-xl text-center"
                 >
-                  Testar grátis por 15 dias
+                  Começar 15 dias grátis →
                 </a>
 
-                {/* Badges / Plataformas - DESKTOP APENAS */}
-                <div class="hidden md:flex flex-row items-center gap-4 mt-3">
-                  <a
-                    href={LINKS.PLAY_STORE_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex hover:-translate-y-0.5 transition-transform shrink-0"
-                    aria-label="Baixar Van360 na Play Store"
-                  >
-                    <img
-                      src={LINKS.PLAY_STORE_BADGE_URL}
-                      alt="Disponível no Google Play"
-                      width={189}
-                      height={56}
-                      class="h-14 object-contain"
-                    />
-                  </a>
-                  <div
-                    class="flex items-center gap-1.5 text-slate-400 border-l border-slate-200 pl-4 h-10"
-                  >
-                    <Smartphone class="w-4 h-4" />
-                    <span
-                      class="text-[12px] font-medium leading-tight text-slate-400"
-                      >Funciona também no iPhone<br />(pelo navegador)</span
-                    >
+                <div class="flex items-center justify-center md:justify-start gap-2 text-xs font-semibold text-slate-500 pt-1">
+                  <span class="text-emerald-700 font-bold flex items-center gap-1">
+                    <Check class="w-3.5 h-3.5 text-emerald-600" /> Sem cartão de crédito
+                  </span>
+                  <span>•</span>
+                  <span>Configuração em 5 min</span>
+                </div>
+
+                {/* Prova Social Above the Fold */}
+                <div class="flex items-center gap-2 mt-2 py-1 px-3 bg-slate-50 rounded-full border border-slate-100">
+                  <div class="flex text-amber-400">
+                    <Star class="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                    <Star class="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                    <Star class="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                    <Star class="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                    <Star class="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
                   </div>
+                  <span class="text-[11px] font-bold text-slate-600">+500 motoristas em todo o Brasil</span>
+                </div>
+
+                {/* Plataformas e Compatibilidade - DESKTOP APENAS */}
+                <div class="hidden md:flex items-center gap-3 mt-3 text-xs font-semibold text-slate-500">
+                  <span class="flex items-center gap-1.5 text-slate-600">
+                    <Smartphone class="w-4 h-4 text-[#1a3a5c]" /> Funciona no celular (Android e iPhone)
+                  </span>
+                  <span>•</span>
+                  <span class="text-slate-600">💻 Computador ou tablet</span>
                 </div>
               </div>
 
               {/* Mockup — SÓ MOBILE */}
-              <div class="flex justify-center md:hidden relative mt-10 mb-8">
-                <div class="max-w-[320px] sm:max-w-[360px] w-full relative">
+              <div class="flex justify-center md:hidden relative mt-8 mb-6">
+                <div class="max-w-[300px] sm:max-w-[340px] w-full relative">
                   {/* WhatsApp Balloon */}
                   <div
-                    class="absolute bg-white/95 backdrop-blur-md rounded-xl md:rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] p-2 md:p-3 border border-slate-100 max-w-[150px] md:max-w-[220px] z-20 pointer-events-none -top-4 left-0 sm:-left-4"
-                    style="animation: lp-countUp .6s cubic-bezier(0.34, 1.56, 0.64, 1) 1s both;"
+                    class="absolute bg-white/95 backdrop-blur-md rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] p-2.5 border border-slate-100 max-w-[170px] z-20 pointer-events-none -top-3 -left-2"
+                    style="animation: lp-countUp .6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.8s both;"
                   >
-                    <div
-                      class="flex items-center gap-1.5 md:gap-2 mb-1 md:mb-1.5"
-                    >
+                    <div class="flex items-center gap-1.5 mb-1">
                       <div
-                        class="w-3.5 h-3.5 md:w-5 md:h-5 rounded-full bg-[#25D366]/15 flex items-center justify-center flex-shrink-0"
+                        class="w-4 h-4 rounded-full bg-[#25D366]/15 flex items-center justify-center flex-shrink-0"
                       >
                         <svg
                           viewBox="0 0 24 24"
                           fill="currentColor"
-                          class="w-2 h-2 md:w-3 md:h-3 text-[#25D366]"
+                          class="w-2.5 h-2.5 text-[#25D366]"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
@@ -547,15 +546,15 @@ const schemaJson = JSON.stringify([
                         </svg>
                       </div>
                       <div
-                        class="text-[0.55rem] md:text-[0.65rem] font-bold text-slate-400 uppercase tracking-wider"
+                        class="text-[0.6rem] font-bold text-slate-400 uppercase tracking-wider"
                       >
                         WhatsApp enviado
                       </div>
                     </div>
                     <div
-                      class="text-[0.65rem] md:text-[0.75rem] text-[#1a3a5c] font-medium leading-snug"
+                      class="text-[0.7rem] text-[#1a3a5c] font-medium leading-snug"
                     >
-                      A parcela de julho do Enzo vence hoje.
+                      A parcela de julho do Pedro vence amanhã.
                     </div>
                   </div>
                   <Image
@@ -592,7 +591,7 @@ const schemaJson = JSON.stringify([
 
               {/* Benefícios (Mobile: Grid de Features) */}
               <div
-                class="grid grid-cols-3 gap-2 md:hidden mt-2 mb-8 px-5 w-full max-w-[360px] mx-auto"
+                class="grid grid-cols-3 gap-2 md:hidden mt-2 mb-4 px-2 w-full max-w-[360px] mx-auto"
               >
                 <div class="flex flex-col items-center text-center gap-1.5">
                   <div
@@ -631,55 +630,9 @@ const schemaJson = JSON.stringify([
                 </div>
               </div>
 
-              {
-                /* Badges Plataforma - MOBILE APENAS (Carregados via JS cliente para fidelidade) */
-              }
-              <div
-                id="badge-ios-mobile"
-                class="hidden md:hidden mt-6 mb-2 bg-blue-50/60 border border-blue-100 px-5 py-4 rounded-2xl text-center flex flex-col items-center gap-2 max-w-[320px] mx-auto"
-              >
-                <div class="p-2 bg-blue-100/80 text-blue-600 rounded-full mb-1">
-                  <Smartphone class="w-6 h-6" />
-                </div>
-                <div>
-                  <p
-                    class="text-[14px] font-bold text-[#1a3a5c] leading-tight mb-1.5"
-                  >
-                    Funciona no seu iPhone
-                  </p>
-                  <p class="text-[12px] text-slate-500 leading-snug">
-                    Use o Van360 <b>perfeitamente</b> pelo navegador enquanto o app
-                    nativo está sendo preparado. <br class="hidden sm:block" /> É
-                    só clicar em testar grátis.
-                  </p>
-                </div>
-              </div>
-
-              <div
-                id="badge-android-mobile"
-                class="hidden md:hidden flex flex-col items-center justify-center w-full mt-8 mb-2"
-              >
-                <p
-                  class="text-[14px] font-bold text-[#1a3a5c] leading-tight mb-2"
-                >
-                  Baixe nosso aplicativo
-                </p>
-                <a
-                  href={LINKS.PLAY_STORE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center hover:scale-105 transition-transform"
-                  aria-label="Baixar Van360 na Play Store"
-                >
-                  <img
-                    src={LINKS.PLAY_STORE_BADGE_URL}
-                    alt="Disponível no Google Play"
-                    width={189}
-                    height={56}
-                    class="h-14 object-contain"
-                  />
-                </a>
-              </div>
+              <p class="md:hidden text-[11.5px] text-slate-400 font-medium text-center mb-4">
+                📱 Funciona no celular (Android e iPhone) ou computador
+              </p>
             </div>
 
             {/* Mockup — SÓ DESKTOP */}
@@ -734,6 +687,43 @@ const schemaJson = JSON.stringify([
         </div>
       </section>
 
+      {/* ══════════ PÍLULAS DE CONFIANÇA & QUEBRA DE OBJEÇÕES ══════════ */}
+      <section class="border-y border-slate-100 bg-white py-6">
+        <div class="max-w-[1120px] mx-auto px-5">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="flex items-center gap-3.5 p-3.5 rounded-2xl bg-amber-50/60 border border-amber-200/60">
+              <div class="w-10 h-10 rounded-xl bg-[#f59e0b]/20 text-[#d97706] flex items-center justify-center shrink-0 font-bold text-lg">
+                💳
+              </div>
+              <div class="text-left">
+                <h4 class="text-[13.5px] font-black text-[#1a3a5c] leading-tight">Zero cartão de crédito</h4>
+                <p class="text-[12px] text-slate-500 mt-0.5 leading-snug">Teste 15 dias grátis sem precisar cadastrar nenhum dado financeiro.</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3.5 p-3.5 rounded-2xl bg-emerald-50/60 border border-emerald-200/60">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-700 flex items-center justify-center shrink-0 font-bold text-lg">
+                📲
+              </div>
+              <div class="text-left">
+                <h4 class="text-[13.5px] font-black text-[#1a3a5c] leading-tight">Sem digitar aluno por aluno</h4>
+                <p class="text-[12px] text-slate-500 mt-0.5 leading-snug">Mande o link no WhatsApp e os pais cadastram em 2 minutos.</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3.5 p-3.5 rounded-2xl bg-blue-50/60 border border-blue-200/60">
+              <div class="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-700 flex items-center justify-center shrink-0 font-bold text-lg">
+                🤝
+              </div>
+              <div class="text-left">
+                <h4 class="text-[13.5px] font-black text-[#1a3a5c] leading-tight">Fácil como o WhatsApp</h4>
+                <p class="text-[12px] text-slate-500 mt-0.5 leading-snug">Funciona direto no seu celular com suporte humano para te ajudar.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ══════════ PROVA DE DOR ══════════ */}
       <section class="py-14 md:py-20 bg-[#f9f9f7]">
         <div class="max-w-[1120px] mx-auto px-5 text-center">
@@ -776,6 +766,106 @@ const schemaJson = JSON.stringify([
                 </div>
               ))
             }
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════ ANTES VS DEPOIS (CONTRASTE BRUTAL) ══════════ */}
+      <section class="py-14 md:py-20 bg-white">
+        <div class="max-w-[1000px] mx-auto px-5 text-center">
+          <div class="lp-reveal mb-10">
+            <div class="inline-flex items-center gap-1.5 bg-slate-100 px-3 py-1 rounded-full text-slate-600 font-bold text-xs uppercase tracking-wider mb-3">
+              A mudança na sua rotina
+            </div>
+            <h2 class="text-[clamp(1.7rem,4vw,2.4rem)] font-extrabold text-[#1a3a5c] tracking-tight mb-3">
+              A vida no volante antes e depois do Van360
+            </h2>
+            <p class="text-[1rem] text-slate-500 max-w-[600px] mx-auto">
+              Veja a diferença real entre passar o mês no improviso do papel e ter a sua van rodando organizada no celular:
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6 text-left">
+            {/* Lado Ruim: O Caderninho */}
+            <div class="lp-reveal rounded-3xl border-2 border-rose-100 bg-rose-50/40 p-6 sm:p-8 flex flex-col justify-between shadow-xs">
+              <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-100 text-rose-700 font-bold text-xs uppercase tracking-wider mb-4">
+                  ❌ Como é hoje no caderninho
+                </div>
+                <h3 class="text-xl font-black text-rose-950 mb-5">
+                  Desgaste, vergonha e prejuízo
+                </h3>
+                <ul class="space-y-4 text-sm text-slate-700">
+                  <li class="flex items-start gap-3">
+                    <XCircle class="w-5 h-5 text-rose-500 shrink-0 mt-0.5" />
+                    <span><strong>Constrangimento de cobrar:</strong> Você fica sem graça de cobrar pai de aluno e acaba ficando no prejuízo.</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <XCircle class="w-5 h-5 text-rose-500 shrink-0 mt-0.5" />
+                    <span><strong>Fim de semana perdido:</strong> Passa horas conferindo extrato de banco e comprovante de Pix no WhatsApp.</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <XCircle class="w-5 h-5 text-rose-500 shrink-0 mt-0.5" />
+                    <span><strong>Acordo de boca:</strong> Se o pai tirar o filho no meio do ano, você fica na mão sem contrato assinado.</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <XCircle class="w-5 h-5 text-rose-500 shrink-0 mt-0.5" />
+                    <span><strong>Papel amassado na escola:</strong> Lista de chamada em papel molhado, com risco de esquecer criança no portão.</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <XCircle class="w-5 h-5 text-rose-500 shrink-0 mt-0.5" />
+                    <span><strong>No escuro financeiro:</strong> Mistura dinheiro da van com despesa pessoal e nunca sabe o lucro real.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Lado Bom: Com o Van360 */}
+            <div class="lp-reveal rounded-3xl border-2 border-emerald-500 bg-emerald-50/50 p-6 sm:p-8 flex flex-col justify-between shadow-md relative">
+              <div class="absolute -top-3.5 right-6 px-3.5 py-0.5 rounded-full bg-emerald-600 text-white font-bold text-[11px] uppercase tracking-wide shadow-sm">
+                A sua van profissional
+              </div>
+              <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs uppercase tracking-wider mb-4">
+                  ✅ Com o Van360 no celular
+                </div>
+                <h3 class="text-xl font-black text-emerald-950 mb-5">
+                  Paz, organização e dinheiro na conta
+                </h3>
+                <ul class="space-y-4 text-sm text-slate-700">
+                  <li class="flex items-start gap-3">
+                    <CheckCircle2 class="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                    <span><strong>Cobrança no WhatsApp:</strong> O app avisa antes do vencimento com a sua chave Pix. O pai paga sem você precisar pedir.</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <CheckCircle2 class="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                    <span><strong>Painel em tempo real:</strong> Bate o olho e vê em segundos quem já pagou e quem está devendo.</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <CheckCircle2 class="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                    <span><strong>Contrato digital na tela:</strong> O pai assina no próprio celular em 1 minuto com validade jurídica formal.</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <CheckCircle2 class="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                    <span><strong>Chamada em 1 toque:</strong> Confirmação rápida de presença no portão da escola direto pelo celular.</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <CheckCircle2 class="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                    <span><strong>Controle de diesel e manutenção:</strong> Saiba exatamente quanto sobrou no bolso no fim do mês.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-9">
+            <a
+              href={LINKS.APP_REGISTER_URL}
+              class="inline-flex items-center justify-center bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-black text-base px-8 py-3.5 rounded-xl shadow-md hover:scale-[1.02] transition-all min-h-[46px]"
+            >
+              Quero essa tranquilidade na minha van →
+            </a>
+            <p class="text-xs text-slate-400 mt-2 font-medium">15 dias de teste grátis · Sem cartão de crédito</p>
           </div>
         </div>
       </section>
@@ -914,14 +1004,67 @@ const schemaJson = JSON.stringify([
             <div class="text-center mt-10">
               <a
                 href={LINKS.APP_REGISTER_URL}
-                class="inline-flex items-center justify-center bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-bold text-base px-7 py-3.5 rounded-lg shadow-[0_2px_8px_rgba(245,158,11,.35)] hover:shadow-[0_4px_16px_rgba(245,158,11,.4)] hover:-translate-y-0.5 transition-all"
+                class="inline-flex items-center justify-center bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-black text-base px-8 py-3.5 rounded-xl shadow-md hover:scale-[1.02] transition-all min-h-[46px]"
               >
-                Testar grátis por 15 dias
+                Começar 15 dias grátis →
               </a>
-              <p class="text-[0.8rem] text-slate-400 mt-2">
-                Sem cartão · Sem compromisso
+              <p class="text-xs text-slate-400 mt-2 font-medium">
+                Sem cartão de crédito · Sem compromisso
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════ AVERSÃO À PERDA (QUANTO CUSTA O CADERNINHO) ══════════ */}
+      <section class="py-14 md:py-20 bg-[#1a3a5c] text-white">
+        <div class="max-w-[1050px] mx-auto px-5 text-center">
+          <div class="lp-reveal">
+            <div class="inline-flex items-center gap-1.5 bg-amber-500/20 px-3.5 py-1 rounded-full text-amber-300 font-bold text-xs uppercase tracking-wider mb-3 border border-amber-500/30">
+              Faça as contas com a gente
+            </div>
+            <h2 class="text-[clamp(1.7rem,4vw,2.4rem)] font-black tracking-tight mb-3">
+              Quanto dinheiro você perde por ano sem um sistema?
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base max-w-[620px] mx-auto mb-10 leading-relaxed">
+              O maior custo do motorista não é a mensalidade de um aplicativo. É o dinheiro que escorre pelo ralo todo mês por falta de lembrete automático e contrato assinado:
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-left">
+            <div class="lp-reveal bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/15 shadow-sm">
+              <div class="text-2xl sm:text-3xl font-black text-amber-400 mb-2">R$ 700 a R$ 1.200</div>
+              <h4 class="font-bold text-white text-base mb-1.5">Atrasos todo santo mês</h4>
+              <p class="text-xs sm:text-[13px] text-slate-300 leading-relaxed">
+                Basta 2 pais atrasarem e você já fica no sufoco no dia de abastecer, trocar óleo ou pagar as contas da sua própria casa.
+              </p>
+            </div>
+
+            <div class="lp-reveal bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/15 shadow-sm">
+              <div class="text-2xl sm:text-3xl font-black text-amber-400 mb-2">R$ 3.500+</div>
+              <h4 class="font-bold text-white text-base mb-1.5">Desistência sem contrato</h4>
+              <p class="text-xs sm:text-[13px] text-slate-300 leading-relaxed">
+                Quando o pai tira o aluno em julho e você fica com banco vazio até o fim do ano, sem nenhuma multa contratual porque o acordo foi &quot;de boca&quot;.
+              </p>
+            </div>
+
+            <div class="lp-reveal bg-emerald-500/20 backdrop-blur-md rounded-2xl p-6 border border-emerald-400/40 shadow-sm">
+              <div class="text-2xl sm:text-3xl font-black text-emerald-400 mb-2">Menos de R$ 2/dia</div>
+              <h4 class="font-bold text-white text-base mb-1.5">O custo do Van360</h4>
+              <p class="text-xs sm:text-[13px] text-slate-300 leading-relaxed">
+                O app se paga no primeiro pai que pagar no dia certo pelo Pix no WhatsApp. O resto é economia, descanso e lucro no seu bolso.
+              </p>
+            </div>
+          </div>
+
+          <div class="lp-reveal mt-10">
+            <a
+              href={LINKS.APP_REGISTER_URL}
+              class="inline-flex items-center justify-center bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-black text-base px-8 py-4 rounded-xl shadow-lg hover:scale-[1.02] transition-all min-h-[48px]"
+            >
+              Parar de perder dinheiro na minha van →
+            </a>
+            <p class="text-xs text-slate-300 mt-2 font-medium">15 dias grátis de verdade · Sem cartão de crédito</p>
           </div>
         </div>
       </section>
@@ -1129,7 +1272,7 @@ const schemaJson = JSON.stringify([
                 href={LINKS.APP_REGISTER_URL}
                 class="w-full min-h-[46px] rounded-xl bg-[#002444] hover:bg-[#00172e] text-white font-bold text-sm shadow-md active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
-                <span>Testar grátis por 15 dias</span>
+                <span>Começar 15 dias grátis</span>
                 <ArrowRight class="w-4 h-4" />
               </a>
             </div>
@@ -1194,16 +1337,25 @@ const schemaJson = JSON.stringify([
               </div>
             </div>
 
-            <div
-              class="bg-blue-50/70 rounded-xl p-4 my-6 border border-blue-100 text-left"
-            >
-              <p class="text-[0.85rem] text-[#1a3a5c] font-medium flex gap-2.5">
-                <span class="shrink-0 text-base">🛡️</span>
-                <span class="leading-relaxed"
-                  ><strong>Teste com total tranquilidade.</strong> Use todos os recursos
-                  por 15 dias. Sem fidelidade e sem pegadinhas.</span
-                >
-              </p>
+            <div class="bg-gradient-to-br from-blue-50/90 to-amber-50/40 rounded-2xl p-4 my-5 border border-blue-100/80 text-left">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="text-lg">🛡️</span>
+                <span class="text-xs font-black text-[#1a3a5c] uppercase tracking-wider">Garantia Blindada de 15 Dias</span>
+              </div>
+              <ul class="space-y-1.5 text-[12px] text-slate-600 font-medium">
+                <li class="flex items-center gap-1.5 text-emerald-800">
+                  <Check class="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <span>Sem cartão de crédito no cadastro</span>
+                </li>
+                <li class="flex items-center gap-1.5 text-slate-700">
+                  <Check class="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <span>Suporte humano no WhatsApp para te ajudar</span>
+                </li>
+                <li class="flex items-center gap-1.5 text-slate-700">
+                  <Check class="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <span>Cancele quando quiser com 1 toque, sem multa</span>
+                </li>
+              </ul>
             </div>
 
             <p class="text-center text-[0.8rem] text-slate-400 font-medium">
@@ -1261,7 +1413,7 @@ const schemaJson = JSON.stringify([
                 href={LINKS.APP_REGISTER_URL}
                 class="w-full min-h-[46px] rounded-xl bg-[#002444] hover:bg-[#00172e] text-white font-bold text-sm shadow-md active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
-                <span>Testar grátis por 15 dias</span>
+                <span>Começar 15 dias grátis</span>
                 <ArrowRight class="w-4 h-4" />
               </a>
             </div>
@@ -1326,16 +1478,25 @@ const schemaJson = JSON.stringify([
               </div>
             </div>
 
-            <div
-              class="bg-blue-50/70 rounded-xl p-4 my-6 border border-blue-100 text-left"
-            >
-              <p class="text-[0.85rem] text-[#1a3a5c] font-medium flex gap-2.5">
-                <span class="shrink-0 text-base">🛡️</span>
-                <span class="leading-relaxed"
-                  ><strong>Teste com total tranquilidade.</strong> Use todos os recursos
-                  por 15 dias. Sem fidelidade e sem pegadinhas.</span
-                >
-              </p>
+            <div class="bg-gradient-to-br from-blue-50/90 to-amber-50/40 rounded-2xl p-4 my-5 border border-blue-100/80 text-left">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="text-lg">🛡️</span>
+                <span class="text-xs font-black text-[#1a3a5c] uppercase tracking-wider">Garantia Blindada de 15 Dias</span>
+              </div>
+              <ul class="space-y-1.5 text-[12px] text-slate-600 font-medium">
+                <li class="flex items-center gap-1.5 text-emerald-800">
+                  <Check class="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <span>Sem cartão de crédito no cadastro</span>
+                </li>
+                <li class="flex items-center gap-1.5 text-slate-700">
+                  <Check class="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <span>Suporte humano no WhatsApp para te ajudar</span>
+                </li>
+                <li class="flex items-center gap-1.5 text-slate-700">
+                  <Check class="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <span>Garantia incondicional de teste real com seus alunos</span>
+                </li>
+              </ul>
             </div>
 
             <p class="text-center text-[0.8rem] text-slate-400 font-medium">
@@ -1396,12 +1557,12 @@ const schemaJson = JSON.stringify([
             <div class="text-center mt-10">
               <a
                 href={LINKS.APP_REGISTER_URL}
-                class="inline-flex items-center justify-center bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-bold text-base px-7 py-3.5 rounded-lg shadow-[0_2px_8px_rgba(245,158,11,.35)] hover:shadow-[0_4px_16px_rgba(245,158,11,.4)] hover:-translate-y-0.5 transition-all"
+                class="inline-flex items-center justify-center bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-black text-base px-8 py-3.5 rounded-xl shadow-md hover:scale-[1.02] transition-all min-h-[46px]"
               >
-                Testar grátis por 15 dias
+                Começar 15 dias grátis →
               </a>
-              <p class="text-[0.8rem] text-slate-400 mt-2">
-                Sem cartão · Sem compromisso
+              <p class="text-xs text-slate-400 mt-2 font-medium">
+                Sem cartão de crédito · Sem compromisso
               </p>
             </div>
           </div>
@@ -1461,12 +1622,12 @@ const schemaJson = JSON.stringify([
               <div class="text-center mt-10">
                 <a
                   href={LINKS.APP_REGISTER_URL}
-                  class="inline-flex items-center justify-center bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-bold text-base px-7 py-3.5 rounded-lg shadow-[0_2px_8px_rgba(245,158,11,.35)] hover:shadow-[0_4px_16px_rgba(245,158,11,.4)] hover:-translate-y-0.5 transition-all"
+                  class="inline-flex items-center justify-center bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-black text-base px-8 py-3.5 rounded-xl shadow-md hover:scale-[1.02] transition-all min-h-[46px]"
                 >
-                  Testar grátis por 15 dias
+                  Começar 15 dias grátis →
                 </a>
-                <p class="text-[0.8rem] text-slate-400 mt-2">
-                  Sem cartão · Sem compromisso
+                <p class="text-xs text-slate-400 mt-2 font-medium">
+                  Sem cartão de crédito · Sem compromisso
                 </p>
               </div>
             </div>
@@ -1476,60 +1637,43 @@ const schemaJson = JSON.stringify([
 
       {/* ══════════ CTA FINAL ══════════ */}
       <section
-        class="bg-gradient-to-br from-[#1a3a5c] to-[#234b73] text-white py-16 md:py-20 text-center"
+        class="bg-gradient-to-br from-[#1a3a5c] via-[#152e4a] to-[#0f2338] text-white py-16 md:py-20 text-center"
       >
-        <div class="max-w-[1120px] mx-auto px-5">
+        <div class="max-w-[1000px] mx-auto px-5">
           <div class="lp-reveal space-y-4">
+            <div class="inline-flex items-center gap-1.5 bg-amber-500/20 px-3.5 py-1 rounded-full text-amber-300 font-bold text-xs uppercase tracking-wider mb-2 border border-amber-500/30">
+              Sua van no piloto automático
+            </div>
             <h2
-              class="text-[clamp(1.5rem,4vw,2.25rem)] font-black leading-tight mb-3"
+              class="text-[clamp(1.7rem,4.5vw,2.5rem)] font-black leading-tight mb-3"
             >
-              Pare de perder tempo com planilhas, cobranças e controles manuais.
+              Chega de perder noites e dinheiro com o caderninho.
             </h2>
-            <p class="text-[1.05rem] opacity-85 max-w-[520px] mx-auto mb-8">
-              Teste grátis por 15 dias. Sem cartão. Sem compromisso.
+            <p class="text-slate-300 text-base max-w-[560px] mx-auto mb-8 leading-relaxed">
+              Junte-se a mais de 500 transportadores escolares que transformaram a sua rotina. Comece hoje mesmo sem pagar nada.
             </p>
             <div>
               <a
                 href={LINKS.APP_REGISTER_URL}
-                class="inline-flex items-center justify-center bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-bold text-base px-7 py-3.5 rounded-lg shadow-[0_2px_8px_rgba(245,158,11,.35)] hover:shadow-[0_4px_16px_rgba(245,158,11,.4)] hover:-translate-y-0.5 transition-all min-h-[44px] hover:scale-[1.02]"
+                class="lp-cta-glow inline-flex items-center justify-center bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-black text-base sm:text-lg px-8 py-4 rounded-xl shadow-xl hover:scale-[1.02] hover:-translate-y-0.5 transition-all min-h-[48px]"
               >
-                Testar grátis por 15 dias
+                Começar meus 15 dias grátis →
               </a>
             </div>
 
-            <div class="flex flex-col items-center mt-5">
-              {/* Android badge for final CTA */}
-              <div id="badge-android-cta" class="hidden">
-                <a
-                  href={LINKS.PLAY_STORE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center hover:-translate-y-0.5 transition-transform"
-                  aria-label="Baixar Van360 na Play Store"
-                >
-                  <img
-                    src={LINKS.PLAY_STORE_BADGE_URL}
-                    alt="Disponível no Google Play"
-                    width={162}
-                    height={48}
-                    class="h-12 object-contain filter drop-shadow-md"
-                  />
-                </a>
-              </div>
-              {/* iOS badge / banner for final CTA */}
-              <div
-                id="badge-ios-cta"
-                class="hidden bg-white/10 border border-white/20 px-4 py-3 rounded-xl text-center max-w-[280px]"
+            <p class="text-xs text-slate-300 font-medium pt-2">
+              🛡️ Sem cartão de crédito · Sem fidelidade · Acesso imediato no celular ou computador
+            </p>
+
+            <div class="pt-4">
+              <a
+                href={LINKS.PLAY_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-[12px] text-slate-400 hover:text-white underline transition-colors"
               >
-                <p
-                  class="text-[13px] font-bold text-white mb-0.5 flex items-center justify-center gap-1.5"
-                >
-                  <Smartphone class="w-4 h-4" /> Funciona no iPhone
-                </p>
-                <p class="text-[11px] text-white/70 leading-snug mt-1">
-                  Acesse pelo navegador enquanto o app é preparado.
-                </p>
-              </div>
+                Também disponível para download na Google Play Store
+              </a>
             </div>
           </div>
         </div>
@@ -1558,6 +1702,23 @@ const schemaJson = JSON.stringify([
         ></path>
       </svg>
     </a>
+
+    {/* ══════════ STICKY CTA MOBILE ══════════ */}
+    <div
+      id="sticky-mobile-cta"
+      class="fixed bottom-0 left-0 right-0 z-30 bg-white/95 backdrop-blur-md border-t border-slate-200 px-4 py-2.5 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] flex items-center justify-between gap-3 md:hidden translate-y-full transition-transform duration-300 pointer-events-none"
+    >
+      <div class="flex flex-col">
+        <span class="text-xs font-black text-[#1a3a5c] leading-tight">15 dias grátis</span>
+        <span class="text-[10px] font-bold text-emerald-700 leading-tight">Sem cartão de crédito</span>
+      </div>
+      <a
+        href={LINKS.APP_REGISTER_URL}
+        class="bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-black text-xs px-4 py-2 rounded-lg shadow-sm whitespace-nowrap active:scale-95 transition-all text-center"
+      >
+        Começar grátis →
+      </a>
+    </div>
 
     {
       /*
@@ -1623,85 +1784,28 @@ const schemaJson = JSON.stringify([
     });
   });
 
-  // ── Platform tailored UI implementation ──
-  const isIOS = /iPhone|iPad/i.test(navigator.userAgent);
-  const isMobile = window.matchMedia("(max-width: 768px)").matches || isIOS;
 
-  if (isMobile) {
-    if (isIOS) {
-      document.getElementById("badge-ios-mobile")?.classList.remove("hidden");
-      document.getElementById("badge-ios-cta")?.classList.remove("hidden");
+
+  // ── Mobile Sticky CTA Controller ──
+  const stickyCta = document.getElementById("sticky-mobile-cta");
+  const waFloatingBtn = document.getElementById("floating-whatsapp");
+
+  window.addEventListener("scroll", () => {
+    if (!stickyCta) return;
+    if (window.scrollY > 380) {
+      stickyCta.classList.remove("translate-y-full", "pointer-events-none");
+      stickyCta.classList.add("translate-y-0", "pointer-events-auto");
+      if (waFloatingBtn && window.innerWidth < 768) {
+        waFloatingBtn.style.bottom = "64px";
+      }
     } else {
-      document
-        .getElementById("badge-android-mobile")
-        ?.classList.remove("hidden");
-      document.getElementById("badge-android-cta")?.classList.remove("hidden");
+      stickyCta.classList.add("translate-y-full", "pointer-events-none");
+      stickyCta.classList.remove("translate-y-0", "pointer-events-auto");
+      if (waFloatingBtn && window.innerWidth < 768) {
+        waFloatingBtn.style.bottom = "20px";
+      }
     }
-  } else {
-    // Desktop: show Android badge on final CTA as fallback
-    document.getElementById("badge-android-cta")?.classList.remove("hidden");
-  }
-
-  // ── Cookie Consent Banner Vanilla implementation ──
-  const COOKIE_NAME = "van360_cookie_consent";
-  const banner = document.getElementById("cookie-banner");
-  const waBtn = document.getElementById("floating-whatsapp");
-
-  const updateBodyPadding = () => {
-    if (!banner || banner.classList.contains("hidden")) return;
-    const padding = window.innerWidth < 640 ? "68px" : "56px";
-    document.body.style.paddingBottom = padding;
-    if (waBtn) {
-      waBtn.style.bottom = window.innerWidth < 640 ? "84px" : "72px";
-    }
-  };
-
-  const hideBanner = () => {
-    if (banner) banner.classList.add("hidden");
-    document.body.style.paddingBottom = "";
-    if (waBtn) waBtn.style.bottom = "20px";
-  };
-
-  const getCookie = (name) => {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(";").shift();
-    return null;
-  };
-
-  const setCookie = (name, value, days) => {
-    const d = new Date();
-    d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
-    document.cookie = `${name}=${value};expires=${d.toUTCString()};path=/`;
-  };
-
-  // Check consent
-  if (!getCookie(COOKIE_NAME)) {
-    if (banner) banner.classList.remove("hidden");
-    updateBodyPadding();
-    window.addEventListener("resize", updateBodyPadding);
-  }
-
-  document
-    .getElementById("cookie-btn-accept")
-    ?.addEventListener("click", () => {
-      setCookie(COOKIE_NAME, "accepted", 365);
-      hideBanner();
-    });
-
-  document
-    .getElementById("cookie-btn-reject")
-    ?.addEventListener("click", () => {
-      setCookie(COOKIE_NAME, "rejected", 365);
-      hideBanner();
-    });
-
-  document
-    .getElementById("cookie-btn-customize")
-    ?.addEventListener("click", () => {
-      setCookie(COOKIE_NAME, "accepted", 365);
-      hideBanner();
-    });
+  }, { passive: true });
 
   // ── Pricing Tabs Switcher Vanilla implementation ──
   const tabMonthly = document.getElementById("lp-tab-monthly");
