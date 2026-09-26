@@ -155,6 +155,11 @@ const uniqueId = `bubble-${Math.random().toString(36).substring(2, 9)}`;
           tooltip.classList.remove('max-w-0', 'opacity-0', '-ml-16');
           tooltip.classList.add('max-w-[280px]', 'opacity-100', '-ml-6');
           hasShownTooltip = true;
+
+          setTimeout(() => {
+            tooltip.classList.remove('max-w-[280px]', 'opacity-100', '-ml-6');
+            tooltip.classList.add('max-w-0', 'opacity-0', '-ml-16');
+          }, 5000);
         }, 800);
       }
     };

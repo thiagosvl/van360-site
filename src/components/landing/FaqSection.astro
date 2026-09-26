@@ -1,0 +1,98 @@
+---
+import { ChevronDown } from "@lucide/astro";
+import { LINKS } from "../../constants/links";
+import type { FaqItem } from "../../data/landingData";
+
+interface Props {
+  faqItems: FaqItem[];
+}
+
+const { faqItems } = Astro.props;
+---
+
+<section id="faq" class="py-14 md:py-20 bg-white scroll-mt-20">
+  <div class="max-w-[1120px] mx-auto px-5 text-center">
+    <div class="lp-reveal">
+      <h2
+        class="text-[clamp(1.8rem,4.5vw,2.5rem)] font-extrabold text-[#1a3a5c] tracking-tight mb-2"
+      >
+        Dúvidas frequentes
+      </h2>
+      <p
+        class="text-[1.05rem] text-slate-500 max-w-[560px] mx-auto mb-10"
+      >
+        Se a sua dúvida não estiver aqui, manda no WhatsApp que a gente
+        responde.
+      </p>
+    </div>
+
+    <div class="max-w-[680px] mx-auto">
+      {
+        faqItems.map((item) => (
+          <div class="lp-reveal">
+            <div class="border-b border-slate-200">
+              <button
+                class="faq-button w-full flex items-center justify-between py-5 text-left text-[#1a3a5c] font-semibold text-base hover:text-[#f59e0b] transition-colors gap-3 cursor-pointer"
+                aria-expanded="false"
+              >
+                <span>{item.q}</span>
+                <ChevronDown class="faq-icon w-5 h-5 flex-shrink-0 transition-transform duration-200" />
+              </button>
+              <div class="overflow-hidden transition-all duration-300 max-h-0">
+                <p class="pb-5 text-[0.92rem] text-slate-500 leading-relaxed text-left">
+                  {item.a}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-12">
+      <div class="lp-reveal">
+        <div class="text-center mt-10">
+          <a
+            href={LINKS.APP_REGISTER_URL}
+            class="inline-flex items-center justify-center bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-black text-base px-8 py-3.5 rounded-xl shadow-md hover:scale-[1.02] transition-all min-h-[46px]"
+          >
+            Começar 15 dias grátis →
+          </a>
+          <p class="text-xs text-slate-400 mt-2 font-medium">
+            Sem cartão de crédito · Sem compromisso
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  document.querySelectorAll(".faq-button").forEach((button) => {
+    button.addEventListener("click", () => {
+      const content = button.nextElementSibling;
+      const icon = button.querySelector(".faq-icon");
+      const isOpen = button.getAttribute("aria-expanded") === "true";
+
+      document.querySelectorAll(".faq-button").forEach((otherBtn) => {
+        if (
+          otherBtn !== button &&
+          otherBtn.getAttribute("aria-expanded") === "true"
+        ) {
+          otherBtn.setAttribute("aria-expanded", "false");
+          otherBtn.nextElementSibling.style.maxHeight = "0px";
+          otherBtn.querySelector(".faq-icon").classList.remove("rotate-180");
+        }
+      });
+
+      button.setAttribute("aria-expanded", !isOpen ? "true" : "false");
+      if (!isOpen) {
+        content.style.maxHeight = content.scrollHeight + "px";
+        icon.classList.add("rotate-180");
+      } else {
+        content.style.maxHeight = "0px";
+        icon.classList.remove("rotate-180");
+      }
+    });
+  });
+</script>

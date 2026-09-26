@@ -1,0 +1,52 @@
+---
+import { LINKS } from "../../constants/links";
+---
+
+<section
+  class="bg-gradient-to-br from-[#1a3a5c] via-[#152e4a] to-[#0f2338] text-white py-16 md:py-20 text-center"
+>
+  <div class="max-w-[1000px] mx-auto px-5">
+    <div class="lp-reveal space-y-4">
+      <div
+        class="inline-flex items-center gap-1.5 bg-amber-500/20 px-3.5 py-1 rounded-full text-amber-300 font-bold text-xs uppercase tracking-wider mb-2 border border-amber-500/30"
+      >
+        Você dirige, a gente organiza
+      </div>
+      <h2
+        class="text-[clamp(1.7rem,4.5vw,2.5rem)] font-black leading-tight mb-3"
+      >
+        Chega de perder noites e dinheiro com o caderno.
+      </h2>
+      <p
+        class="text-slate-300 text-base max-w-[560px] mx-auto mb-8 leading-relaxed"
+      >
+        Junte-se a mais de 500 transportadores escolares que transformaram
+        a sua rotina. Comece hoje mesmo sem pagar nada.
+      </p>
+      <div>
+        <a
+          href={LINKS.APP_REGISTER_URL}
+          class="lp-cta-glow inline-flex items-center justify-center bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-black text-base sm:text-lg px-8 py-4 rounded-xl shadow-xl hover:scale-[1.02] hover:-translate-y-0.5 transition-all min-h-[48px]"
+        >
+          Começar meus 15 dias grátis →
+        </a>
+      </div>
+
+      <p class="text-xs text-slate-300 font-medium pt-2">
+        🛡️ Sem cartão de crédito · Pague só se aprovar · Acesso imediato
+        no celular ou computador
+      </p>
+
+      <div class="pt-4">
+        <a
+          href={LINKS.PLAY_STORE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-[12px] text-slate-400 hover:text-white underline transition-colors"
+        >
+          Também disponível para download na Google Play Store
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

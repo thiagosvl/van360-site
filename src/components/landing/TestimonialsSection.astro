@@ -1,0 +1,581 @@
+---
+import { Star, ChevronLeft, ChevronRight, Smile } from "@lucide/astro";
+import { testimonialsData, featuredVideoStory } from "../../data/landingData";
+
+const initialTestimonial = testimonialsData[0];
+---
+
+<section
+  id="depoimentos"
+  class="py-14 md:py-20 bg-gradient-to-b from-white via-slate-50/40 to-white scroll-mt-20"
+>
+  <div class="max-w-[1040px] mx-auto px-4 sm:px-6">
+    <div class="lp-reveal max-w-[620px] mx-auto text-center mb-8 md:mb-12">
+      <div
+        class="inline-flex items-center gap-1.5 bg-[#f59e0b]/15 px-3.5 py-1 rounded-full text-[#b45309] font-bold text-xs uppercase tracking-wider mb-3"
+      >
+        Quem usa, recomenda
+      </div>
+      <h2
+        class="text-[clamp(1.75rem,4.2vw,2.5rem)] font-extrabold text-[#1a3a5c] tracking-tight mb-2"
+      >
+        O que os tios e tias dizem
+      </h2>
+      <p
+        class="text-[0.95rem] sm:text-[1.05rem] text-slate-500 leading-relaxed"
+      >
+        Veja a história de quem transformou a rotina e aposentou o caderno com o Van360:
+      </p>
+    </div>
+
+    {/* ══════════ DESTAQUE PRINCIPAL: DEPOIMENTO EM VÍDEO ══════════ */}
+    <div class="lp-reveal mb-12 md:mb-14">
+      <div
+        class="bg-white rounded-3xl border border-slate-200/80 shadow-[0_8px_30px_rgba(0,0,0,0.04)] overflow-hidden p-5 sm:p-7 md:p-8"
+      >
+        <div
+          class="flex flex-col md:grid md:grid-cols-[280px_1fr] lg:grid-cols-[300px_1fr] items-center gap-6 md:gap-10"
+        >
+          {/* Coluna Vídeo (Moldura Vertical 9:16) */}
+          <div class="w-full max-w-[360px] sm:max-w-[400px] md:max-w-none mx-auto shrink-0">
+            <div
+              id="spotlight-video-wrapper"
+              class="relative aspect-[9/15] sm:aspect-[9/16] w-full rounded-2xl overflow-hidden bg-slate-950 shadow-md border border-slate-800/40 select-none group cursor-pointer"
+            >
+              <video
+                id="spotlight-video"
+                src={featuredVideoStory.videoUrl}
+                poster={featuredVideoStory.poster}
+                playsinline
+                preload="metadata"
+                class="w-full h-full object-cover"
+              ></video>
+
+              {/* Badges superiores */}
+              <div
+                class="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none z-20"
+              >
+                <span
+                  class="inline-flex items-center gap-1.5 bg-black/60 backdrop-blur-md text-white/95 text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full border border-white/10"
+                >
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  Depoimento
+                </span>
+                <span
+                  class="bg-black/60 backdrop-blur-md text-white/85 text-[10px] font-semibold px-2 py-0.5 rounded-full border border-white/10"
+                >
+                  ~1 min
+                </span>
+              </div>
+
+              {/* Gradiente sutil para legibilidade das badges e base */}
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/35 pointer-events-none z-10"
+              >
+              </div>
+
+              {/* Botão Play centralizado e discreto */}
+              <div
+                id="spotlight-play-overlay"
+                class="absolute inset-0 flex flex-col items-center justify-center transition-all duration-300 z-20"
+              >
+                <div class="flex flex-col items-center gap-2">
+                  <div
+                    class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white/95 hover:bg-white text-slate-900 flex items-center justify-center shadow-[0_8px_24px_rgba(0,0,0,0.3)] transition-all group-hover:scale-110 active:scale-95 border border-white/60"
+                  >
+                    <svg
+                      class="w-6 h-6 sm:w-7 sm:h-7 ml-0.5 fill-current"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                  <span
+                    class="text-xs sm:text-[13px] font-medium text-white/90 bg-black/40 backdrop-blur-sm px-3 py-0.5 rounded-full border border-white/10 shadow-xs tracking-wide"
+                  >
+                    Toque para assistir
+                  </span>
+                </div>
+              </div>
+
+              {/* Controles de Áudio Inferiores */}
+              <div
+                class="absolute bottom-3 left-3 right-3 flex items-center justify-between pointer-events-auto z-20"
+              >
+                <button
+                  type="button"
+                  id="spotlight-mute-btn"
+                  class="bg-black/60 hover:bg-black/80 text-white rounded-full p-2 backdrop-blur-md border border-white/15 transition-all cursor-pointer"
+                  aria-label="Alternar áudio"
+                >
+                  <svg
+                    id="spotlight-icon-volume-on"
+                    class="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14M11 5L6 9H2v6h4l5 4V5z"
+                    />
+                  </svg>
+                  <svg
+                    id="spotlight-icon-volume-mute"
+                    class="w-4 h-4 hidden"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6m0-6l6 6"
+                    />
+                  </svg>
+                </button>
+
+                <button
+                  type="button"
+                  id="spotlight-replay-btn"
+                  class="hidden bg-black/60 hover:bg-black/80 text-white rounded-full p-2 backdrop-blur-md border border-white/15 transition-all cursor-pointer"
+                  aria-label="Assistir novamente"
+                >
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Barra de Progresso Fina */}
+              <div class="absolute bottom-0 left-0 right-0 h-1 bg-white/20 z-30">
+                <div
+                  id="spotlight-progress-bar"
+                  class="h-full bg-[#f59e0b] w-0 transition-[width] duration-150"
+                >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Coluna Editorial / Mensagem do Depoimento */}
+          <div class="text-left flex flex-col justify-center">
+            <div class="flex items-center gap-2 mb-3">
+              <span
+                class="inline-flex items-center gap-1 text-[11px] font-bold text-[#b45309] bg-[#f59e0b]/15 px-3 py-0.5 rounded-full uppercase tracking-wider"
+              >
+                Depoimento em Vídeo
+              </span>
+              <div class="flex text-yellow-400">
+                <Star class="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
+                <Star class="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
+                <Star class="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
+                <Star class="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
+                <Star class="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
+              </div>
+            </div>
+
+            <blockquote
+              class="text-lg sm:text-xl lg:text-[1.45rem] font-bold text-[#1a3a5c] leading-[1.35] mb-6 tracking-tight"
+            >
+              “{featuredVideoStory.headline}”
+            </blockquote>
+
+            <div
+              class="pt-4 border-t border-slate-100 flex items-center justify-between gap-4"
+            >
+              <div class="flex items-center gap-3">
+                <img
+                  src={featuredVideoStory.poster}
+                  alt={featuredVideoStory.name}
+                  class="w-11 h-11 rounded-full object-cover border border-slate-200 shadow-2xs shrink-0"
+                />
+                <div>
+                  <h4 class="text-sm font-bold text-[#1a3a5c]">
+                    {featuredVideoStory.name}
+                  </h4>
+                  <p class="text-xs text-slate-500">
+                    {featuredVideoStory.role}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Subtítulo para o carrossel de outros tios */}
+    <div class="lp-reveal text-center mb-6">
+      <p class="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-400">
+        Mais avaliações de quem usa todos os dias
+      </p>
+    </div>
+
+    <div class="lp-reveal max-w-[640px] mx-auto">
+      <div
+        id="testimonials-card"
+        class="bg-white rounded-3xl p-5 sm:p-7 border border-slate-200/80 shadow-xs space-y-4 select-none touch-pan-y w-full text-left overflow-hidden"
+        data-testimonials={JSON.stringify(testimonialsData)}
+      >
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-1">
+              <div
+                id="lp-testimonial-stars"
+                class="flex items-center gap-0.5"
+              >
+                <Star class="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                <Star class="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                <Star class="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                <Star class="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                <Star class="w-4 h-4 fill-yellow-400 text-yellow-400" />
+              </div>
+              <span
+                id="lp-testimonial-rating"
+                class="text-xs font-bold text-slate-700 ml-1.5"
+              >
+                {initialTestimonial.rating}
+              </span>
+            </div>
+
+            <div class="flex items-center gap-1.5">
+              <button
+                type="button"
+                id="lp-prev-testimonial-btn"
+                class="w-7 h-7 rounded-lg border border-slate-200 flex items-center justify-center text-slate-500 hover:bg-slate-50 hover:text-slate-800 transition-colors cursor-pointer"
+                aria-label="Depoimento anterior"
+              >
+                <ChevronLeft class="w-4 h-4" />
+              </button>
+              <button
+                type="button"
+                id="lp-next-testimonial-btn"
+                class="w-7 h-7 rounded-lg border border-slate-200 flex items-center justify-center text-slate-500 hover:bg-slate-50 hover:text-slate-800 transition-colors cursor-pointer"
+                aria-label="Próximo depoimento"
+              >
+                <ChevronRight class="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="lp-testimonial-content" class="space-y-4">
+          <p
+            id="lp-testimonial-quote"
+            class="text-xs sm:text-sm text-slate-700 italic leading-relaxed min-h-[44px] sm:min-h-[38px] flex items-center"
+          >
+            &quot;{initialTestimonial.quote}&quot;
+          </p>
+
+          <div
+            class="flex items-center gap-3 pt-2 border-t border-slate-100"
+          >
+            <div
+              class="w-11 h-11 rounded-full bg-slate-50 border border-slate-200/80 text-[#002444] flex items-center justify-center shrink-0 shadow-xs overflow-hidden"
+            >
+              <img
+                id="lp-testimonial-logo"
+                src={initialTestimonial.logo}
+                alt={initialTestimonial.name}
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+              <div id="lp-testimonial-fallback" class="hidden">
+                <Smile class="w-5 h-5 text-[#002444]" />
+              </div>
+            </div>
+            <div class="min-w-0 flex-1">
+              <h5
+                id="lp-testimonial-name"
+                class="text-xs sm:text-sm font-bold text-[#002444]"
+              >
+                {initialTestimonial.name}
+              </h5>
+              <p
+                id="lp-testimonial-role"
+                class="text-[11px] text-slate-500"
+              >
+                {initialTestimonial.role}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          id="lp-testimonial-dots"
+          class="flex items-center justify-center gap-1.5 pt-1"
+        >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  const testimonialsCard = document.getElementById("testimonials-card");
+  const lpTestimonials = testimonialsCard
+    ? JSON.parse(testimonialsCard.getAttribute("data-testimonials") || "[]")
+    : [];
+
+  let currentLpTestimonialIdx = 0;
+  const lpQuoteEl = document.getElementById("lp-testimonial-quote");
+  const lpNameEl = document.getElementById("lp-testimonial-name");
+  const lpRoleEl = document.getElementById("lp-testimonial-role");
+  const lpRatingEl = document.getElementById("lp-testimonial-rating");
+  const lpLogoEl = document.getElementById("lp-testimonial-logo");
+  const lpFallbackEl = document.getElementById("lp-testimonial-fallback");
+  const lpDotsContainer = document.getElementById("lp-testimonial-dots");
+  const lpPrevBtn = document.getElementById("lp-prev-testimonial-btn");
+  const lpNextBtn = document.getElementById("lp-next-testimonial-btn");
+  const lpCardEl = document.getElementById("testimonials-card");
+  const lpContentEl = document.getElementById("lp-testimonial-content");
+
+  function updateStars(rating) {
+    const numStars = parseInt(rating.split("/")[0]) || 5;
+    const stars = document.querySelectorAll("#lp-testimonial-stars svg");
+    stars.forEach((star, idx) => {
+      if (idx < numStars) {
+        star.setAttribute("class", "w-4 h-4 fill-yellow-400 text-yellow-400");
+      } else {
+        star.setAttribute("class", "w-4 h-4 fill-slate-200 text-slate-300");
+      }
+    });
+  }
+
+  function renderTestimonialVisual(t) {
+    if (t.logo) {
+      if (lpLogoEl) {
+        lpLogoEl.src = t.logo;
+        lpLogoEl.alt = t.name;
+        lpLogoEl.classList.remove("hidden");
+      }
+      if (lpFallbackEl) lpFallbackEl.classList.add("hidden");
+    } else {
+      if (lpLogoEl) lpLogoEl.classList.add("hidden");
+      if (lpFallbackEl) lpFallbackEl.classList.remove("hidden");
+    }
+  }
+
+  function updateLpTestimonial(index, direction = "next") {
+    if (index < 0) index = lpTestimonials.length - 1;
+    if (index >= lpTestimonials.length) index = 0;
+    currentLpTestimonialIdx = index;
+
+    const t = lpTestimonials[currentLpTestimonialIdx];
+    if (!t) return;
+
+    if (lpContentEl) {
+      lpContentEl.style.transition =
+        "opacity 0.15s ease-out, transform 0.15s ease-out";
+      lpContentEl.style.opacity = "0";
+      lpContentEl.style.transform =
+        direction === "next" ? "translateX(-16px)" : "translateX(16px)";
+
+      setTimeout(() => {
+        if (lpQuoteEl) lpQuoteEl.textContent = `"${t.quote}"`;
+        if (lpNameEl) lpNameEl.textContent = t.name;
+        if (lpRoleEl) lpRoleEl.textContent = t.role;
+        if (lpRatingEl) lpRatingEl.textContent = t.rating;
+        renderTestimonialVisual(t);
+        updateStars(t.rating);
+
+        lpContentEl.style.transition = "none";
+        lpContentEl.style.transform =
+          direction === "next" ? "translateX(16px)" : "translateX(-16px)";
+        void lpContentEl.offsetHeight;
+
+        lpContentEl.style.transition =
+          "opacity 0.25s ease-out, transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1)";
+        lpContentEl.style.opacity = "1";
+        lpContentEl.style.transform = "translateX(0px)";
+      }, 150);
+    } else {
+      if (lpQuoteEl) lpQuoteEl.textContent = `"${t.quote}"`;
+      if (lpNameEl) lpNameEl.textContent = t.name;
+      if (lpRoleEl) lpRoleEl.textContent = t.role;
+      if (lpRatingEl) lpRatingEl.textContent = t.rating;
+      renderTestimonialVisual(t);
+      updateStars(t.rating);
+    }
+
+    if (lpDotsContainer && lpTestimonials.length > 0) {
+      lpDotsContainer.innerHTML = "";
+      lpTestimonials.forEach((_, i) => {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = `h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+          currentLpTestimonialIdx === i
+            ? "w-5 bg-[#002444]"
+            : "w-1.5 bg-slate-200"
+        }`;
+        dot.setAttribute("aria-label", `Ir para depoimento ${i + 1}`);
+        dot.addEventListener("click", (e) => {
+          e.stopPropagation();
+          updateLpTestimonial(i, i > currentLpTestimonialIdx ? "next" : "prev");
+        });
+        lpDotsContainer.appendChild(dot);
+      });
+    }
+  }
+
+  if (lpQuoteEl && lpTestimonials.length > 0) {
+    updateLpTestimonial(0, "next");
+  }
+
+  if (lpPrevBtn) {
+    lpPrevBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      updateLpTestimonial(currentLpTestimonialIdx - 1, "prev");
+    });
+  }
+
+  if (lpNextBtn) {
+    lpNextBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      updateLpTestimonial(currentLpTestimonialIdx + 1, "next");
+    });
+  }
+
+  let lpTouchStartX = null;
+  let lpTouchDeltaX = 0;
+  const lpMinSwipeDistance = 35;
+
+  if (lpCardEl && lpContentEl) {
+    lpCardEl.addEventListener(
+      "touchstart",
+      (e) => {
+        lpTouchStartX = e.changedTouches[0].clientX;
+        lpTouchDeltaX = 0;
+      },
+      { passive: true },
+    );
+
+    lpCardEl.addEventListener(
+      "touchmove",
+      (e) => {
+        if (lpTouchStartX === null) return;
+        const currentX = e.changedTouches[0].clientX;
+        const diff = currentX - lpTouchStartX;
+        lpTouchDeltaX = Math.sign(diff) * Math.min(65, Math.abs(diff) * 0.6);
+        lpContentEl.style.transition = "none";
+        lpContentEl.style.transform = `translateX(${lpTouchDeltaX}px)`;
+      },
+      { passive: true },
+    );
+
+    lpCardEl.addEventListener(
+      "touchend",
+      () => {
+        if (lpTouchStartX !== null) {
+          if (lpTouchDeltaX < -lpMinSwipeDistance) {
+            updateLpTestimonial(currentLpTestimonialIdx + 1, "next");
+          } else if (lpTouchDeltaX > lpMinSwipeDistance) {
+            updateLpTestimonial(currentLpTestimonialIdx - 1, "prev");
+          } else {
+            lpContentEl.style.transition =
+              "transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1)";
+            lpContentEl.style.transform = "translateX(0px)";
+          }
+        }
+        lpTouchStartX = null;
+        lpTouchDeltaX = 0;
+      },
+      { passive: true },
+    );
+  }
+
+  // ── Spotlight Video Player Controller ──
+  const spotlightVideo = document.getElementById("spotlight-video");
+  const spotlightWrapper = document.getElementById("spotlight-video-wrapper");
+  const spotlightPlayOverlay = document.getElementById("spotlight-play-overlay");
+  const spotlightMuteBtn = document.getElementById("spotlight-mute-btn");
+  const spotlightReplayBtn = document.getElementById("spotlight-replay-btn");
+  const spotlightIconVolumeOn = document.getElementById("spotlight-icon-volume-on");
+  const spotlightIconVolumeMute = document.getElementById("spotlight-icon-volume-mute");
+  const spotlightProgressBar = document.getElementById("spotlight-progress-bar");
+
+  if (spotlightVideo && spotlightWrapper) {
+    let isSpotlightMuted = false;
+
+    function toggleSpotlightPlay() {
+      if (spotlightVideo.paused || spotlightVideo.ended) {
+        spotlightVideo.play();
+        if (spotlightPlayOverlay) {
+          spotlightPlayOverlay.classList.add("opacity-0", "pointer-events-none");
+        }
+        if (spotlightReplayBtn) {
+          spotlightReplayBtn.classList.add("hidden");
+        }
+      } else {
+        spotlightVideo.pause();
+        if (spotlightPlayOverlay) {
+          spotlightPlayOverlay.classList.remove("opacity-0", "pointer-events-none");
+        }
+      }
+    }
+
+    spotlightWrapper.addEventListener("click", (e) => {
+      if (e.target.closest("#spotlight-mute-btn") || e.target.closest("#spotlight-replay-btn")) {
+        return;
+      }
+      toggleSpotlightPlay();
+    });
+
+    spotlightVideo.addEventListener("timeupdate", () => {
+      if (spotlightProgressBar && spotlightVideo.duration) {
+        const pct = (spotlightVideo.currentTime / spotlightVideo.duration) * 100;
+        spotlightProgressBar.style.width = `${pct}%`;
+      }
+    });
+
+    spotlightVideo.addEventListener("ended", () => {
+      if (spotlightPlayOverlay) {
+        spotlightPlayOverlay.classList.remove("opacity-0", "pointer-events-none");
+      }
+      if (spotlightReplayBtn) {
+        spotlightReplayBtn.classList.remove("hidden");
+      }
+    });
+
+    if (spotlightMuteBtn) {
+      spotlightMuteBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        isSpotlightMuted = !isSpotlightMuted;
+        spotlightVideo.muted = isSpotlightMuted;
+        if (isSpotlightMuted) {
+          spotlightIconVolumeOn?.classList.add("hidden");
+          spotlightIconVolumeMute?.classList.remove("hidden");
+        } else {
+          spotlightIconVolumeOn?.classList.remove("hidden");
+          spotlightIconVolumeMute?.classList.add("hidden");
+        }
+      });
+    }
+
+    if (spotlightReplayBtn) {
+      spotlightReplayBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        spotlightVideo.currentTime = 0;
+        spotlightVideo.play();
+        if (spotlightPlayOverlay) {
+          spotlightPlayOverlay.classList.add("opacity-0", "pointer-events-none");
+        }
+        spotlightReplayBtn.classList.add("hidden");
+      });
+    }
+  }
+</script>

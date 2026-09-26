@@ -1,7 +1,7 @@
 ---
 import { LINKS } from "../constants/links";
 import { Image } from "astro:assets";
-import logoVan360 from "../assets/logo-van360.webp";
+import logoVan360Horizontal from "../assets/logo-van360-horizontal.png";
 ---
 
 <header
@@ -12,10 +12,10 @@ import logoVan360 from "../assets/logo-van360.webp";
   >
     <a href="/" class="flex items-center group shrink-0">
       <Image
-        src={logoVan360}
+        src={logoVan360Horizontal}
         alt="Van360"
-        width={144}
-        class="h-8 sm:h-9 w-auto select-none transition-transform group-hover:scale-[1.01]"
+        widths={[180, 240, 360]}
+        class="h-8 md:h-9 w-auto select-none transition-transform group-hover:scale-[1.01]"
       />
     </a>
 
@@ -23,14 +23,14 @@ import logoVan360 from "../assets/logo-van360.webp";
       <!-- Desktop Nav -->
       <nav class="hidden md:flex items-center gap-6">
         <a
-          href="/#o-que-faz"
-          class="text-sm font-bold text-slate-500 hover:text-brand-blue transition-colors"
-          >O que faz</a
-        >
-        <a
           href="/#depoimentos"
           class="text-sm font-bold text-slate-500 hover:text-brand-blue transition-colors"
           >Depoimentos</a
+        >
+        <a
+          href="/#o-que-faz"
+          class="text-sm font-bold text-slate-500 hover:text-brand-blue transition-colors"
+          >O que faz</a
         >
         <a
           href="/#pricing"
@@ -58,7 +58,7 @@ import logoVan360 from "../assets/logo-van360.webp";
         </a>
         <a
           href={LINKS.APP_REGISTER_URL}
-          class="inline-flex items-center justify-center bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-bold text-[12px] sm:text-[14px] px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-lg shadow-[0_2px_8px_rgba(245,158,11,.35)] hover:shadow-[0_4px_16px_rgba(245,158,11,.4)] hover:-translate-y-0.5 transition-all"
+          class="hidden md:inline-flex items-center justify-center bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-bold text-[12px] sm:text-[14px] px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-lg shadow-[0_2px_8px_rgba(245,158,11,.35)] hover:shadow-[0_4px_16px_rgba(245,158,11,.4)] hover:-translate-y-0.5 transition-all"
         >
           Cadastrar grátis
         </a>
@@ -96,14 +96,14 @@ import logoVan360 from "../assets/logo-van360.webp";
     class="hidden md:hidden bg-white border-t border-slate-100 absolute top-full left-0 w-full shadow-lg flex-col py-4 px-5 gap-3"
   >
     <a
-      href="/#o-que-faz"
-      class="mobile-link text-[15px] font-bold text-slate-600 hover:text-brand-blue border-b border-slate-50 pb-3 block"
-      >O que faz</a
-    >
-    <a
       href="/#depoimentos"
       class="mobile-link text-[15px] font-bold text-slate-600 hover:text-brand-blue border-b border-slate-50 pb-3 block"
       >Depoimentos</a
+    >
+    <a
+      href="/#o-que-faz"
+      class="mobile-link text-[15px] font-bold text-slate-600 hover:text-brand-blue border-b border-slate-50 pb-3 block"
+      >O que faz</a
     >
     <a
       href="/#pricing"

@@ -1,6 +1,5 @@
 ---
 import FloatingVideoBubble from "./video/FloatingVideoBubble.astro";
-import VideoStoriesModal from "./video/VideoStoriesModal.astro";
 
 interface Props {
   previewUrl: string;
@@ -22,4 +21,3 @@ const props = Astro.props;
 ---
 
 <FloatingVideoBubble {...props} />
-<VideoStoriesModal defaultCtaText={props.ctaText} defaultCtaLink={props.ctaLink} />

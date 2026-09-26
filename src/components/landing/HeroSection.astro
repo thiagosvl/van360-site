@@ -1,0 +1,504 @@
+---
+import { LINKS } from "../../constants/links";
+import { Star } from "@lucide/astro";
+import { Image } from "astro:assets";
+import type { HeroSlide } from "../../data/landingData";
+
+interface Props {
+  heroSlides: HeroSlide[];
+}
+
+const { heroSlides } = Astro.props;
+---
+
+<section
+  class="pt-6 sm:pt-8 md:pt-10 pb-12 md:pb-16 bg-gradient-to-b from-[#f0f4f8] to-white"
+>
+  <div class="max-w-[1120px] mx-auto px-5">
+    <div
+      class="flex flex-col md:grid md:grid-cols-[60%_40%] items-center gap-8 md:gap-8"
+    >
+      <div class="text-center md:text-left order-1 flex flex-col md:pt-2">
+        <div
+          class="hidden md:inline-flex items-center justify-center md:justify-start gap-1.5 bg-[#f59e0b]/15 px-3.5 py-1.5 rounded-full text-[#b45309] font-bold text-[11px] sm:text-[12px] uppercase tracking-wider mb-3 sm:mb-4 mx-auto md:mx-0 w-fit"
+        >
+          🚐 Para tios do Transporte Escolar
+        </div>
+        <h1 class="font-black tracking-tight mb-5 sm:mb-6 text-[#1a1a1a]">
+          <span
+            class="text-2xl sm:text-3xl md:text-[clamp(2rem,4.5vw,3rem)] font-black leading-[1.15] text-[#f59e0b] block"
+          >
+            Chega de caderno e calote.
+          </span>
+          <span
+            class="text-[1.15rem] sm:text-[1.35rem] md:text-[clamp(1.5rem,3.5vw,2.5rem)] font-extrabold md:font-black leading-[1.25] md:leading-[1.18] text-[#1a3a5c] block mt-1.5 sm:mt-2"
+          >
+            Você dirige. A gente cobra os pais por você.
+          </span>
+        </h1>
+
+        <p
+          class="hidden md:block text-[1.1rem] text-slate-600 max-w-[540px] mb-6 leading-relaxed"
+        >
+          Veja quem deve e quem pagou, envie recibos, gere contratos e tenha
+          carteirinhas e lista de chamadas no celular.
+        </p>
+
+        <div class="flex flex-col items-center md:items-start gap-2.5 w-full">
+          <a
+            href={LINKS.APP_REGISTER_URL}
+            class="lp-cta-glow inline-flex items-center justify-center bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-black text-base sm:text-lg px-8 py-4 rounded-xl hover:scale-[1.02] hover:-translate-y-0.5 transition-all min-h-[48px] w-full sm:w-auto shadow-xl text-center"
+          >
+            Começar 15 dias grátis →
+          </a>
+
+          <div class="hidden md:flex items-center gap-3 mt-2.5">
+            <div
+              class="flex items-center gap-2 py-1 px-3 bg-slate-50 rounded-full border border-slate-100"
+            >
+              <div class="flex text-yellow-400">
+                <Star class="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
+                <Star class="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
+                <Star class="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
+                <Star class="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
+                <Star class="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
+              </div>
+              <span class="text-[11px] font-bold text-slate-600"
+                >Mais de 500 motoristas</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="flex flex-col items-center md:hidden relative mt-6 sm:mt-7 mb-2 w-full"
+        >
+          <div
+            id="hero-mockup-carousel"
+            class="relative w-full max-w-full select-none pt-2"
+            style="touch-action: pan-y;"
+          >
+            <div class="grid grid-cols-1 grid-rows-1 relative w-full">
+              {
+                heroSlides.map((slide, index) => (
+                  <div
+                    class={`col-start-1 row-start-1 relative flex justify-center w-full transition-opacity duration-700 ease-in-out ${
+                      index === 0
+                        ? "opacity-100 z-10 pointer-events-auto"
+                        : "opacity-0 z-0 pointer-events-none"
+                    }`}
+                    data-hero-mobile-slide={index}
+                    data-tag={slide.tag}
+                  >
+                    {slide.badgeText && (
+                      <div
+                        class="absolute bg-white/95 backdrop-blur-md rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] p-2.5 border border-slate-100 max-w-[170px] z-20 pointer-events-none -top-2 left-0 text-left"
+                        style="animation: lp-countUp .6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.8s both;"
+                      >
+                        <div class="flex items-center gap-1.5 mb-1">
+                          {slide.badgeType === "whatsapp" ? (
+                            <div class="w-4 h-4 rounded-full bg-[#25D366]/15 flex items-center justify-center flex-shrink-0">
+                              <svg
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                class="w-2.5 h-2.5 text-[#25D366]"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                              </svg>
+                            </div>
+                          ) : (
+                            <div class="w-4 h-4 rounded-full bg-blue-500/15 flex items-center justify-center shrink-0">
+                              <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="w-2.5 h-2.5 text-blue-600"
+                              >
+                                <polyline points="20 6 9 17 4 12" />
+                              </svg>
+                            </div>
+                          )}
+                          <div class="text-[0.6rem] font-bold text-slate-400 uppercase tracking-wider">
+                            {slide.badgeLabel}
+                          </div>
+                        </div>
+                        <div class="text-[0.7rem] text-[#1a3a5c] font-medium leading-snug">
+                          {slide.badgeText}
+                        </div>
+                      </div>
+                    )}
+                    <Image
+                      src={slide.image}
+                      alt={slide.alt}
+                      loading={index === 0 ? "eager" : "lazy"}
+                      fetchpriority={index === 0 ? "high" : "auto"}
+                      widths={[320, 420, 640]}
+                      sizes="(max-width: 640px) 100vw, 480px"
+                      class="w-full h-auto select-none pointer-events-none"
+                    />
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+
+          <div class="flex flex-col items-center justify-center gap-2 mt-3 z-10 w-full">
+            <span
+              id="hero-carousel-tag"
+              class="inline-flex items-center text-[11px] sm:text-xs font-bold text-[#1a3a5c] bg-white px-3.5 py-1 rounded-full border border-slate-200/90 shadow-2xs transition-all"
+            >
+              {heroSlides[0]?.tag}
+            </span>
+            <div
+              id="hero-carousel-dots"
+              class="flex items-center justify-center gap-1.5 py-1"
+            >
+              {
+                heroSlides.map((_, i) => (
+                  <button
+                    type="button"
+                    class={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                      i === 0 ? "bg-[#f59e0b] w-5" : "bg-slate-300 w-2"
+                    }`}
+                    data-hero-slide-dot={i}
+                    aria-label={`Ir para tela ${i + 1}`}
+                  />
+                ))
+              }
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="flex md:hidden items-center justify-center gap-2 mt-6 mb-2 py-1 px-3 bg-slate-50 rounded-full border border-slate-100 mx-auto w-fit"
+        >
+          <div class="flex text-yellow-400">
+            <Star class="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
+            <Star class="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
+            <Star class="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
+            <Star class="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
+            <Star class="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
+          </div>
+          <span class="text-[11px] font-bold text-slate-600"
+            >Mais de 500 motoristas</span
+          >
+        </div>
+      </div>
+
+      <div
+        class="order-2 hidden md:flex flex-col items-end justify-center w-full"
+      >
+        <div
+          class="max-w-[360px] lg:max-w-[400px] xl:max-w-[450px] w-full hero-phone relative flex flex-col items-center"
+        >
+          <div
+            id="hero-mockup-carousel-desktop"
+            class="relative w-full select-none"
+          >
+            <div class="grid grid-cols-1 grid-rows-1 relative">
+              {
+                heroSlides.map((slide, index) => (
+                  <div
+                    class={`col-start-1 row-start-1 relative flex justify-center transition-opacity duration-700 ease-in-out ${
+                      index === 0
+                        ? "opacity-100 z-10 pointer-events-auto"
+                        : "opacity-0 z-0 pointer-events-none"
+                    }`}
+                    data-hero-desktop-slide={index}
+                    data-tag={slide.tag}
+                  >
+                    {slide.badgeText && (
+                      <div
+                        class="absolute bg-white/95 backdrop-blur-md rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] p-2.5 md:p-3 border border-slate-100 max-w-[190px] md:max-w-[220px] z-20 pointer-events-none -top-4 -left-6 text-left"
+                        style="animation: lp-countUp .6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.8s both;"
+                      >
+                        <div class="flex items-center gap-1.5 md:gap-2 mb-1">
+                          {slide.badgeType === "whatsapp" ? (
+                            <div class="w-4 h-4 md:w-5 md:h-5 rounded-full bg-[#25D366]/15 flex items-center justify-center shrink-0">
+                              <svg
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                class="w-2.5 h-2.5 md:w-3 md:h-3 text-[#25D366]"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                              </svg>
+                            </div>
+                          ) : (
+                            <div class="w-4 h-4 md:w-5 md:h-5 rounded-full bg-blue-500/15 flex items-center justify-center shrink-0">
+                              <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="w-2.5 h-2.5 md:w-3 md:h-3 text-blue-600"
+                              >
+                                <polyline points="20 6 9 17 4 12" />
+                              </svg>
+                            </div>
+                          )}
+                          <div class="text-[0.6rem] md:text-[0.65rem] font-bold text-slate-400 uppercase tracking-wider">
+                            {slide.badgeLabel}
+                          </div>
+                        </div>
+                        <div class="text-[0.7rem] md:text-[0.78rem] text-[#1a3a5c] font-medium leading-snug">
+                          {slide.badgeText}
+                        </div>
+                      </div>
+                    )}
+                    <Image
+                      src={slide.image}
+                      alt={slide.alt}
+                      loading={index === 0 ? "eager" : "lazy"}
+                      fetchpriority={index === 0 ? "high" : "auto"}
+                      widths={[480, 720, 960]}
+                      sizes="(min-width: 768px) 50vw, 100vw"
+                      class="w-full h-auto select-none pointer-events-none"
+                    />
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+
+          <div class="flex flex-col items-center justify-center gap-2 mt-3.5 z-10 w-full">
+            <span
+              id="hero-carousel-tag-desktop"
+              class="inline-flex items-center text-xs lg:text-[13px] font-bold text-[#1a3a5c] bg-white px-4 py-1.5 rounded-full border border-slate-200/90 shadow-2xs transition-all"
+            >
+              {heroSlides[0]?.tag}
+            </span>
+            <div
+              id="hero-carousel-dots-desktop"
+              class="flex items-center justify-center gap-2 py-1"
+            >
+              {
+                heroSlides.map((_, i) => (
+                  <button
+                    type="button"
+                    class={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                      i === 0
+                        ? "bg-[#f59e0b] w-6"
+                        : "bg-slate-300 hover:bg-slate-400 w-2"
+                    }`}
+                    data-hero-desktop-dot={i}
+                    aria-label={`Ir para tela ${i + 1}`}
+                  />
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  const mobileSlides = document.querySelectorAll("[data-hero-mobile-slide]");
+  const mobileTag = document.getElementById("hero-carousel-tag");
+  const mobileDots = document.querySelectorAll("[data-hero-slide-dot]");
+  const mobileCarousel = document.getElementById("hero-mockup-carousel");
+
+  if (mobileCarousel && mobileSlides.length > 1) {
+    let currentIdx = 0;
+    let timer = null;
+    const total = mobileSlides.length;
+
+    function updateMobileSlide(idx) {
+      if (idx < 0) idx = total - 1;
+      if (idx >= total) idx = 0;
+      currentIdx = idx;
+
+      mobileSlides.forEach((slide, i) => {
+        if (i === currentIdx) {
+          slide.classList.remove("opacity-0", "z-0", "pointer-events-none");
+          slide.classList.add("opacity-100", "z-10", "pointer-events-auto");
+        } else {
+          slide.classList.remove("opacity-100", "z-10", "pointer-events-auto");
+          slide.classList.add("opacity-0", "z-0", "pointer-events-none");
+        }
+      });
+
+      const activeSlide = mobileSlides[currentIdx];
+      if (mobileTag && activeSlide) {
+        const tag = activeSlide.getAttribute("data-tag");
+        if (tag) mobileTag.textContent = tag;
+      }
+
+      mobileDots.forEach((dot, i) => {
+        dot.className =
+          i === currentIdx
+            ? "h-2 rounded-full transition-all duration-300 cursor-pointer bg-[#f59e0b] w-5"
+            : "h-2 rounded-full transition-all duration-300 cursor-pointer bg-slate-300 w-2";
+      });
+    }
+
+    function startMobileTimer() {
+      clearInterval(timer);
+      timer = setInterval(() => {
+        updateMobileSlide(currentIdx + 1);
+      }, 5000);
+    }
+
+    function pauseMobileTimer() {
+      clearInterval(timer);
+    }
+
+    startMobileTimer();
+
+    mobileDots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        const target = parseInt(
+          dot.getAttribute("data-hero-slide-dot") || "0",
+          10,
+        );
+        updateMobileSlide(target);
+        startMobileTimer();
+      });
+    });
+
+    let touchStartX = null;
+    let touchStartY = null;
+    let deltaX = 0;
+
+    mobileCarousel.addEventListener(
+      "touchstart",
+      (e) => {
+        pauseMobileTimer();
+        touchStartX = e.changedTouches[0].clientX;
+        touchStartY = e.changedTouches[0].clientY;
+        deltaX = 0;
+      },
+      { passive: true },
+    );
+
+    mobileCarousel.addEventListener(
+      "touchmove",
+      (e) => {
+        if (touchStartX === null) return;
+        const currentX = e.changedTouches[0].clientX;
+        const currentY = e.changedTouches[0].clientY;
+        const diffX = currentX - touchStartX;
+        const diffY = currentY - touchStartY;
+        if (Math.abs(diffX) > Math.abs(diffY)) {
+          deltaX = diffX;
+        }
+      },
+      { passive: true },
+    );
+
+    mobileCarousel.addEventListener(
+      "touchend",
+      () => {
+        if (touchStartX !== null) {
+          if (deltaX < -35) {
+            updateMobileSlide(currentIdx + 1);
+          } else if (deltaX > 35) {
+            updateMobileSlide(currentIdx - 1);
+          }
+        }
+        touchStartX = null;
+        deltaX = 0;
+        startMobileTimer();
+      },
+      { passive: true },
+    );
+
+    mobileCarousel.addEventListener("mouseenter", pauseMobileTimer);
+    mobileCarousel.addEventListener("mouseleave", startMobileTimer);
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        pauseMobileTimer();
+      } else {
+        startMobileTimer();
+      }
+    });
+  }
+
+  const desktopSlides = document.querySelectorAll("[data-hero-desktop-slide]");
+  const desktopDots = document.querySelectorAll("[data-hero-desktop-dot]");
+  const desktopTag = document.getElementById("hero-carousel-tag-desktop");
+  const desktopCarousel = document.getElementById(
+    "hero-mockup-carousel-desktop",
+  );
+
+  if (desktopSlides.length > 1) {
+    let currentIdx = 0;
+    let timer = null;
+    const total = desktopSlides.length;
+
+    function updateDesktopSlide(idx) {
+      if (idx < 0) idx = total - 1;
+      if (idx >= total) idx = 0;
+      currentIdx = idx;
+
+      desktopSlides.forEach((slide, i) => {
+        if (i === currentIdx) {
+          slide.classList.remove("opacity-0", "z-0", "pointer-events-none");
+          slide.classList.add("opacity-100", "z-10", "pointer-events-auto");
+        } else {
+          slide.classList.remove("opacity-100", "z-10", "pointer-events-auto");
+          slide.classList.add("opacity-0", "z-0", "pointer-events-none");
+        }
+      });
+
+      const activeSlide = desktopSlides[currentIdx];
+      if (desktopTag && activeSlide) {
+        const tag = activeSlide.getAttribute("data-tag");
+        if (tag) desktopTag.textContent = tag;
+      }
+
+      desktopDots.forEach((dot, i) => {
+        dot.className =
+          i === currentIdx
+            ? "h-2 rounded-full transition-all duration-300 cursor-pointer bg-[#f59e0b] w-6"
+            : "h-2 rounded-full transition-all duration-300 cursor-pointer bg-slate-300 hover:bg-slate-400 w-2";
+      });
+    }
+
+    function startDesktopTimer() {
+      clearInterval(timer);
+      timer = setInterval(() => {
+        updateDesktopSlide(currentIdx + 1);
+      }, 5000);
+    }
+
+    function pauseDesktopTimer() {
+      clearInterval(timer);
+    }
+
+    startDesktopTimer();
+
+    desktopDots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        const target = parseInt(
+          dot.getAttribute("data-hero-desktop-dot") || "0",
+          10,
+        );
+        updateDesktopSlide(target);
+        startDesktopTimer();
+      });
+    });
+
+    if (desktopCarousel) {
+      desktopCarousel.addEventListener("mouseenter", pauseDesktopTimer);
+      desktopCarousel.addEventListener("mouseleave", startDesktopTimer);
+    }
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        pauseDesktopTimer();
+      } else {
+        startDesktopTimer();
+      }
+    });
+  }
+</script>
