@@ -37,16 +37,48 @@ import { LINKS } from "../../constants/links";
         no celular ou computador
       </p>
 
-      <div class="pt-4">
+      <div class="pt-4 flex flex-wrap items-center justify-center gap-2 text-[12px] text-slate-400">
+        <span>Também disponível para download:</span>
         <a
+          id="final-cta-android"
           href={LINKS.PLAY_STORE_URL}
           target="_blank"
           rel="noopener noreferrer"
-          class="text-[12px] text-slate-400 hover:text-white underline transition-colors"
+          class="text-amber-400 hover:text-amber-300 underline font-medium transition-colors hidden md:inline"
         >
-          Também disponível para download na Google Play Store
+          Google Play Store
+        </a>
+        <span id="final-cta-separator" class="text-slate-500 hidden md:inline">•</span>
+        <a
+          id="final-cta-ios"
+          href={LINKS.APP_STORE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-amber-400 hover:text-amber-300 underline font-medium transition-colors hidden md:inline"
+        >
+          Apple App Store
         </a>
       </div>
     </div>
   </div>
 </section>
+
+<script is:inline>
+  const isIpadOS = typeof navigator !== "undefined" && navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1;
+  const isCtaIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent) || isIpadOS;
+  const isCtaAndroid = /Android/i.test(navigator.userAgent);
+
+  if (isCtaIOS) {
+    document.getElementById("final-cta-ios")?.classList.remove("hidden");
+    document.getElementById("final-cta-android")?.classList.add("!hidden");
+    document.getElementById("final-cta-separator")?.classList.add("!hidden");
+  } else if (isCtaAndroid) {
+    document.getElementById("final-cta-android")?.classList.remove("hidden");
+    document.getElementById("final-cta-ios")?.classList.add("!hidden");
+    document.getElementById("final-cta-separator")?.classList.add("!hidden");
+  } else {
+    document.getElementById("final-cta-android")?.classList.remove("hidden");
+    document.getElementById("final-cta-separator")?.classList.remove("hidden");
+    document.getElementById("final-cta-ios")?.classList.remove("hidden");
+  }
+</script>

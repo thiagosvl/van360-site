@@ -33,22 +33,42 @@ const { isBlog = false } = Astro.props;
         >
           Você dirige.<br />A gente organiza.
         </p>
-        <div id="footer-android-badge" class="hidden md:block mt-2">
-          <a
-            href={LINKS.PLAY_STORE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="hover:opacity-80 transition-opacity inline-block"
-            aria-label="Baixar Van360 na Play Store"
-          >
-            <img
-              src={LINKS.PLAY_STORE_BADGE_URL}
-              alt="Disponível no Google Play"
-              width={162}
-              height={48}
-              class="h-12 object-contain"
-            />
-          </a>
+        <div class="mt-3 flex flex-wrap items-center justify-center md:justify-start gap-2.5">
+          <div id="footer-android-badge" class="hidden md:block">
+            <a
+              href={LINKS.PLAY_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:opacity-80 transition-opacity inline-block"
+              aria-label="Baixar Van360 na Play Store"
+            >
+              <img
+                src={LINKS.PLAY_STORE_BADGE_URL}
+                alt="Disponível no Google Play"
+                width={140}
+                height={42}
+                class="h-10 sm:h-11 w-auto object-contain"
+              />
+            </a>
+          </div>
+
+          <div id="footer-ios-badge" class="hidden md:block">
+            <a
+              href={LINKS.APP_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:opacity-80 transition-opacity inline-block"
+              aria-label="Baixar Van360 na App Store"
+            >
+              <img
+                src={LINKS.APP_STORE_BADGE_URL}
+                alt="Baixar na App Store"
+                width={140}
+                height={42}
+                class="h-10 sm:h-11 w-auto object-contain"
+              />
+            </a>
+          </div>
         </div>
       </div>
 
@@ -150,9 +170,18 @@ const { isBlog = false } = Astro.props;
 </footer>
 
 <script is:inline>
-  // Show Android Badge in Footer on non-iOS devices on mobile if needed, or just let CSS handle it
-  const isFooterIOS = /iPhone|iPad/i.test(navigator.userAgent);
-  if (!isFooterIOS) {
+  const isIpadOS = typeof navigator !== "undefined" && navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1;
+  const isFooterIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent) || isIpadOS;
+  const isFooterAndroid = /Android/i.test(navigator.userAgent);
+
+  if (isFooterIOS) {
+    document.getElementById("footer-ios-badge")?.classList.remove("hidden");
+    document.getElementById("footer-android-badge")?.classList.add("!hidden");
+  } else if (isFooterAndroid) {
     document.getElementById("footer-android-badge")?.classList.remove("hidden");
+    document.getElementById("footer-ios-badge")?.classList.add("!hidden");
+  } else {
+    document.getElementById("footer-android-badge")?.classList.remove("hidden");
+    document.getElementById("footer-ios-badge")?.classList.remove("hidden");
   }
 </script>

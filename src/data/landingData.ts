@@ -482,7 +482,7 @@ export const getFaqItems = (monthlyPriceFormatted: string): FaqItem[] => [
   },
   {
     q: "Onde posso usar o Van360?",
-    a: "Em qualquer lugar. Funciona no navegador do celular, tablet ou computador — sem baixar nada. Se preferir, temos também o app Android na Google Play, super leve e rápido. No iPhone, funciona com total desempenho diretamente pelo navegador.",
+    a: "Em qualquer lugar. Funciona no navegador do celular, tablet ou computador — sem baixar nada. Se preferir, você e os responsáveis também podem baixar o aplicativo oficial na Google Play (Android) ou na App Store (iPhone).",
   },
   {
     q: "Existe limite de alunos, rotas ou escolas?",
