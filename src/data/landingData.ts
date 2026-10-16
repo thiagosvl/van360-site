@@ -168,7 +168,7 @@ export const corePlanFeatures: PlanFeatureItem[] = [
     benefit: "quem pagou, quem deve e as despesas da sua van",
   },
   {
-    feature: "Alunos ilimitados",
+    feature: "Gestão completa de alunos",
     benefit: "todos os alunos no app, com dados, escola e responsáveis, sem papel",
   },
   {
@@ -196,7 +196,7 @@ export const additionalPlanFeatures: PlanFeatureItem[] = [
   },
   {
     feature: "Cadastro de alunos",
-    benefit: "os pais preenchem pelo link ou você cadastra, sem limite",
+    benefit: "os pais preenchem pelo link de pré-cadastro ou você cadastra direto no app",
   },
   {
     feature: "Recibos aos pais",
@@ -485,8 +485,8 @@ export const getFaqItems = (monthlyPriceFormatted: string): FaqItem[] => [
     a: "Em qualquer lugar. Funciona no navegador do celular, tablet ou computador — sem baixar nada. Se preferir, você e os responsáveis também podem baixar o aplicativo oficial na Google Play (Android) ou na App Store (iPhone).",
   },
   {
-    q: "Existe limite de alunos, rotas ou escolas?",
-    a: "Não há nenhum limite. Em qualquer plano você pode cadastrar quantos alunos, responsáveis, rotas, escolas e veículos precisar, sem cobranças adicionais por quantidade.",
+    q: "Existe limite de rotas, escolas ou veículos?",
+    a: "Não há limite para rotas, escolas ou veículos. Para o cadastro de alunos, nossos planos são estruturados para atender com tranquilidade toda a operação da sua van.",
   },
   {
     q: "Como funcionam os lembretes de cobrança no WhatsApp?",
