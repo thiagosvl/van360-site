@@ -90,6 +90,9 @@ export interface FeaturedVideoTestimonial {
 export const SUPABASE_VIDEOS_BASE_URL =
   "https://scxjzvblqnamfvasjaug.supabase.co/storage/v1/object/public/videos";
 
+export const CLOUDFLARE_VIDEOS_BASE_URL =
+  "https://pub-6302b932ae5749838fec8c6031c88963.r2.dev/videos";
+
 export const videoCommerceStories = [
   {
     url: `${SUPABASE_VIDEOS_BASE_URL}/lp-videocommerce-parcelas.mp4`,
@@ -346,6 +349,16 @@ export const features: FeatureItem[] = [
     ],
     mockup: mockupChamada,
     alt: "Organização de rotas e lista de chamada escolar no aplicativo Van360",
+    videoStory: {
+      videos: [
+        {
+          url: `${CLOUDFLARE_VIDEOS_BASE_URL}/tutorial-rotas.mp4`,
+          title: "Rotas e Chamada na Escola",
+        },
+      ],
+      ctaText: "Começar 15 dias grátis",
+      ctaLink: "/cadastro",
+    },
   },
   {
     tag: "Relatório de Lucro",
