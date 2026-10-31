@@ -1,0 +1,100 @@
+---
+import { LINKS } from "../../constants/links";
+---
+
+<section id="como-cobra" class="pt-10 pb-14 md:py-20 bg-white scroll-mt-20">
+  <div class="max-w-[1120px] mx-auto px-5">
+    <div class="lp-reveal max-w-[640px] mx-auto text-center mb-9 md:mb-12">
+      <h2
+        class="text-[clamp(1.7rem,4.2vw,2.5rem)] font-extrabold text-[#1a3a5c] tracking-tight leading-tight mb-3"
+      >
+        Você não precisa mais cobrar ninguém
+      </h2>
+      <p class="text-[1.05rem] sm:text-[1.12rem] text-slate-600 leading-relaxed">
+        Todo mês o Van360 faz isso por você, do jeito que os pais já estão acostumados: pelo WhatsApp.
+      </p>
+    </div>
+
+    <ol class="grid lg:grid-cols-3 gap-5 lg:gap-6 max-w-[560px] lg:max-w-[1000px] mx-auto">
+      <!-- 1 -->
+      <li class="lp-reveal rounded-3xl bg-[#f6f8fb] border border-slate-200/80 p-5 sm:p-6 flex flex-col">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-9 h-9 rounded-full bg-[#1a3a5c] text-white font-extrabold flex items-center justify-center shrink-0">1</span>
+          <h3 class="text-[1.15rem] font-extrabold text-[#1a3a5c] leading-tight">
+            O lembrete chega no WhatsApp do pai
+          </h3>
+        </div>
+        <div class="mt-auto rounded-2xl bg-[#e7ffdb] border border-emerald-100 p-3.5 shadow-sm" aria-hidden="true">
+          <p class="text-[0.95rem] leading-snug text-slate-800">
+            Oi! A mensalidade do <strong>Miguel</strong> vence hoje: <strong>R$ 350,00</strong>. Segue o Pix 👇
+          </p>
+          <div class="mt-2 rounded-lg bg-white text-center text-[0.9rem] font-bold text-[#0a7cff] py-1.5 border border-emerald-100">
+            Copiar código Pix
+          </div>
+        </div>
+        <p class="mt-4 text-[0.98rem] text-slate-700 leading-relaxed">
+          No dia do vencimento e, se atrasar, de novo. Sempre com o seu Pix junto.
+        </p>
+      </li>
+
+      <!-- 2 -->
+      <li class="lp-reveal rounded-3xl bg-[#f6f8fb] border border-slate-200/80 p-5 sm:p-6 flex flex-col">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-9 h-9 rounded-full bg-[#1a3a5c] text-white font-extrabold flex items-center justify-center shrink-0">2</span>
+          <h3 class="text-[1.15rem] font-extrabold text-[#1a3a5c] leading-tight">
+            O pai paga na hora, pelo Pix
+          </h3>
+        </div>
+        <div class="mt-auto rounded-2xl bg-white border border-slate-200 p-4 shadow-sm text-center" aria-hidden="true">
+          <div class="w-11 h-11 rounded-full bg-emerald-100 text-emerald-700 mx-auto flex items-center justify-center mb-2">
+            <svg viewBox="0 0 24 24" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          <div class="text-[0.85rem] font-semibold text-slate-500">Pix enviado</div>
+          <div class="text-[1.4rem] font-black text-[#1a3a5c]">R$ 350,00</div>
+        </div>
+        <p class="mt-4 text-[0.98rem] text-slate-700 leading-relaxed">
+          Sem você mandar mensagem, sem ficar sem graça.
+        </p>
+      </li>
+
+      <!-- 3 -->
+      <li class="lp-reveal rounded-3xl bg-[#f6f8fb] border border-slate-200/80 p-5 sm:p-6 flex flex-col">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-9 h-9 rounded-full bg-[#1a3a5c] text-white font-extrabold flex items-center justify-center shrink-0">3</span>
+          <h3 class="text-[1.15rem] font-extrabold text-[#1a3a5c] leading-tight">
+            Você vê quem pagou e o recibo vai pro pai
+          </h3>
+        </div>
+        <div class="mt-auto rounded-2xl bg-white border border-slate-200 p-3 shadow-sm space-y-2" aria-hidden="true">
+          <div class="flex items-center justify-between rounded-xl bg-slate-50 px-3 py-2">
+            <span class="text-[0.92rem] font-semibold text-slate-800">Miguel</span>
+            <span class="text-[0.75rem] font-black text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-2 py-0.5">PAGO</span>
+          </div>
+          <div class="flex items-center justify-between rounded-xl bg-slate-50 px-3 py-2">
+            <span class="text-[0.92rem] font-semibold text-slate-800">Alice</span>
+            <span class="text-[0.75rem] font-black text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-2 py-0.5">PAGO</span>
+          </div>
+          <div class="flex items-center justify-between rounded-xl bg-slate-50 px-3 py-2">
+            <span class="text-[0.92rem] font-semibold text-slate-800">Gael</span>
+            <span class="text-[0.75rem] font-black text-amber-800 bg-amber-50 border border-amber-200 rounded-full px-2 py-0.5">A VENCER</span>
+          </div>
+        </div>
+        <p class="mt-4 text-[0.98rem] text-slate-700 leading-relaxed">
+          No fim do mês você sabe exatamente quanto entrou e quem falta.
+        </p>
+      </li>
+    </ol>
+
+    <div class="lp-reveal text-center mt-10">
+      <a
+        href={LINKS.APP_REGISTER_URL}
+        class="inline-flex items-center justify-center bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-black text-[1.05rem] px-8 py-4 rounded-xl shadow-md hover:-translate-y-0.5 transition-all min-h-[54px]"
+      >
+        Testar 15 dias grátis →
+      </a>
+      <p class="text-[0.9rem] text-slate-600 mt-2.5 font-medium">
+        O lembrete no WhatsApp já funciona no período grátis.
+      </p>
+    </div>
+  </div>
+</section>

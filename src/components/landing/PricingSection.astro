@@ -59,14 +59,14 @@ const {
         <button
           type="button"
           id="lp-tab-monthly"
-          class="flex-1 py-2 px-3 rounded-xl font-bold text-xs sm:text-sm transition-all duration-300 bg-white text-[#1a3a5c] shadow-xs cursor-pointer"
+          class="flex-1 py-2 px-3 rounded-xl font-bold text-sm sm:text-base transition-all duration-300 bg-white text-[#1a3a5c] shadow-xs cursor-pointer"
         >
           Plano Mensal
         </button>
         <button
           type="button"
           id="lp-tab-yearly"
-          class="relative flex-1 py-2 px-3 rounded-xl font-bold text-xs sm:text-sm transition-all duration-300 text-slate-500 hover:text-[#1a3a5c] cursor-pointer"
+          class="relative flex-1 py-2 px-3 rounded-xl font-bold text-sm sm:text-base transition-all duration-300 text-slate-500 hover:text-[#1a3a5c] cursor-pointer"
         >
           <span>Plano Anual</span>
           <span
@@ -86,7 +86,7 @@ const {
         <h3 class="text-xl sm:text-2xl font-bold text-[#002444]">
           Plano Mensal
         </h3>
-        <p class="text-xs sm:text-sm text-slate-500 mt-1">
+        <p class="text-sm sm:text-base text-slate-500 mt-1">
           Pague só após os 15 dias, se quiser continuar
         </p>
       </div>
@@ -94,7 +94,7 @@ const {
       <div class="mt-4 sm:mt-5 space-y-0.5">
         {
           isPromoActive && originalVal < monthlyNormalVal && (
-            <p class="text-xs text-slate-400 line-through font-medium">
+            <p class="text-sm text-slate-500 line-through font-medium">
               De R$ {monthlyNormalFormatted}
             </p>
           )
@@ -106,12 +106,12 @@ const {
             R$ {originalFormatted}
           </span>
           <span
-            class="text-xs sm:text-sm font-semibold text-slate-500 shrink-0"
+            class="text-sm sm:text-base font-semibold text-slate-500 shrink-0"
           >
             /mês
           </span>
         </div>
-        <p class="text-xs text-slate-600 font-medium pt-0.5">
+        <p class="text-sm text-slate-600 font-medium pt-0.5">
           No Pix ou no cartão de crédito
         </p>
       </div>
@@ -121,18 +121,18 @@ const {
           href={LINKS.APP_REGISTER_URL}
           class="w-full min-h-[46px] rounded-xl bg-[#002444] hover:bg-[#00172e] text-white font-bold text-sm shadow-md active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer"
         >
-          <span>Começar 15 dias grátis</span>
+          <span>Testar 15 dias grátis</span>
           <ArrowRight class="w-4 h-4" />
         </a>
       </div>
 
       <div class="border-t border-slate-100 pt-5 mt-5 space-y-3">
         <p
-          class="text-[11px] font-bold text-slate-400 uppercase tracking-wider"
+          class="text-[13px] font-bold text-slate-500 uppercase tracking-wider"
         >
           Tudo o que resolve na sua van:
         </p>
-        <ul class="space-y-2.5 text-xs sm:text-sm text-slate-700">
+        <ul class="space-y-2.5 text-sm sm:text-base text-slate-700">
           {
             corePlanFeatures.map((item) => (
               <li class="flex items-start gap-2.5 font-normal">
@@ -166,7 +166,7 @@ const {
 
           <div id="additional-monthly-features" class="hidden">
             <ul
-              class="space-y-2.5 pt-3 text-xs sm:text-sm text-slate-700 border-t border-slate-100 mt-2"
+              class="space-y-2.5 pt-3 text-sm sm:text-base text-slate-700 border-t border-slate-100 mt-2"
             >
               {
                 additionalPlanFeatures.map((item) => (
@@ -212,7 +212,7 @@ const {
         </ul>
       </div>
 
-      <p class="text-center text-[0.8rem] text-slate-400 font-medium">
+      <p class="text-center text-[0.9rem] text-slate-500 font-medium">
         Sem cartão · Sem compromisso
       </p>
     </div>
@@ -233,13 +233,13 @@ const {
         <h3 class="text-xl sm:text-2xl font-bold text-[#002444]">
           Plano Anual
         </h3>
-        <p class="text-xs sm:text-sm text-slate-500 mt-1">
+        <p class="text-sm sm:text-base text-slate-500 mt-1">
           1 ano pelo preço de 10 meses (pague só se gostar)
         </p>
       </div>
 
       <div class="mt-4 sm:mt-5 space-y-0.5">
-        <p class="text-xs text-slate-400 line-through font-medium">
+        <p class="text-sm text-slate-500 line-through font-medium">
           De R$ {regularAnnualTotalFormatted}
         </p>
         <div class="flex items-baseline gap-1">
@@ -249,12 +249,12 @@ const {
             R$ {yearlyTotalFormatted}
           </span>
           <span
-            class="text-xs sm:text-sm font-semibold text-slate-500 shrink-0"
+            class="text-sm sm:text-base font-semibold text-slate-500 shrink-0"
           >
             /ano
           </span>
         </div>
-        <p class="text-xs text-slate-600 font-medium pt-0.5">
+        <p class="text-sm text-slate-600 font-medium pt-0.5">
           Equivale a <strong class="font-bold text-slate-900"
             >R$ {annualMonthlyEquivFormatted}/mês</strong
           > em até 12x ou à vista
@@ -266,18 +266,18 @@ const {
           href={LINKS.APP_REGISTER_URL}
           class="w-full min-h-[46px] rounded-xl bg-[#002444] hover:bg-[#00172e] text-white font-bold text-sm shadow-md active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer"
         >
-          <span>Começar 15 dias grátis</span>
+          <span>Testar 15 dias grátis</span>
           <ArrowRight class="w-4 h-4" />
         </a>
       </div>
 
       <div class="border-t border-slate-100 pt-5 mt-5 space-y-3">
         <p
-          class="text-[11px] font-bold text-slate-400 uppercase tracking-wider"
+          class="text-[13px] font-bold text-slate-500 uppercase tracking-wider"
         >
           Tudo o que resolve na sua van:
         </p>
-        <ul class="space-y-2.5 text-xs sm:text-sm text-slate-700">
+        <ul class="space-y-2.5 text-sm sm:text-base text-slate-700">
           {
             corePlanFeatures.map((item) => (
               <li class="flex items-start gap-2.5 font-normal">
@@ -311,7 +311,7 @@ const {
 
           <div id="additional-yearly-features" class="hidden">
             <ul
-              class="space-y-2.5 pt-3 text-xs sm:text-sm text-slate-700 border-t border-slate-100 mt-2"
+              class="space-y-2.5 pt-3 text-sm sm:text-base text-slate-700 border-t border-slate-100 mt-2"
             >
               {
                 additionalPlanFeatures.map((item) => (
@@ -357,7 +357,7 @@ const {
         </ul>
       </div>
 
-      <p class="text-center text-[0.8rem] text-slate-400 font-medium">
+      <p class="text-center text-[0.9rem] text-slate-500 font-medium">
         Sem cartão · Sem compromisso
       </p>
     </div>

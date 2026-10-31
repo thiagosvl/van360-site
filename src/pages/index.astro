@@ -2,13 +2,11 @@
 import Layout from "../layouts/Layout.astro";
 import HeaderLP from "../components/HeaderLP.astro";
 import Footer from "../components/Footer.astro";
-import VideoCommerce from "../components/VideoCommerce.astro";
 import { blogApi } from "../utils/api";
 
 import HeroSection from "../components/landing/HeroSection.astro";
-import SocialProofBar from "../components/landing/SocialProofBar.astro";
+import CobrancaFlowSection from "../components/landing/CobrancaFlowSection.astro";
 import FeaturesSection from "../components/landing/FeaturesSection.astro";
-import ComparisonSection from "../components/landing/ComparisonSection.astro";
 import TestimonialsSection from "../components/landing/TestimonialsSection.astro";
 import HowItWorksSection from "../components/landing/HowItWorksSection.astro";
 import PricingSection from "../components/landing/PricingSection.astro";
@@ -18,14 +16,12 @@ import FloatingWhatsApp from "../components/landing/FloatingWhatsApp.astro";
 import StickyMobileCta from "../components/landing/StickyMobileCta.astro";
 
 import {
-  heroSlides,
   corePlanFeatures,
   additionalPlanFeatures,
   features,
+  extraFeatures,
   howItWorks,
   getFaqItems,
-  CLOUDFLARE_VIDEOS_BASE_URL,
-  videoCommerceStories,
 } from "../data/landingData";
 
 const plansData = await blogApi.getPublicPlans();
@@ -90,7 +86,7 @@ const schemaJson = JSON.stringify([
     "@type": "SoftwareApplication",
     name: "Van360",
     description:
-      "Organize alunos, parcelas, contratos e recibos. Automatize a cobrança de parcelas pelo WhatsApp.",
+      "Organize alunos, parcelas, contratos e recibos. Lembrete automático de pagamento pelo WhatsApp dos pais.",
     applicationCategory: "BusinessApplication",
     operatingSystem: "iOS, Android, Web",
     url: siteUrl,
@@ -117,7 +113,7 @@ const schemaJson = JSON.stringify([
 
 <Layout
   title="Van360 — App para Van Escolar e Gestão de Alunos"
-  description="Gerencie alunos, parcelas, contratos e recibos. Automatize a cobrança de parcelas pelo WhatsApp e organize sua van escolar. Teste grátis por 15 dias."
+  description="Receba as mensalidades da van escolar em dia sem cobrar os pais: lembrete automático no WhatsApp com seu Pix, contratos, recibos e alunos no celular. Teste grátis por 15 dias."
 >
   <script type="application/ld+json" slot="head" set:html={schemaJson} />
   <div
@@ -184,11 +180,10 @@ const schemaJson = JSON.stringify([
 
       <div class="h-14 md:h-16"></div>
 
-      <HeroSection heroSlides={heroSlides} />
+      <HeroSection />
+      <CobrancaFlowSection />
       <TestimonialsSection />
-      <SocialProofBar />
-      <FeaturesSection features={features} />
-      <ComparisonSection />
+      <FeaturesSection features={features} extraFeatures={extraFeatures} />
       <HowItWorksSection howItWorks={howItWorks} />
       <PricingSection
         isPromoActive={isPromoActive}
@@ -212,15 +207,6 @@ const schemaJson = JSON.stringify([
 
     <FloatingWhatsApp />
     <StickyMobileCta />
-
-    <VideoCommerce
-      previewUrl={`${CLOUDFLARE_VIDEOS_BASE_URL}/apresentacao-van360-com-audio.mp4`}
-      videosData={videoCommerceStories}
-      tooltipText="Veja como funciona"
-      positionClasses="fixed z-40 left-4 sm:left-6 bottom-20 sm:bottom-8"
-      ctaText="Começar 15 dias grátis"
-      ctaLink="/cadastro"
-    />
   </div>
 </Layout>
 

@@ -1,33 +1,7 @@
-import type { ImageMetadata } from "astro";
-
-import mockup3dAlunos from "../assets/lp/mockup-3d-alunos.webp";
-import mockup3dCarteirinha from "../assets/lp/mockup-3d-carteirinha.webp";
-import mockup3dChamada from "../assets/lp/mockup-3d-chamada.webp";
-import mockup3dContratos from "../assets/lp/mockup-3d-contratos.webp";
-import mockup3dGastos from "../assets/lp/mockup-3d-gastos.webp";
-import mockup3dParcelas from "../assets/lp/mockup-3d-parcelas.webp";
-import mockup3dRecibo from "../assets/lp/mockup-3d-recibo.webp";
-import mockup3dRelatorios from "../assets/lp/mockup-3d-relatorios.webp";
-
-import mockupParcelasPagas from "../assets/lp/mockup-parcelas-pagas.webp";
-import mockupAlunos from "../assets/lp/mockup-alunos.webp";
-import mockupCarteirinha from "../assets/lp/mockup-carteirinha.webp";
-import mockupChamada from "../assets/lp/mockup-chamada.webp";
 import mockupContrato from "../assets/lp/mockup-contrato.webp";
-import mockupGastos from "../assets/lp/mockup-gastos.webp";
-import mockupHome from "../assets/lp/mockup-home.webp";
-import mockupParcelas from "../assets/lp/mockup-parcelas.webp";
-import mockupRecibo from "../assets/lp/mockup-recibo.webp";
+import mockupChamada from "../assets/lp/mockup-chamada.webp";
+import mockupParcelasPagas from "../assets/lp/mockup-parcelas-pagas.webp";
 import mockupRelatorios from "../assets/lp/mockup-relatorios.webp";
-
-export interface HeroSlide {
-  image: ImageMetadata;
-  alt: string;
-  badgeType?: "whatsapp" | "check";
-  badgeLabel?: string;
-  badgeText?: string;
-  tag: string;
-}
 
 export interface PlanFeatureItem {
   feature: string;
@@ -42,16 +16,15 @@ export interface VideoStoryEntry {
 
 export interface FeatureItem {
   tag: string;
-  tagColor: string;
   headline: string;
   bullets: string[];
-  mockup: typeof mockupHome;
+  mockup: typeof mockupParcelasPagas;
   alt: string;
   balloonText?: string;
   videoStory?: VideoStoryEntry;
 }
 
-export interface PainPointItem {
+export interface ExtraFeatureItem {
   icon: string;
   title: string;
   text: string;
@@ -68,457 +41,220 @@ export interface FaqItem {
   a: string;
 }
 
-export interface TestimonialItem {
+export interface VideoTestimonial {
   name: string;
-  role: string;
-  quote: string;
-  rating: string;
-  logo: string;
-}
-
-export interface FeaturedVideoTestimonial {
+  city: string;
   videoUrl: string;
-  poster: string;
-  name: string;
-  role: string;
-  badge: string;
-  headline: string;
-  bullets: string[];
-  rating: string;
+  /** Opcional: frame de capa (.webp em /public). Sem poster, o navegador mostra o primeiro frame. */
+  poster?: string;
+  /** Opcional: frase curta TIRADA DO PRÓPRIO VÍDEO (nunca inventar). Aparece abaixo do card. */
+  quote?: string;
 }
-
-export const SUPABASE_VIDEOS_BASE_URL =
-  "https://scxjzvblqnamfvasjaug.supabase.co/storage/v1/object/public/videos";
 
 export const CLOUDFLARE_VIDEOS_BASE_URL =
   "https://pub-6302b932ae5749838fec8c6031c88963.r2.dev/videos";
 
-export const videoCommerceStories = [
-  {
-    url: `${CLOUDFLARE_VIDEOS_BASE_URL}/apresentacao-van360-com-audio.mp4`,
-    title: "Conheça o Van360",
-  },
-];
+const STORY_CTA = { ctaText: "Testar 15 dias grátis", ctaLink: "/cadastro" };
 
-export const heroSlides: HeroSlide[] = [
+/** Vídeo de apresentação aberto pelo botão "Ver o app funcionando" do hero. */
+export const heroVideoStory: VideoStoryEntry = {
+  videos: [
+    {
+      url: `${CLOUDFLARE_VIDEOS_BASE_URL}/apresentacao-van360-com-audio.mp4`,
+      title: "Conheça o Van360",
+    },
+  ],
+  ...STORY_CTA,
+};
+
+/** Depoimentos reais em vídeo (clientes). */
+export const videoTestimonials: VideoTestimonial[] = [
   {
-    image: mockup3dParcelas,
-    alt: "App Van360 - Quem deve e quem pagou (Parcelas)",
-    tag: "Quem deve e quem pagou",
-    badgeType: "whatsapp",
-    badgeLabel: "WhatsApp enviado",
-    badgeText: "A parcela de julho do Miguel vence hoje.",
+    name: "Tia Verinha",
+    city: "Gravataí, RS",
+    videoUrl: `${CLOUDFLARE_VIDEOS_BASE_URL}/depoimento-verinha.mp4`,
   },
   {
-    image: mockup3dCarteirinha,
-    alt: "App Van360 - Carteirinha digital do aluno",
-    tag: "Carteirinha Digital",
+    name: "Tio Ricardo",
+    city: "Santa Maria, DF",
+    videoUrl: `${CLOUDFLARE_VIDEOS_BASE_URL}/depoimento-ricardo.mp4`,
   },
   {
-    image: mockup3dChamada,
-    alt: "App Van360 - Lista de chamadas na van escolar",
-    tag: "Lista de Chamada",
-  },
-  {
-    image: mockup3dAlunos,
-    alt: "App Van360 - Lista de alunos e responsáveis",
-    tag: "Lista de Alunos",
-  },
-  {
-    image: mockup3dRecibo,
-    alt: "App Van360 - Recibo de pagamento",
-    tag: "Recibos aos pais",
-    badgeType: "whatsapp",
-    badgeLabel: "WhatsApp enviado",
-    badgeText: "Pai, segue o recibo de Setembro. Obrigado pela confiança!",
-  },
-  {
-    image: mockup3dContratos,
-    alt: "App Van360 - Modelo de contrato digital",
-    tag: "Contrato Digital",
-  },
-  {
-    image: mockup3dGastos,
-    alt: "App Van360 - Controle de gastos e combustível",
-    tag: "Controle de Gastos",
-  },
-  {
-    image: mockup3dRelatorios,
-    alt: "App Van360 - Relatórios e lucro real",
-    tag: "Relatório de Lucro",
+    name: "Tio Flávio",
+    city: "Americana, SP",
+    videoUrl: `${CLOUDFLARE_VIDEOS_BASE_URL}/depoimento-flavio.mp4`,
   },
 ];
 
 export const corePlanFeatures: PlanFeatureItem[] = [
   {
-    feature: "Cobrança no WhatsApp dos pais",
-    benefit: "lembretes com sua chave Pix, sem você ter que cobrar um por um",
+    feature: "Lembrete automático no WhatsApp",
+    benefit: "os pais recebem o aviso com a sua chave Pix, sem você cobrar um por um",
   },
   {
     feature: "Contratos digitais",
-    benefit: "assinados no celular com validade jurídica, sem papel",
+    benefit: "o pai assina na tela do celular, sem imprimir nada",
   },
   {
-    feature: "Controle financeiro e gastos",
-    benefit: "quem pagou, quem deve e as despesas da sua van",
+    feature: "Controle de pagamentos e gastos",
+    benefit: "quem pagou, quem deve e quanto a van gastou no mês",
   },
   {
-    feature: "Gestão completa de alunos",
-    benefit: "todos os alunos no app, com dados, escola e responsáveis, sem papel",
+    feature: "Alunos organizados",
+    benefit: "dados, escola, endereço e responsáveis de cada aluno no app",
   },
   {
     feature: "Rotas e chamada",
-    benefit: "mapa ao vivo para os pais e chamada na saída da escola",
+    benefit: "chamada na van e avisos de embarque e desembarque para os pais",
   },
 ];
 
 export const additionalPlanFeatures: PlanFeatureItem[] = [
   {
-    feature: "Relatórios do seu negócio",
-    benefit: "saiba exatamente quanto faturou, gastou e o lucro real do mês",
+    feature: "Relatório do mês",
+    benefit: "quanto entrou, quanto saiu e quanto sobrou",
   },
   {
     feature: "Motoristas e monitores",
-    benefit: "cadastre sua equipe com acesso às rotas e carteirinhas dos alunos",
+    benefit: "sua equipe com acesso às rotas e carteirinhas dos alunos",
   },
   {
     feature: "Carteirinha do aluno",
-    benefit: "parcelas, contrato e dados do aluno guardados no celular, sem papel",
+    benefit: "parcelas, contrato e dados do aluno em um só lugar",
   },
   {
     feature: "App dos pais",
-    benefit: "acompanham a rota, veem recibos, contratos e registram ausências",
+    benefit: "os pais veem recibos e contratos e recebem os avisos da rota",
   },
   {
-    feature: "Cadastro de alunos",
-    benefit: "os pais preenchem pelo link de pré-cadastro ou você cadastra direto no app",
+    feature: "Cadastro pelo link",
+    benefit: "o pai preenche os dados do filho e você só aprova",
   },
   {
     feature: "Recibos aos pais",
-    benefit: "comprovante profissional gerado e enviado em 1 toque",
+    benefit: "com o seu logo, enviados em 1 toque",
   },
   {
-    feature: "Aniversariantes do mês",
-    benefit: "aviso automático para você não perder a data dos alunos",
+    feature: "Fretes e passeios",
+    benefit: "organize as viagens extras junto com a rota escolar",
   },
   {
-    feature: "Acesso de qualquer lugar",
-    benefit: "pelo celular, tablet ou computador, sempre sincronizado",
+    feature: "Celular, tablet ou computador",
+    benefit: "tudo sincronizado, use onde preferir",
   },
   {
     feature: "Suporte humano no WhatsApp",
-    benefit: "atendimento real, rápido e disponível mesmo à noite",
+    benefit: "gente de verdade para te ajudar, inclusive à noite",
   },
 ];
 
+/** 4 blocos principais, organizados pelo resultado que o motorista quer. */
 export const features: FeatureItem[] = [
   {
-    tag: "Cobrança no WhatsApp",
-    tagColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
-    headline: "Receba em dia sem precisar cobrar os pais",
+    tag: "Receber em dia",
+    headline: "Saiba quem pagou e quem deve, sem conferir extrato",
     bullets: [
-      "Lembretes automáticos enviados no WhatsApp do pai automaticamente",
-      "Chega de ser 'o chato da cobrança' e passar vergonha cobrando pai por pai",
-      "Mensagens amigáveis com a sua chave Pix para o pai pagar com rapidez",
+      "O lembrete com o seu Pix chega sozinho no WhatsApp do pai",
+      "Atrasados, a vencer e pagos separados na tela",
+      "Recibo com o seu logo enviado ao pai em 1 toque",
     ],
     mockup: mockupParcelasPagas,
-    alt: "Cobrança automática via WhatsApp no aplicativo Van360",
-    balloonText: "A parcela de julho do Pedro vence amanhã.",
+    alt: "Tela de parcelas do Van360 com pagamentos recebidos",
+    balloonText: "Pai, segue o recibo de setembro. Obrigado!",
     videoStory: {
       videos: [
-        {
-          url: `${CLOUDFLARE_VIDEOS_BASE_URL}/tutorial-parcelas.mp4`,
-          title: "Cobrança Automática no WhatsApp",
-        },
+        { url: `${CLOUDFLARE_VIDEOS_BASE_URL}/tutorial-parcelas.mp4`, title: "Lembrete e controle de pagamentos" },
       ],
-      ctaText: "Começar 15 dias grátis",
-      ctaLink: "/cadastro",
+      ...STORY_CTA,
     },
   },
   {
-    tag: "Controle de Pagamentos",
-    tagColor: "bg-blue-50 text-[#1a3a5c] border-blue-200",
-    headline: "Saiba na hora quem ainda está devendo",
+    tag: "Sem papelada",
+    headline: "O pai cadastra o filho e assina o contrato pelo celular",
     bullets: [
-      "Veja todas parcelas em atraso, a vencer e pagas em tempo real",
-      "Fim da conferência manual de extratos bancários e comprovantes perdidos",
-      "Registre o pagamento e envie o recibo para o pai com poucos toques",
-    ],
-    mockup: mockupParcelas,
-    alt: "Painel de controle de pagamentos no Van360",
-    videoStory: {
-      videos: [
-        {
-          url: `${CLOUDFLARE_VIDEOS_BASE_URL}/tutorial-parcelas.mp4`,
-          title: "Controle de Pagamentos e Inadimplência",
-        },
-      ],
-      ctaText: "Começar 15 dias grátis",
-      ctaLink: "/cadastro",
-    },
-  },
-  {
-    tag: "Recibos aos pais",
-    tagColor: "bg-teal-50 text-teal-800 border-teal-200",
-    headline: "Envie recibos com seu logotipo no WhatsApp",
-    bullets: [
-      "Confirmou o pagamento? O recibo é gerado automaticamente",
-      "Envie com 1 clique direto no WhatsApp do responsável",
-      "Passe uma impressão de profissionalismo para os pais",
-    ],
-    mockup: mockupRecibo,
-    alt: "Recibo de pagamento gerado automaticamente pelo Van360",
-    balloonText: "Seu recibo de pagamento já está disponível.",
-  },
-  {
-    tag: "Contratos Digitais",
-    tagColor: "bg-indigo-50 text-indigo-700 border-indigo-200",
-    headline: "Acabou a papelada: Contratos assinados na tela do celular",
-    bullets: [
-      "Gere contratos com validade jurídica conforme a lei",
-      "O responsável assina direto na tela do próprio celular dele",
-      "Chega de 'combinados de boca' e fique protegido contra calotes e desistências",
+      "Você manda um link e o pai preenche os dados do aluno",
+      "Você só confere valor e dia de vencimento e aprova",
+      "Contrato assinado na tela do celular, sem imprimir nem ir de casa em casa",
     ],
     mockup: mockupContrato,
-    alt: "Assinatura de contrato digital no celular",
-    balloonText: "Pai, segue o contrato de transporte escolar.",
+    alt: "Contrato digital de transporte escolar no Van360",
+    balloonText: "Pai, segue o contrato para assinar.",
     videoStory: {
       videos: [
-        {
-          url: `${CLOUDFLARE_VIDEOS_BASE_URL}/tutorial-contratos.mp4`,
-          title: "Contratos Digitais Assinados no Celular",
-        },
+        { url: `${CLOUDFLARE_VIDEOS_BASE_URL}/tutorial-alunos-solicitacoes.mp4`, title: "Cadastro de alunos pelo link" },
+        { url: `${CLOUDFLARE_VIDEOS_BASE_URL}/tutorial-contratos.mp4`, title: "Contrato assinado no celular" },
+        { url: `${CLOUDFLARE_VIDEOS_BASE_URL}/tutorial-carteirinha.mp4`, title: "Carteirinha do aluno" },
       ],
-      ctaText: "Começar 15 dias grátis",
-      ctaLink: "/cadastro",
+      ...STORY_CTA,
     },
   },
   {
-    tag: "Controle de Gastos",
-    tagColor: "bg-rose-50 text-rose-700 border-rose-200",
-    headline: "Registre e controle todas as despesas da sua van",
+    tag: "Rota tranquila",
+    headline: "Chamada na palma da mão e pais avisados sem você digitar",
     bullets: [
-      "Combustível, troca de óleo, mecânico e manutenção em segundos",
-      "Tenha controle de quanto está gastando com sua van por mês",
-      "Pare de misturar o dinheiro da vida pessoal com os custos da sua van",
-    ],
-    mockup: mockupGastos,
-    alt: "Tela de controle de gastos e despesas da van escolar",
-    videoStory: {
-      videos: [
-        {
-          url: `${CLOUDFLARE_VIDEOS_BASE_URL}/tutorial-gastos.mp4`,
-          title: "Como Registrar Gastos da Van",
-        },
-      ],
-      ctaText: "Começar 15 dias grátis",
-      ctaLink: "/cadastro",
-    },
-  },
-  {
-    tag: "Carteirinha do Aluno",
-    tagColor: "bg-purple-50 text-purple-700 border-purple-200",
-    headline: "Carteirinha digital do aluno: tudo no celular dos pais",
-    bullets: [
-      "Histórico de pagamentos, parcelas e recibos disponíveis para os pais",
-      "Os pais baixam o app e acessam a carteirinha digital do filho",
-      "Menos mensagens e dúvidas repetitivas no seu WhatsApp",
-    ],
-    mockup: mockupCarteirinha,
-    alt: "Carteirinha digital e portal acessados pelos pais dos alunos",
-    videoStory: {
-      videos: [
-        {
-          url: `${CLOUDFLARE_VIDEOS_BASE_URL}/tutorial-carteirinha.mp4`,
-          title: "Carteirinha Digital do Aluno",
-        },
-      ],
-      ctaText: "Começar 15 dias grátis",
-      ctaLink: "/cadastro",
-    },
-  },
-  {
-    tag: "Lista de Alunos",
-    tagColor: "bg-amber-50 text-amber-800 border-amber-200",
-    headline: "Todos os seus alunos e dados organizados em um só lugar",
-    bullets: [
-      "Mande seu link pelo WhatsApp e o pai preenche tudo sozinho — a carteirinha e os dados já entram prontos no app",
-      "Endereço de embarque, escola, turno e quem está autorizado a buscar a criança sempre à mão",
-      "Precisa falar com a família? Encontre o telefone do pai, o endereço ou o contato de emergência em segundos",
-    ],
-    mockup: mockupAlunos,
-    alt: "Lista de alunos e responsáveis organizados no aplicativo Van360",
-    balloonText: "Pai, segue o link para cadastrar os dados do aluno.",
-    videoStory: {
-      videos: [
-        {
-          url: `${CLOUDFLARE_VIDEOS_BASE_URL}/tutorial-alunos-lista.mp4`,
-          title: "Lista de Alunos e Organização",
-        },
-        {
-          url: `${CLOUDFLARE_VIDEOS_BASE_URL}/tutorial-alunos-solicitacoes.mp4`,
-          title: "Solicitações de Cadastro dos Pais",
-        },
-      ],
-      ctaText: "Começar 15 dias grátis",
-      ctaLink: "/cadastro",
-    },
-  },
-  {
-    tag: "Rotas & Lista de Chamada",
-    tagColor: "bg-slate-100 text-slate-800 border-slate-200",
-    headline: "Organize suas rotas e faça a lista de chamada na escola",
-    bullets: [
-      "Ordem de embarque e desembarque organizada no seu celular",
-      "Faça a lista de chamada na porta da van ou na saída da escola em segundos",
-      "Saiba na hora quem embarcou, quem faltou e evite esquecimentos",
+      "Faça a chamada na porta da van ou na saída da escola",
+      "Os pais recebem aviso quando a rota começa, no embarque e no desembarque",
+      "Endereço, escola e contato de cada aluno sempre à mão",
     ],
     mockup: mockupChamada,
-    alt: "Organização de rotas e lista de chamada escolar no aplicativo Van360",
+    alt: "Lista de chamada da van escolar no Van360",
     videoStory: {
       videos: [
-        {
-          url: `${CLOUDFLARE_VIDEOS_BASE_URL}/tutorial-rotas.mp4`,
-          title: "Rotas e Chamada na Escola",
-        },
+        { url: `${CLOUDFLARE_VIDEOS_BASE_URL}/tutorial-rotas.mp4`, title: "Rotas e chamada" },
+        { url: `${CLOUDFLARE_VIDEOS_BASE_URL}/tutorial-alunos-lista.mp4`, title: "Lista de alunos" },
       ],
-      ctaText: "Começar 15 dias grátis",
-      ctaLink: "/cadastro",
+      ...STORY_CTA,
     },
   },
   {
-    tag: "Relatório de Lucro",
-    tagColor: "bg-emerald-50 text-emerald-800 border-emerald-200",
-    headline: "Saiba exatamente quanto você lucrou no mês",
+    tag: "Saber quanto sobra",
+    headline: "Veja quanto entrou, quanto gastou e quanto sobrou no mês",
     bullets: [
-      "Faturamento bruto, despesas operacionais e lucro líquido calculados na hora",
-      "Visão clara do fluxo de caixa sem precisar quebrar a cabeça com planilhas",
-      "Tome decisões com segurança sabendo exatamente a saúde do seu negócio",
+      "Anote combustível, óleo e mecânico em segundos",
+      "Separe o dinheiro da van do dinheiro de casa",
+      "O lucro do mês calculado sozinho, sem planilha",
     ],
     mockup: mockupRelatorios,
-    alt: "Relatório financeiro e de lucros da van no aplicativo Van360",
+    alt: "Relatório de lucro do mês no Van360",
     videoStory: {
       videos: [
-        {
-          url: `${CLOUDFLARE_VIDEOS_BASE_URL}/tutorial-relatorios.mp4`,
-          title: "Relatório Financeiro e de Lucro",
-        },
+        { url: `${CLOUDFLARE_VIDEOS_BASE_URL}/tutorial-gastos.mp4`, title: "Controle de gastos" },
+        { url: `${CLOUDFLARE_VIDEOS_BASE_URL}/tutorial-relatorios.mp4`, title: "Relatório de lucro" },
       ],
-      ctaText: "Começar 15 dias grátis",
-      ctaLink: "/cadastro",
+      ...STORY_CTA,
     },
   },
 ];
 
-export const painPoints: PainPointItem[] = [
-  {
-    icon: "📒",
-    title: "Descontrole Financeiro",
-    text: "Anota tudo no caderninho e no fim do mês não sabe o que entrou e o que não entrou.",
-  },
-  {
-    icon: "⏰",
-    title: "Trabalho Manual",
-    text: "Perde horas conferindo pagamentos um a um na mão.",
-  },
-  {
-    icon: "😤",
-    title: "Combinados de Boca",
-    text: "Gera estresse com os responsáveis porque os acordos não ficam registrados.",
-  },
-  {
-    icon: "📱",
-    title: "Sufoco no WhatsApp",
-    text: "Gasta o seu tempo de descanso cobrando os pais e tirando dúvidas.",
-  },
-  {
-    icon: "🧾",
-    title: "Falta de Documentos",
-    text: "Responsável pede recibo ou contrato e você não tem nada pronto para enviar.",
-  },
-  {
-    icon: "💼",
-    title: "Imagem Amadora",
-    text: "Você trabalha duro, mas a falta de organização não passa profissionalismo.",
-  },
+/** Grid "E tem mais" abaixo dos 4 blocos. */
+export const extraFeatures: ExtraFeatureItem[] = [
+  { icon: "🪪", title: "Carteirinha do aluno", text: "Parcelas, contrato e dados de cada aluno juntos" },
+  { icon: "👨‍👩‍👧", title: "App dos pais", text: "Os pais consultam recibos e contratos sem te chamar" },
+  { icon: "🚌", title: "Fretes e passeios", text: "Organize as viagens extras junto com a rota" },
+  { icon: "🧾", title: "Comprovante anual", text: "Gerado sozinho quando o aluno quita o ano" },
+  { icon: "🔁", title: "Renovação de contrato", text: "Renove os alunos para o próximo ano pelo app" },
+  { icon: "👥", title: "Motoristas e monitores", text: "Sua equipe com acesso às rotas" },
+  { icon: "📱", title: "Celular, tablet e computador", text: "Tudo sincronizado, no Android, iPhone ou navegador" },
+  { icon: "💬", title: "Suporte humano", text: "Gente de verdade no WhatsApp para te ajudar" },
 ];
 
 export const howItWorks: HowItWorksItem[] = [
   {
     n: "1",
     title: "Crie sua conta grátis",
-    desc: "Sem cartão, sem compromisso. Em segundos você faz seu cadastro.",
+    desc: "Sem cartão e sem compromisso. Você testa com os seus alunos de verdade.",
   },
   {
     n: "2",
-    title: "Cadastre seus alunos sem esforço",
-    desc: "Mande um link pro pai pelo WhatsApp. Ele preenche os dados do filho e pronto — aparece na sua lista.",
+    title: "Mande o link para os pais",
+    desc: "Eles preenchem os dados dos filhos pelo WhatsApp. Você só aprova.",
   },
   {
     n: "3",
-    title: "Pronto. Tudo organizado.",
-    desc: "Parcelas, rotas, contratos e recibos — no seu celular.",
+    title: "Deixe o Van360 lembrar os pais",
+    desc: "Você acompanha quem pagou pelo celular. Se travar em algo, o suporte te ajuda.",
   },
 ];
-
-export const testimonialsData: TestimonialItem[] = [
-  {
-    name: "Rota Alegre Transporte Escolar",
-    role: "Brasília, DF • 110 alunos",
-    quote:
-      "Na saída da escola, poder fazer a chamada pelo app é muito mais prático do que no papel. Em um minuto já sei certinho quem embarcou.",
-    rating: "5/5",
-    logo: "/assets/depoimentos/rota-alegre-transporte-escolar.png",
-  },
-  {
-    name: "Tio Beto",
-    role: "São Paulo, SP • 60 alunos",
-    quote:
-      "Os pais assinam o contrato direto pelo link no celular. Agora não preciso mais imprimir e levar o contrato de porta em porta dos pais.",
-    rating: "5/5",
-    logo: "/assets/depoimentos/tio-beto.png",
-  },
-  {
-    name: "Escolar Tio Saulo",
-    role: "Belo Horizonte, MG • 320 alunos",
-    quote:
-      "Deixei minhas planilhas de lado de vez. O app me mostra na hora quem já pagou o mês e quem está pendente com total clareza.",
-    rating: "5/5",
-    logo: "/assets/depoimentos/escolar-tio-saulo.png",
-  },
-  {
-    name: "Tia Lu Kids",
-    role: "Rio de Janeiro, RJ • 90 alunos",
-    quote:
-      "O suporte é rápido de verdade e o melhor é não precisar mais ficar cobrando os pais. O app avisa todo mundo certinho no WhatsApp.",
-    rating: "5/5",
-    logo: "/assets/depoimentos/tia-lu-kids.png",
-  },
-  {
-    name: "Tio Rodrigo & Tia Paula",
-    role: "Curitiba, PR • 260 alunos",
-    quote:
-      "Desde o mês passado já reduzi a inadimplência de 3 pais. Foram quase 700 reais que talvez eu nem fosse receber, mas o app cobrou os pais sozinho.",
-    rating: "5/5",
-    logo: "/assets/depoimentos/tio-rodrigo-tia-paula.png",
-  },
-];
-
-export const featuredVideoStory: FeaturedVideoTestimonial = {
-  videoUrl: `${SUPABASE_VIDEOS_BASE_URL}/lp-depoimento.mp4`,
-  poster: "/assets/depoimentos/tio-marcos.webp",
-  name: "Tio Marcos",
-  role: "São Paulo, SP • 360 alunos",
-  badge: "Depoimento real em vídeo",
-  headline:
-    "Antes eu nem sabia quem me devia no fim do mês. Hoje o Van360 cobra os pais e eu sei exatamente quanto entra, quanto sai e o que sobra.",
-  bullets: [
-    "Fim da papelada e do caderno: contratos assinados na tela do celular e envio de recibos em 1 toque.",
-    "Cobrança automática no WhatsApp: o app mostra na hora quem já pagou e quanto ainda tem para receber.",
-    "Controle financeiro real: clareza de quanto entra, quanto sai de despesas e o que realmente sobra no mês.",
-  ],
-  rating: "5.0",
-};
 
 export const getFaqItems = (monthlyPriceFormatted: string): FaqItem[] => [
   {
@@ -528,6 +264,14 @@ export const getFaqItems = (monthlyPriceFormatted: string): FaqItem[] => [
   {
     q: "Preciso pagar para começar a utilizar?",
     a: "Não. Os 15 dias de teste são 100% grátis, sem necessidade de cadastrar cartão e sem compromisso. Você testa todos os recursos com seus dados reais e só decide se quer continuar depois.",
+  },
+  {
+    q: "E se eu não for bom com aplicativo?",
+    a: "Sem problema. O Van360 foi feito para ser simples como o WhatsApp, e você tem suporte humano pelo WhatsApp para tirar qualquer dúvida, inclusive à noite. Cada tela do app também tem vídeos curtos mostrando como usar.",
+  },
+  {
+    q: "Vou ter que digitar aluno por aluno?",
+    a: "Não precisa. Você manda um link para os pais pelo WhatsApp, eles preenchem os dados do filho e você só confere o valor e o dia de vencimento para aprovar. Se preferir, também pode cadastrar direto no app.",
   },
   {
     q: "Onde posso usar o Van360?",

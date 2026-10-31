@@ -19,7 +19,7 @@ const { faqItems } = Astro.props;
         Dúvidas frequentes
       </h2>
       <p
-        class="text-[1.05rem] text-slate-500 max-w-[560px] mx-auto mb-10"
+        class="text-[1.05rem] text-slate-600 max-w-[560px] mx-auto mb-10"
       >
         Se a sua dúvida não estiver aqui, manda no WhatsApp que a gente
         responde.
@@ -32,14 +32,14 @@ const { faqItems } = Astro.props;
           <div class="lp-reveal">
             <div class="border-b border-slate-200">
               <button
-                class="faq-button w-full flex items-center justify-between py-5 text-left text-[#1a3a5c] font-semibold text-base hover:text-[#f59e0b] transition-colors gap-3 cursor-pointer"
+                class="faq-button w-full flex items-center justify-between py-5 text-left text-[#1a3a5c] font-semibold text-[1.05rem] sm:text-[1.1rem] hover:text-[#b45309] transition-colors gap-3 cursor-pointer"
                 aria-expanded="false"
               >
                 <span>{item.q}</span>
                 <ChevronDown class="faq-icon w-5 h-5 flex-shrink-0 transition-transform duration-200" />
               </button>
               <div class="overflow-hidden transition-all duration-300 max-h-0">
-                <p class="pb-5 text-[0.92rem] text-slate-500 leading-relaxed text-left">
+                <p class="pb-5 text-[1rem] text-slate-700 leading-relaxed text-left">
                   {item.a}
                 </p>
               </div>
@@ -56,9 +56,9 @@ const { faqItems } = Astro.props;
             href={LINKS.APP_REGISTER_URL}
             class="inline-flex items-center justify-center bg-[#f59e0b] hover:bg-[#d97706] text-[#1a1a1a] font-black text-base px-8 py-3.5 rounded-xl shadow-md hover:scale-[1.02] transition-all min-h-[46px]"
           >
-            Começar 15 dias grátis →
+            Testar 15 dias grátis →
           </a>
-          <p class="text-xs text-slate-400 mt-2 font-medium">
+          <p class="text-sm text-slate-500 mt-2 font-medium">
             Sem cartão de crédito · Sem compromisso
           </p>
         </div>
