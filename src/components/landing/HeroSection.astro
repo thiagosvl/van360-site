@@ -24,12 +24,12 @@ const chips = [
         <div
           class="inline-flex items-center gap-1.5 bg-[#f59e0b]/15 px-3.5 py-1.5 rounded-full text-[#92400e] font-bold text-[13px] mb-4"
         >
-          🚐 Para motoristas do transporte escolar
+          🚐 Para o transporte escolar
         </div>
 
         <h1
           style="text-wrap: balance;"
-          class="text-[1.85rem] leading-[1.12] sm:text-[2.4rem] lg:text-[3rem] lg:leading-[1.08] font-black tracking-tight text-[#1a3a5c] mb-4"
+          class="text-[1.65rem] min-[360px]:text-[1.85rem] leading-[1.12] sm:text-[2.4rem] lg:text-[3rem] lg:leading-[1.08] font-black tracking-tight text-[#1a3a5c] mb-4"
         >
           Mensalidades, contratos e alunos da sua van,
           <span class="text-[#d97706]">tudo no celular.</span>
@@ -42,10 +42,10 @@ const chips = [
           no celular e deixe o Van360 lembrar os pais do Pix pelo WhatsApp.
         </p>
 
-        <ul class="grid grid-cols-3 sm:flex sm:flex-wrap justify-center lg:justify-start gap-2 mb-6">
+        <ul class="grid grid-cols-3 sm:flex sm:flex-wrap justify-center lg:justify-start gap-1.5 min-[360px]:gap-2 mb-6">
           {
             chips.map((c) => (
-              <li class="flex flex-col sm:flex-row items-center gap-1 sm:gap-1.5 bg-white border border-slate-200 rounded-2xl sm:rounded-full px-2 sm:px-3 py-2 sm:py-1.5 text-[0.8rem] sm:text-[0.92rem] leading-tight font-bold text-[#1a3a5c] shadow-sm text-center">
+              <li class="flex flex-col sm:flex-row items-center gap-1 sm:gap-1.5 bg-white border border-slate-200 rounded-2xl sm:rounded-full px-2 sm:px-3 py-2 sm:py-1.5 text-[0.74rem] min-[360px]:text-[0.8rem] sm:text-[0.92rem] leading-tight font-bold text-[#1a3a5c] shadow-sm text-center">
                 <span aria-hidden="true" class="text-[1.15rem] sm:text-base">{c.icon}</span>
                 {c.text}
               </li>
@@ -99,7 +99,7 @@ const chips = [
       </div>
 
       <!-- Visual: tela real de Parcelas + dois avisos pequenos nas bordas -->
-      <div class="relative w-full max-w-[250px] sm:max-w-[300px] lg:max-w-[340px] mx-auto">
+      <div class="relative w-full max-w-[230px] min-[360px]:max-w-[250px] sm:max-w-[300px] lg:max-w-[340px] mx-auto">
         <div
           class="relative max-h-[360px] sm:max-h-[460px] lg:max-h-none overflow-hidden"
         >
@@ -120,7 +120,7 @@ const chips = [
 
         <!-- Aviso: lembrete enviado (borda esquerda, altura da lista) -->
         <div
-          class="absolute -left-12 sm:-left-20 lg:-left-24 top-[58%] lg:top-[62%] max-w-[150px] rounded-xl bg-white border border-slate-200 shadow-[0_10px_24px_rgba(15,35,60,0.16)] px-2.5 py-2 text-left"
+          class="absolute -left-5 min-[360px]:-left-8 sm:-left-20 lg:-left-24 top-[58%] lg:top-[62%] max-w-[132px] sm:max-w-[150px] rounded-xl bg-white border border-slate-200 shadow-[0_10px_24px_rgba(15,35,60,0.16)] px-2.5 py-2 text-left"
           style="animation: lp-countUp .6s cubic-bezier(0.34, 1.56, 0.64, 1) .5s both;"
           aria-hidden="true"
         >
@@ -135,7 +135,7 @@ const chips = [
 
         <!-- Aviso: contrato assinado (borda direita, no topo) -->
         <div
-          class="absolute -right-12 sm:-right-20 lg:-right-20 top-[6%] max-w-[146px] rounded-xl bg-white border border-slate-200 shadow-[0_10px_24px_rgba(15,35,60,0.16)] px-2.5 py-2 text-left"
+          class="absolute -right-5 min-[360px]:-right-8 sm:-right-20 lg:-right-20 top-[6%] max-w-[128px] sm:max-w-[146px] rounded-xl bg-white border border-slate-200 shadow-[0_10px_24px_rgba(15,35,60,0.16)] px-2.5 py-2 text-left"
           style="animation: lp-countUp .6s cubic-bezier(0.34, 1.56, 0.64, 1) .8s both;"
           aria-hidden="true"
         >

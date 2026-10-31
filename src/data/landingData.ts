@@ -248,16 +248,12 @@ export const howItWorks: HowItWorksItem[] = [
   },
   {
     n: "3",
-    title: "Deixe o Van360 lembrar os pais",
-    desc: "Você acompanha quem pagou pelo celular. Se travar em algo, o suporte te ajuda.",
+    title: "Pronto, é só acompanhar",
+    desc: "O Van360 lembra os pais e você vê quem pagou, contratos e recibos pelo celular.",
   },
 ];
 
 export const getFaqItems = (monthlyPriceFormatted: string): FaqItem[] => [
-  {
-    q: "O que o Van360 faz?",
-    a: "O Van360 é a plataforma completa para transporte escolar: organize seus alunos, automatize a cobrança de parcelas pelo WhatsApp, monte rotas com chamada por escola na volta, disponibilize portal exclusivo para os pais, gere contratos digitais com assinatura na tela do celular, controle gastos e envie recibos aos pais.",
-  },
   {
     q: "Preciso pagar para começar a utilizar?",
     a: "Não. Os 15 dias de teste são 100% grátis, sem necessidade de cadastrar cartão e sem compromisso. Você testa todos os recursos com seus dados reais e só decide se quer continuar depois.",
@@ -273,10 +269,6 @@ export const getFaqItems = (monthlyPriceFormatted: string): FaqItem[] => [
   {
     q: "Onde posso usar o Van360?",
     a: "Em qualquer lugar. Funciona no navegador do celular, tablet ou computador — sem baixar nada. Se preferir, você e os responsáveis também podem baixar o aplicativo oficial na Google Play (Android) ou na App Store (iPhone).",
-  },
-  {
-    q: "Existe limite de rotas, escolas ou veículos?",
-    a: "Não há limite para rotas, escolas ou veículos. Para o cadastro de alunos, nossos planos são estruturados para atender com tranquilidade toda a operação da sua van.",
   },
   {
     q: "Como funcionam os lembretes de cobrança no WhatsApp?",

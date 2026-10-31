@@ -29,7 +29,7 @@ const { features, extraFeatures } = Astro.props;
       {
         features.map((feat, i) => (
           <article class="lp-reveal bg-white rounded-3xl border border-slate-200/70 shadow-sm overflow-hidden">
-            <div class="flex flex-col lg:grid lg:grid-cols-2 lg:items-center gap-2 lg:gap-12 p-5 sm:p-8 lg:p-12">
+            <div class="flex flex-col lg:grid lg:grid-cols-2 lg:items-center gap-2 lg:gap-12 p-4 min-[360px]:p-5 sm:p-8 lg:p-12">
               <div class={`text-left ${i % 2 === 0 ? "lg:order-1" : "lg:order-2"}`}>
                 <span class="inline-flex items-center text-[0.85rem] font-extrabold text-[#92400e] bg-[#f59e0b]/15 px-3 py-1 rounded-full mb-3">
                   {feat.tag}
@@ -86,14 +86,14 @@ const { features, extraFeatures } = Astro.props;
       <h3 class="text-center text-[1.35rem] sm:text-[1.6rem] font-extrabold text-[#1a3a5c] mb-6">
         E tem mais
       </h3>
-      <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+      <ul class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 md:gap-4">
         {
           extraFeatures.map((x) => (
-            <li class="flex items-start gap-3 bg-white rounded-2xl border border-slate-200/70 p-4">
+            <li class="flex flex-col sm:flex-row items-start gap-2 sm:gap-3 bg-white rounded-2xl border border-slate-200/70 p-3 sm:p-4">
               <span class="text-[1.5rem] leading-none shrink-0" aria-hidden="true">{x.icon}</span>
               <span>
-                <span class="block text-[1.02rem] font-bold text-[#1a3a5c] leading-tight">{x.title}</span>
-                <span class="block text-[0.95rem] text-slate-600 mt-1 leading-snug">{x.text}</span>
+                <span class="block text-[0.95rem] sm:text-[1.02rem] font-bold text-[#1a3a5c] leading-tight">{x.title}</span>
+                <span class="block text-[0.85rem] sm:text-[0.95rem] text-slate-600 mt-1 leading-snug">{x.text}</span>
               </span>
             </li>
           ))
