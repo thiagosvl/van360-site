@@ -232,16 +232,16 @@ export const features: FeatureItem[] = [
     mockup: mockupParcelasPagas,
     alt: "Cobrança automática via WhatsApp no aplicativo Van360",
     balloonText: "A parcela de julho do Pedro vence amanhã.",
-    /* videoStory: {
+    videoStory: {
       videos: [
         {
-          url: `${SUPABASE_VIDEOS_BASE_URL}/parcelas-1.mp4`,
+          url: `${CLOUDFLARE_VIDEOS_BASE_URL}/tutorial-parcelas.mp4`,
           title: "Cobrança Automática no WhatsApp",
         },
       ],
       ctaText: "Começar 15 dias grátis",
       ctaLink: "/cadastro",
-    }, */
+    },
   },
   {
     tag: "Controle de Pagamentos",
@@ -254,16 +254,16 @@ export const features: FeatureItem[] = [
     ],
     mockup: mockupParcelas,
     alt: "Painel de controle de pagamentos no Van360",
-    /* videoStory: {
+    videoStory: {
       videos: [
         {
-          url: `${SUPABASE_VIDEOS_BASE_URL}/parcelas-2.mp4`,
+          url: `${CLOUDFLARE_VIDEOS_BASE_URL}/tutorial-parcelas.mp4`,
           title: "Controle de Pagamentos e Inadimplência",
         },
       ],
       ctaText: "Começar 15 dias grátis",
       ctaLink: "/cadastro",
-    }, */
+    },
   },
   {
     tag: "Recibos aos pais",
@@ -290,6 +290,16 @@ export const features: FeatureItem[] = [
     mockup: mockupContrato,
     alt: "Assinatura de contrato digital no celular",
     balloonText: "Pai, segue o contrato de transporte escolar.",
+    videoStory: {
+      videos: [
+        {
+          url: `${CLOUDFLARE_VIDEOS_BASE_URL}/tutorial-contratos.mp4`,
+          title: "Contratos Digitais Assinados no Celular",
+        },
+      ],
+      ctaText: "Começar 15 dias grátis",
+      ctaLink: "/cadastro",
+    },
   },
   {
     tag: "Controle de Gastos",
@@ -302,16 +312,16 @@ export const features: FeatureItem[] = [
     ],
     mockup: mockupGastos,
     alt: "Tela de controle de gastos e despesas da van escolar",
-    /* videoStory: {
+    videoStory: {
       videos: [
         {
-          url: `${SUPABASE_VIDEOS_BASE_URL}/gastos-2.mp4`,
+          url: `${CLOUDFLARE_VIDEOS_BASE_URL}/tutorial-gastos.mp4`,
           title: "Como Registrar Gastos da Van",
         },
       ],
       ctaText: "Começar 15 dias grátis",
       ctaLink: "/cadastro",
-    }, */
+    },
   },
   {
     tag: "Carteirinha do Aluno",
@@ -324,6 +334,16 @@ export const features: FeatureItem[] = [
     ],
     mockup: mockupCarteirinha,
     alt: "Carteirinha digital e portal acessados pelos pais dos alunos",
+    videoStory: {
+      videos: [
+        {
+          url: `${CLOUDFLARE_VIDEOS_BASE_URL}/tutorial-carteirinha.mp4`,
+          title: "Carteirinha Digital do Aluno",
+        },
+      ],
+      ctaText: "Começar 15 dias grátis",
+      ctaLink: "/cadastro",
+    },
   },
   {
     tag: "Lista de Alunos",
@@ -337,6 +357,20 @@ export const features: FeatureItem[] = [
     mockup: mockupAlunos,
     alt: "Lista de alunos e responsáveis organizados no aplicativo Van360",
     balloonText: "Pai, segue o link para cadastrar os dados do aluno.",
+    videoStory: {
+      videos: [
+        {
+          url: `${CLOUDFLARE_VIDEOS_BASE_URL}/tutorial-alunos-lista.mp4`,
+          title: "Lista de Alunos e Organização",
+        },
+        {
+          url: `${CLOUDFLARE_VIDEOS_BASE_URL}/tutorial-alunos-solicitacoes.mp4`,
+          title: "Solicitações de Cadastro dos Pais",
+        },
+      ],
+      ctaText: "Começar 15 dias grátis",
+      ctaLink: "/cadastro",
+    },
   },
   {
     tag: "Rotas & Lista de Chamada",
@@ -371,6 +405,16 @@ export const features: FeatureItem[] = [
     ],
     mockup: mockupRelatorios,
     alt: "Relatório financeiro e de lucros da van no aplicativo Van360",
+    videoStory: {
+      videos: [
+        {
+          url: `${CLOUDFLARE_VIDEOS_BASE_URL}/tutorial-relatorios.mp4`,
+          title: "Relatório Financeiro e de Lucro",
+        },
+      ],
+      ctaText: "Começar 15 dias grátis",
+      ctaLink: "/cadastro",
+    },
   },
 ];
 
