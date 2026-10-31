@@ -1,7 +1,7 @@
-import mockupContrato from "../assets/lp/mockup-contrato.webp";
-import mockupChamada from "../assets/lp/mockup-chamada.webp";
-import mockupParcelasPagas from "../assets/lp/mockup-parcelas-pagas.webp";
-import mockupRelatorios from "../assets/lp/mockup-relatorios.webp";
+import mockupContrato from "../assets/lp/v2/contratos.webp";
+import mockupChamada from "../assets/lp/v2/chamada.webp";
+import mockupParcelasPagas from "../assets/lp/v2/recibo.webp";
+import mockupRelatorios from "../assets/lp/v2/relatorios.webp";
 
 export interface PlanFeatureItem {
   feature: string;
@@ -20,7 +20,6 @@ export interface FeatureItem {
   bullets: string[];
   mockup: typeof mockupParcelasPagas;
   alt: string;
-  balloonText?: string;
   videoStory?: VideoStoryEntry;
 }
 
@@ -152,15 +151,14 @@ export const additionalPlanFeatures: PlanFeatureItem[] = [
 export const features: FeatureItem[] = [
   {
     tag: "Receber em dia",
-    headline: "Saiba quem pagou e quem deve, sem conferir extrato",
+    headline: "Receba em dia sem ficar cobrando pai por pai",
     bullets: [
       "O lembrete com o seu Pix chega sozinho no WhatsApp do pai",
       "Atrasados, a vencer e pagos separados na tela",
       "Recibo com o seu logo enviado ao pai em 1 toque",
     ],
     mockup: mockupParcelasPagas,
-    alt: "Tela de parcelas do Van360 com pagamentos recebidos",
-    balloonText: "Pai, segue o recibo de setembro. Obrigado!",
+    alt: "Recibo de pagamento do Van360 pronto para enviar ao pai",
     videoStory: {
       videos: [
         { url: `${CLOUDFLARE_VIDEOS_BASE_URL}/tutorial-parcelas.mp4`, title: "Lembrete e controle de pagamentos" },
@@ -177,8 +175,7 @@ export const features: FeatureItem[] = [
       "Contrato assinado na tela do celular, sem imprimir nem ir de casa em casa",
     ],
     mockup: mockupContrato,
-    alt: "Contrato digital de transporte escolar no Van360",
-    balloonText: "Pai, segue o contrato para assinar.",
+    alt: "Tela de contratos do Van360 com contratos assinados pelos pais",
     videoStory: {
       videos: [
         { url: `${CLOUDFLARE_VIDEOS_BASE_URL}/tutorial-alunos-solicitacoes.mp4`, title: "Cadastro de alunos pelo link" },
@@ -197,7 +194,7 @@ export const features: FeatureItem[] = [
       "Endereço, escola e contato de cada aluno sempre à mão",
     ],
     mockup: mockupChamada,
-    alt: "Lista de chamada da van escolar no Van360",
+    alt: "Chamada na escola no Van360 com alunos presentes e ausentes",
     videoStory: {
       videos: [
         { url: `${CLOUDFLARE_VIDEOS_BASE_URL}/tutorial-rotas.mp4`, title: "Rotas e chamada" },

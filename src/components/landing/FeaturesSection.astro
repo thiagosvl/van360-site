@@ -63,15 +63,6 @@ const { features, extraFeatures } = Astro.props;
 
               <div class={`flex justify-center ${i % 2 === 0 ? "lg:order-2" : "lg:order-1"}`}>
                 <div class="relative w-full max-w-[260px] sm:max-w-[280px] lg:max-w-[320px] mt-6 lg:mt-0 feature-phone">
-                  {feat.balloonText && (
-                    <div
-                      class="absolute z-20 -left-6 sm:-left-10 top-6 max-w-[190px] rounded-2xl bg-[#e7ffdb] border border-emerald-100 shadow-[0_8px_24px_rgba(0,0,0,0.14)] px-3 py-2.5 text-left pointer-events-none"
-                      aria-hidden="true"
-                    >
-                      <div class="text-[0.72rem] font-bold text-emerald-800 mb-0.5">WhatsApp enviado</div>
-                      <div class="text-[0.85rem] text-slate-800 leading-snug">{feat.balloonText}</div>
-                    </div>
-                  )}
                   <div class="relative max-h-[330px] sm:max-h-[380px] lg:max-h-none overflow-hidden">
                   <Image
                     src={feat.mockup}

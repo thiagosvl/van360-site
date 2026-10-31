@@ -1,7 +1,7 @@
 ---
 import { LINKS } from "../../constants/links";
 import { Image } from "astro:assets";
-import mockup3dHome from "../../assets/lp/mockup-3d-home.webp";
+import mockupAprovacao from "../../assets/lp/v2/aprovacao.webp";
 import type { HowItWorksItem } from "../../data/landingData";
 
 interface Props {
@@ -45,12 +45,12 @@ const { howItWorks } = Astro.props;
     </div>
 
     <div class="lp-reveal mt-8 flex justify-center">
-      <div class="max-w-[360px] md:max-w-[480px] w-full hero-phone">
+      <div class="max-w-[240px] md:max-w-[280px] w-full">
         <Image
-          src={mockup3dHome}
-          alt="Dashboard do Van360 com primeiros passos"
-          widths={[320, 480]}
-          sizes="(max-width: 768px) 100vw, 480px"
+          src={mockupAprovacao}
+          alt="Tela do Van360 para revisar e aprovar o cadastro feito pelo pai"
+          widths={[280, 560]}
+          sizes="280px"
           class="w-full h-auto"
         />
       </div>
