@@ -24,7 +24,7 @@ import {
   features,
   howItWorks,
   getFaqItems,
-  SUPABASE_VIDEOS_BASE_URL,
+  CLOUDFLARE_VIDEOS_BASE_URL,
   videoCommerceStories,
 } from "../data/landingData";
 
@@ -214,7 +214,7 @@ const schemaJson = JSON.stringify([
     <StickyMobileCta />
 
     <VideoCommerce
-      previewUrl={`${SUPABASE_VIDEOS_BASE_URL}/lp-videocommerce-parcelas.mp4`}
+      previewUrl={`${CLOUDFLARE_VIDEOS_BASE_URL}/apresentacao-van360-com-audio.mp4`}
       videosData={videoCommerceStories}
       tooltipText="Veja como funciona"
       positionClasses="fixed z-40 left-4 sm:left-6 bottom-20 sm:bottom-8"

@@ -95,16 +95,8 @@ export const CLOUDFLARE_VIDEOS_BASE_URL =
 
 export const videoCommerceStories = [
   {
-    url: `${SUPABASE_VIDEOS_BASE_URL}/lp-videocommerce-parcelas.mp4`,
-    title: "Controle Financeiro",
-  },
-  {
-    url: `${SUPABASE_VIDEOS_BASE_URL}/lp-videocommerce-contratos.mp4`,
-    title: "Contratos Digitais",
-  },
-  {
-    url: `${SUPABASE_VIDEOS_BASE_URL}/lp-videocommerce-gastos.mp4`,
-    title: "Controle de Gastos",
+    url: `${CLOUDFLARE_VIDEOS_BASE_URL}/apresentacao-van360-com-audio.mp4`,
+    title: "Conheça o Van360",
   },
 ];
 
