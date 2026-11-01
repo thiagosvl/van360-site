@@ -1,5 +1,37 @@
 ---
 import { LINKS } from "../../constants/links";
+import { Image } from "astro:assets";
+import msgContrato from "../../assets/lp/v2/msg-contrato.webp";
+import msgLembrete from "../../assets/lp/v2/msg-lembrete.webp";
+import resumoParcelas from "../../assets/lp/v2/resumo-parcelas.webp";
+
+/** Imagens geradas das telas e mensagens reais (projeto van360-videos, src/loja/LP.tsx). */
+const passos = [
+  {
+    n: "1",
+    titulo: "O pai assina o contrato pelo celular",
+    texto: "Ele recebe no WhatsApp, assina com o dedo e pronto. O cadastro do filho também é pelo seu link. Sem imprimir nada.",
+    img: msgContrato,
+    alt: "Mensagem real do WhatsApp com o contrato pronto para o pai assinar",
+    selo: "Enviado automaticamente",
+  },
+  {
+    n: "2",
+    titulo: "O lembrete do Pix chega no WhatsApp do pai",
+    texto: "No dia do vencimento e, se atrasar, de novo. Você não precisa cobrar ninguém.",
+    img: msgLembrete,
+    alt: "Mensagem real do WhatsApp avisando o pai que a parcela vence hoje, com botão para copiar o Pix",
+    selo: "Enviado automaticamente",
+  },
+  {
+    n: "3",
+    titulo: "Você vê quem pagou e quanto falta",
+    texto: "Recebido, a receber e em atraso numa tela só. Pagou, o recibo com o seu logo vai pro pai em 1 toque.",
+    img: resumoParcelas,
+    alt: "Resumo de parcelas do Van360 com valor recebido, a receber e em atraso",
+    selo: "No seu celular",
+  },
+];
 ---
 
 <section id="como-funciona-mes" class="pt-10 pb-14 md:py-20 bg-white scroll-mt-20">
@@ -15,77 +47,35 @@ import { LINKS } from "../../constants/links";
       </p>
     </div>
 
-    <ol class="grid lg:grid-cols-3 gap-5 lg:gap-6 max-w-[560px] lg:max-w-[1000px] mx-auto">
-      <!-- 1 -->
-      <li class="lp-reveal rounded-3xl bg-[#f6f8fb] border border-slate-200/80 p-5 sm:p-6 flex flex-col">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="w-9 h-9 rounded-full bg-[#1a3a5c] text-white font-extrabold flex items-center justify-center shrink-0">1</span>
-          <h3 class="text-[1.15rem] font-extrabold text-[#1a3a5c] leading-tight">
-            O pai cadastra o filho e assina o contrato
-          </h3>
-        </div>
-        <div class="mt-auto rounded-2xl bg-white border border-slate-200 p-3 shadow-sm space-y-2" aria-hidden="true">
-          <div class="flex items-center justify-between rounded-xl bg-slate-50 px-3 py-2.5">
-            <span class="text-[0.92rem] font-semibold text-slate-800">Ficha do aluno</span>
-            <span class="text-[0.75rem] font-black text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-2 py-0.5">PREENCHIDA</span>
-          </div>
-          <div class="flex items-center justify-between rounded-xl bg-slate-50 px-3 py-2.5">
-            <span class="text-[0.92rem] font-semibold text-slate-800">Contrato</span>
-            <span class="text-[0.75rem] font-black text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-2 py-0.5">ASSINADO</span>
-          </div>
-        </div>
-        <p class="mt-4 text-[0.98rem] text-slate-700 leading-relaxed">
-          Você manda um link no WhatsApp. O pai preenche e assina pelo celular, sem imprimir nada.
-        </p>
-      </li>
-
-      <!-- 2 -->
-      <li class="lp-reveal rounded-3xl bg-[#f6f8fb] border border-slate-200/80 p-5 sm:p-6 flex flex-col">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="w-9 h-9 rounded-full bg-[#1a3a5c] text-white font-extrabold flex items-center justify-center shrink-0">2</span>
-          <h3 class="text-[1.15rem] font-extrabold text-[#1a3a5c] leading-tight">
-            O lembrete do Pix chega no WhatsApp do pai
-          </h3>
-        </div>
-        <div class="mt-auto rounded-2xl bg-[#e7ffdb] border border-emerald-100 p-3.5 shadow-sm" aria-hidden="true">
-          <p class="text-[0.93rem] leading-snug text-slate-800">
-            Oi! A mensalidade do <strong>Miguel</strong> vence hoje: <strong>R$ 280,00</strong>.
-          </p>
-          <div class="mt-2 rounded-lg bg-white text-center text-[0.88rem] font-bold text-[#00a884] py-1.5 border border-emerald-100">
-            Copiar código Pix
-          </div>
-        </div>
-        <p class="mt-4 text-[0.98rem] text-slate-700 leading-relaxed">
-          No dia do vencimento e, se atrasar, de novo. Você não precisa cobrar ninguém.
-        </p>
-      </li>
-
-      <!-- 3 -->
-      <li class="lp-reveal rounded-3xl bg-[#f6f8fb] border border-slate-200/80 p-5 sm:p-6 flex flex-col">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="w-9 h-9 rounded-full bg-[#1a3a5c] text-white font-extrabold flex items-center justify-center shrink-0">3</span>
-          <h3 class="text-[1.15rem] font-extrabold text-[#1a3a5c] leading-tight">
-            Você vê quem pagou e manda o recibo
-          </h3>
-        </div>
-        <div class="mt-auto rounded-2xl bg-white border border-slate-200 p-3 shadow-sm space-y-2" aria-hidden="true">
-          <div class="flex items-center justify-between rounded-xl bg-slate-50 px-3 py-2">
-            <span class="text-[0.92rem] font-semibold text-slate-800">Miguel</span>
-            <span class="text-[0.75rem] font-black text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-2 py-0.5">PAGO</span>
-          </div>
-          <div class="flex items-center justify-between rounded-xl bg-slate-50 px-3 py-2">
-            <span class="text-[0.92rem] font-semibold text-slate-800">Sofia</span>
-            <span class="text-[0.75rem] font-black text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-2 py-0.5">PAGO</span>
-          </div>
-          <div class="flex items-center justify-between rounded-xl bg-slate-50 px-3 py-2">
-            <span class="text-[0.92rem] font-semibold text-slate-800">Lucas</span>
-            <span class="text-[0.75rem] font-black text-red-700 bg-red-50 border border-red-200 rounded-full px-2 py-0.5">EM ATRASO</span>
-          </div>
-        </div>
-        <p class="mt-4 text-[0.98rem] text-slate-700 leading-relaxed">
-          O recibo com o seu logo vai pro pai em 1 toque. No fim do mês você sabe quanto entrou e quanto sobrou.
-        </p>
-      </li>
+    <ol class="grid lg:grid-cols-3 gap-5 lg:gap-6 max-w-[480px] lg:max-w-none mx-auto">
+      {
+        passos.map((p) => (
+          <li class="lp-reveal rounded-3xl bg-[#f6f8fb] border border-slate-200/80 overflow-hidden flex flex-col">
+            <div class="relative px-3 sm:px-4 pt-11 pb-5 lg:h-[345px] flex items-center justify-center bg-gradient-to-b from-[#eef2f7] to-[#f6f8fb]">
+              <span class="absolute top-3 left-4 inline-flex items-center gap-1.5 text-[0.78rem] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 rounded-full px-2.5 py-0.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                {p.selo}
+              </span>
+              <Image
+                src={p.img}
+                alt={p.alt}
+                widths={[300, 600]}
+                sizes="300px"
+                class="w-full max-w-[300px] h-auto drop-shadow-[0_10px_20px_rgba(15,35,60,0.14)]"
+              />
+            </div>
+            <div class="p-5 sm:p-6 pt-4 sm:pt-5">
+              <div class="flex items-start gap-3 mb-2">
+                <span class="w-8 h-8 rounded-full bg-[#1a3a5c] text-white font-extrabold text-[0.95rem] flex items-center justify-center shrink-0">
+                  {p.n}
+                </span>
+                <h3 class="text-[1.15rem] font-extrabold text-[#1a3a5c] leading-tight pt-1">{p.titulo}</h3>
+              </div>
+              <p class="text-[0.98rem] text-slate-700 leading-relaxed">{p.texto}</p>
+            </div>
+          </li>
+        ))
+      }
     </ol>
 
     <div class="lp-reveal text-center mt-10">

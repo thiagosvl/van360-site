@@ -5,10 +5,10 @@ import { Check } from "@lucide/astro";
 import mockupHero from "../../assets/lp/v2/parcelas.webp";
 import { heroVideoStory } from "../../data/landingData";
 
-const chips = [
-  { icon: "📋", text: "Quem pagou e quem deve" },
-  { icon: "✍️", text: "Contrato sem papel" },
-  { icon: "💬", text: "Lembrete no WhatsApp" },
+const beneficios = [
+  "Veja na hora quem pagou e quem deve",
+  "Contrato assinado no celular do pai, sem papel",
+  "Lembrete do Pix no WhatsApp dos pais",
 ];
 ---
 
@@ -21,33 +21,27 @@ const chips = [
     >
       <!-- Texto -->
       <div class="w-full max-w-[640px] mx-auto lg:mx-0 text-center lg:text-left">
-        <div
-          class="inline-flex items-center gap-1.5 bg-[#f59e0b]/15 px-3.5 py-1.5 rounded-full text-[#92400e] font-bold text-[13px] mb-4"
+        <p
+          class="inline-flex items-center gap-2 text-[0.88rem] sm:text-[0.95rem] font-semibold text-slate-600 mb-3"
         >
-          🚐 Para o transporte escolar
-        </div>
+          <span aria-hidden="true">🚐</span>
+          Mais de 500 motoristas <span class="hidden min-[360px]:inline">escolares</span> usam
+        </p>
 
         <h1
           style="text-wrap: balance;"
-          class="text-[1.65rem] min-[360px]:text-[1.85rem] leading-[1.12] sm:text-[2.4rem] lg:text-[3rem] lg:leading-[1.08] font-black tracking-tight text-[#1a3a5c] mb-4"
+          class="text-[1.65rem] min-[360px]:text-[1.85rem] leading-[1.12] sm:text-[2.4rem] lg:text-[3rem] lg:leading-[1.08] font-black tracking-tight text-[#1a3a5c] mb-5"
         >
           Mensalidades, contratos e alunos da sua van,
           <span class="text-[#d97706]">tudo no celular.</span>
         </h1>
 
-        <p
-          class="text-[1.06rem] sm:text-[1.15rem] lg:text-[1.2rem] text-slate-700 leading-relaxed mb-5 lg:max-w-[560px]"
-        >
-          Veja na hora quem pagou e quem deve, mande o contrato para o pai assinar
-          no celular e deixe o Van360 lembrar os pais do Pix pelo WhatsApp.
-        </p>
-
-        <ul class="grid grid-cols-3 sm:flex sm:flex-wrap justify-center lg:justify-start gap-1.5 min-[360px]:gap-2 mb-6">
+        <ul class="inline-flex flex-col gap-2 text-left mb-7 lg:mb-8">
           {
-            chips.map((c) => (
-              <li class="flex flex-col sm:flex-row items-center gap-1 sm:gap-1.5 bg-white border border-slate-200 rounded-2xl sm:rounded-full px-2 sm:px-3 py-2 sm:py-1.5 text-[0.74rem] min-[360px]:text-[0.8rem] sm:text-[0.92rem] leading-tight font-bold text-[#1a3a5c] shadow-sm text-center">
-                <span aria-hidden="true" class="text-[1.15rem] sm:text-base">{c.icon}</span>
-                {c.text}
+            beneficios.map((b) => (
+              <li class="flex items-start gap-2.5 text-[1rem] min-[360px]:text-[1.05rem] sm:text-[1.15rem] lg:text-[1.2rem] text-slate-700 leading-snug">
+                <Check class="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" stroke-width={3} />
+                <span>{b}</span>
               </li>
             ))
           }
@@ -78,23 +72,8 @@ const chips = [
           </button>
         </div>
 
-        <ul
-          class="flex flex-wrap justify-center lg:justify-start gap-x-4 gap-y-1.5 mt-4 text-[0.92rem] font-semibold text-slate-700"
-        >
-          <li class="inline-flex items-center gap-1.5">
-            <Check class="w-4 h-4 text-emerald-600" stroke-width={3} /> Sem cartão
-          </li>
-          <li class="inline-flex items-center gap-1.5">
-            <Check class="w-4 h-4 text-emerald-600" stroke-width={3} /> Sem fidelidade
-          </li>
-          <li class="inline-flex items-center gap-1.5">
-            <Check class="w-4 h-4 text-emerald-600" stroke-width={3} /> Suporte no WhatsApp
-          </li>
-        </ul>
-
-        <p class="hidden lg:block mt-6 text-[0.95rem] text-slate-600">
-          <strong class="text-[#1a3a5c]">Mais de 500 motoristas</strong> já organizam
-          a van com o Van360.
+        <p class="mt-3 text-[0.88rem] sm:text-[0.92rem] text-slate-500">
+          <span class="hidden min-[360px]:inline">15 dias grátis · </span>Sem cartão · Sem fidelidade
         </p>
       </div>
 
@@ -147,10 +126,7 @@ const chips = [
         </div>
       </div>
 
-      <p class="lg:hidden text-center text-[0.95rem] text-slate-600 -mt-2 mb-2">
-        <strong class="text-[#1a3a5c]">Mais de 500 motoristas</strong> já organizam a
-        van com o Van360.
-      </p>
+
     </div>
   </div>
 </section>
