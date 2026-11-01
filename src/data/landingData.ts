@@ -255,47 +255,43 @@ export const howItWorks: HowItWorksItem[] = [
 
 export const getFaqItems = (monthlyPriceFormatted: string): FaqItem[] => [
   {
-    q: "Preciso pagar para começar a utilizar?",
-    a: "Não. Os 15 dias de teste são 100% grátis, sem necessidade de cadastrar cartão e sem compromisso. Você testa todos os recursos com seus dados reais e só decide se quer continuar depois.",
+    q: "Preciso cadastrar cartão para testar?",
+    a: "Não. Os 15 dias são grátis, sem cartão e com todos os recursos liberados. Se não quiser continuar, é só não assinar: nenhuma cobrança é gerada.",
+  },
+  {
+    q: "Quanto custa depois dos 15 dias?",
+    a: `Um plano só, com tudo incluso: R$ ${monthlyPriceFormatted}/mês no plano mensal, ou o plano anual, que sai pelo preço de 10 meses. O mensal é pago no Pix ou no cartão, e o anual no Pix à vista ou em até 12x no cartão.`,
+  },
+  {
+    q: "Tem fidelidade? Posso cancelar quando quiser?",
+    a: "Não tem fidelidade nem multa. Você pode parar quando quiser.",
   },
   {
     q: "E se eu não for bom com aplicativo?",
-    a: "Sem problema. O Van360 foi feito para ser simples como o WhatsApp, e você tem suporte humano pelo WhatsApp para tirar qualquer dúvida, inclusive à noite. Cada tela do app também tem vídeos curtos mostrando como usar.",
+    a: "Sem problema. O Van360 foi feito para ser simples, cada tela tem vídeos curtos mostrando como usar e você tem suporte de gente de verdade no WhatsApp, inclusive à noite.",
+  },
+  {
+    q: "O dinheiro do pai cai direto na minha conta?",
+    a: "Sim. O lembrete que vai no WhatsApp leva a sua chave Pix, então o pai paga direto para você. Depois é só marcar como pago e o recibo fica pronto para enviar.",
+  },
+  {
+    q: "Os pais precisam baixar algum aplicativo?",
+    a: "Não precisam. O lembrete, o contrato e o recibo chegam no WhatsApp deles. Se quiserem, também podem usar o app dos pais para ver a carteirinha, os recibos e os avisos da rota.",
   },
   {
     q: "Vou ter que digitar aluno por aluno?",
     a: "Não precisa. Você manda um link para os pais pelo WhatsApp, eles preenchem os dados do filho e você só confere o valor e o dia de vencimento para aprovar. Se preferir, também pode cadastrar direto no app.",
   },
   {
-    q: "Onde posso usar o Van360?",
-    a: "Em qualquer lugar. Funciona no navegador do celular, tablet ou computador — sem baixar nada. Se preferir, você e os responsáveis também podem baixar o aplicativo oficial na Google Play (Android) ou na App Store (iPhone).",
+    q: "Funciona no meu celular?",
+    a: "Funciona no Android e no iPhone, pelo aplicativo da Google Play ou da App Store, e também pelo navegador no tablet ou no computador. Tudo fica sincronizado.",
   },
   {
-    q: "Como funcionam os lembretes de cobrança no WhatsApp?",
-    a: "O sistema automatiza o envio de avisos de cobrança aos responsáveis com a sua própria chave Pix configurada no app e o valor da parcela, reduzindo a inadimplência sem cobrança manual desgastante.",
+    q: "O contrato digital tem validade?",
+    a: "Sim. O pai assina eletronicamente na tela do celular, com validade legal conforme a legislação brasileira (MP 2.200-2/2001). Você e o pai podem baixar o contrato assinado quando quiserem.",
   },
   {
-    q: "Como os pais dos alunos acessam as informações?",
-    a: "Os responsáveis recebem um link seguro direto no WhatsApp. Pelo próprio navegador do celular, eles podem consultar a carteirinha digital do filho, conferir contratos assinados, acompanhar o status das parcelas e acessar os recibos com total comodidade.",
-  },
-  {
-    q: "Quais são as formas de pagamento disponíveis?",
-    a: "O Plano Anual pode ser pago à vista no Pix ou parcelado em até 12x no cartão de crédito. O Plano Mensal é cobrado mês a mês no cartão de crédito ou Pix.",
-  },
-  {
-    q: "E se eu não quiser continuar após os 15 dias?",
-    a: "Não acontece nada! Você não precisa cadastrar cartão de crédito para iniciar o teste. Se após os 15 dias você decidir não assinar, nenhuma cobrança é gerada e você não paga nada.",
-  },
-  {
-    q: "O contrato gerado tem validade jurídica?",
-    a: "Sim. Os contratos são digitais e assinados eletronicamente na tela do celular pelo responsável, com validade legal conforme a legislação brasileira (MP 2.200-2/2001).",
-  },
-  {
-    q: "Meus dados e os dos alunos estão seguros se a assinatura vencer?",
-    a: "Totalmente. O Van360 utiliza infraestrutura em nuvem de alta segurança com backups automáticos diários e criptografia. Todo o seu histórico de alunos, rotas, contratos e parcelas permanece guardado com total segurança.",
-  },
-  {
-    q: "Quanto vou pagar depois dos 15 dias?",
-    a: `Se você decidir continuar após os 15 dias de teste grátis, poderá optar pelo plano mensal por R$ ${monthlyPriceFormatted}/mês ou pelo plano anual (1 ano pelo preço de 10 meses). Se preferir não continuar, não há cobrança nem multa.`,
+    q: "Meus dados e os dos alunos ficam seguros?",
+    a: "Sim. Tudo fica guardado na nuvem com backup, e só você tem acesso aos dados da sua van. Mesmo se a assinatura vencer, o seu histórico de alunos, contratos e pagamentos continua guardado.",
   },
 ];

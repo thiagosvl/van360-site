@@ -1,7 +1,7 @@
 ---
 import { LINKS } from "../../constants/links";
 import { Image } from "astro:assets";
-import msgContrato from "../../assets/lp/v2/msg-contrato.webp";
+import assinatura from "../../assets/lp/v2/assinatura.webp";
 import msgLembrete from "../../assets/lp/v2/msg-lembrete.webp";
 import resumoParcelas from "../../assets/lp/v2/resumo-parcelas.webp";
 
@@ -10,10 +10,10 @@ const passos = [
   {
     n: "1",
     titulo: "O pai assina o contrato pelo celular",
-    texto: "Ele recebe no WhatsApp, assina com o dedo e pronto. O cadastro do filho também é pelo seu link. Sem imprimir nada.",
-    img: msgContrato,
-    alt: "Mensagem real do WhatsApp com o contrato pronto para o pai assinar",
-    selo: "Enviado automaticamente",
+    texto: "O link chega no WhatsApp dele, ele assina com o dedo na tela e pronto. O cadastro do filho também é pelo seu link. Sem imprimir nada.",
+    img: assinatura,
+    alt: "Tela real do Van360 em que o pai assina o contrato com o dedo",
+    selo: "No celular do pai",
   },
   {
     n: "2",
@@ -61,7 +61,7 @@ const passos = [
                 alt={p.alt}
                 widths={[300, 600]}
                 sizes="300px"
-                class="w-full max-w-[300px] h-auto drop-shadow-[0_10px_20px_rgba(15,35,60,0.14)]"
+                class="w-full max-w-[280px] max-h-[270px] object-contain h-auto drop-shadow-[0_10px_20px_rgba(15,35,60,0.14)]"
               />
             </div>
             <div class="p-5 sm:p-6 pt-4 sm:pt-5">
