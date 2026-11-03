@@ -17,7 +17,7 @@ const beneficios = [
 >
   <div class="max-w-[1120px] mx-auto px-5">
     <div
-      class="flex flex-col lg:grid lg:grid-cols-[1.15fr_0.85fr] items-center gap-7 lg:gap-12"
+      class="flex flex-col lg:grid lg:grid-cols-[1.15fr_0.85fr] items-center gap-5 lg:gap-12"
     >
       <!-- Texto -->
       <div class="w-full max-w-[640px] mx-auto lg:mx-0 text-center lg:text-left">
@@ -30,13 +30,13 @@ const beneficios = [
 
         <h1
           style="text-wrap: balance;"
-          class="text-[1.65rem] min-[360px]:text-[1.85rem] leading-[1.12] sm:text-[2.4rem] lg:text-[3rem] lg:leading-[1.08] font-black tracking-tight text-[#1a3a5c] mb-5"
+          class="text-[1.65rem] min-[360px]:text-[1.85rem] leading-[1.12] sm:text-[2.4rem] lg:text-[3rem] lg:leading-[1.08] font-black tracking-tight text-[#1a3a5c] mb-4 lg:mb-6"
         >
           Pagamentos, contratos e alunos da sua van,
           <span class="text-[#d97706]">tudo no celular.</span>
         </h1>
 
-        <ul class="inline-flex flex-col gap-2 text-left mb-7 lg:mb-8">
+        <ul class="hidden lg:inline-flex flex-col gap-2 text-left mb-8">
           {
             beneficios.map((b) => (
               <li class="flex items-start gap-2.5 text-[1rem] min-[360px]:text-[1.05rem] sm:text-[1.15rem] lg:text-[1.2rem] text-slate-700 leading-snug">
@@ -126,7 +126,17 @@ const beneficios = [
         </div>
       </div>
 
-
+      <!-- Checks no mobile/tablet: abaixo do mockup, para o app aparecer na primeira dobra -->
+      <ul class="lg:hidden flex flex-col gap-2.5 text-left w-full max-w-[340px] sm:max-w-[420px] mx-auto">
+        {
+          beneficios.map((b) => (
+            <li class="flex items-start gap-2.5 text-[1rem] min-[360px]:text-[1.05rem] sm:text-[1.15rem] text-slate-700 leading-snug">
+              <Check class="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" stroke-width={3} />
+              <span>{b}</span>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </div>
 </section>
