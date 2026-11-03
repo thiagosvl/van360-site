@@ -272,11 +272,11 @@ export const getFaqItems = (monthlyPriceFormatted: string): FaqItem[] => [
   },
   {
     q: "O dinheiro do pai cai direto na minha conta?",
-    a: "Sim. O lembrete que vai no WhatsApp leva a sua chave Pix, então o pai paga direto para você. Depois é só marcar como pago e o recibo fica pronto para enviar.",
+    a: "Sim. O lembrete que vai no WhatsApp leva a sua chave Pix, então o pai paga direto para você. Depois é só marcar como pago e o recibo fica pronto para enviar. Se preferir, ative a cobrança automática: o pagamento é baixado sozinho no app, você recebe uma notificação e o responsável recebe o recibo na hora. Nessa opção há uma taxa por transação.",
   },
   {
     q: "Os pais precisam baixar algum aplicativo?",
-    a: "Não precisam. O lembrete, o contrato e o recibo chegam no WhatsApp deles. Se quiserem, também podem usar o app dos pais para ver a carteirinha, os recibos e os avisos da rota.",
+    a: "Não precisam. O lembrete, o contrato e o recibo chegam no WhatsApp deles. Se quiserem, também podem usar o app dos pais para ver a carteirinha, os recibos e os avisos da rota, sem nenhum custo para eles.",
   },
   {
     q: "Vou ter que digitar aluno por aluno?",
